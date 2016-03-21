@@ -6,7 +6,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 
 
 # -----------
-# URL Routing
+# DB models
 # -----------
 
 class City(db.Model):
