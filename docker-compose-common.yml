@@ -24,22 +24,22 @@ services:
           - apps
     environment:
       # Environment variables to configure the app on startup.
-      - MYSQL_DATABASE=guestbook
-      - MYSQL_HOST=pythonwebapp_db
+      - MYSQL_DATABASE=vas
+      - MYSQL_HOST=vas_db
 
   db:
     # The database container. Built from the db/Dockerfile.
-    container_name: pythonwebapp_db
+    container_name: vas_db
     build: db
     restart: unless-stopped
     networks:
       - backend
     environment:
       # Environment variables to configure MySQL on startup.
-      - MYSQL_DATABASE=guestbook
+      - MYSQL_DATABASE=vas
 
   data:
-    container_name: pythonwebapp_db_data
+    container_name: vas_db_data
     # The Data Volume Container used to mount a volume to store our persistent data
     # https://getcarina.com/docs/tutorials/data-volume-containers/
     image: cirros
