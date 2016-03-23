@@ -1,0 +1,5 @@
+web:
+  image: shperl/virtual-address.space
+  command: python app.py
+  ports:
+    - "5000:5000"

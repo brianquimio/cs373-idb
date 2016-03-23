@@ -1,11 +1,8 @@
-FROM python:3.4
+# Instructions copied from - https://hub.docker.com/_/python/
+FROM python:3-onbuild
 
-ENV PYTHONUNBUFFERED 1
+# tell the port number the container should expose
+EXPOSE 5000
 
-ADD . /src
-
-WORKDIR /src
-
-RUN pip install -r requirements.txt
-
-CMD gunicorn app:app -b 0.0.0.0:8000
+# run the command
+CMD ["python", "./app.py"]

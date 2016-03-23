@@ -6,11 +6,11 @@
 
 import logging
 import os
-import Models
+# from models import *
 
 from flask import Flask, render_template, request, redirect, url_for
-from flask.ext.script import Manager
-from flask.ext.sqlalchemy import SQLAlchemy
+# from flask.ext.script import Manager
+# from flask.ext.sqlalchemy import SQLAlchemy
 
 
 # ------------------------------
@@ -28,13 +28,13 @@ from flask.ext.sqlalchemy import SQLAlchemy
 # Configure MySQL Database and SQLAlchemy URI
 # -------------------------------------------
 
-SQLALCHEMY_DATABASE_URI = \
-    '{engine}://{username}:{password}@hostname}/{database}'.format(
-        engine='mysql+pymysql',
-        username=os.getenv('MYSQL_USER'),
-        password=os.getenv('MYSQL_PASSWORD'),
-        hostname=os.getenv('MYSQL_HOST'),
-        database=os.getenv('MYSQL_DATABASE'))
+# SQLALCHEMY_DATABASE_URI = \
+#     '{engine}://{username}:{password}@hostname}/{database}'.format(
+#         engine='mysql+pymysql',
+#         username=os.getenv('MYSQL_USER'),
+#         password=os.getenv('MYSQL_PASSWORD'),
+#         hostname=os.getenv('MYSQL_HOST'),
+#         database=os.getenv('MYSQL_DATABASE'))
 
 
 # -------------
@@ -46,7 +46,7 @@ app = Flask(__name__)
 # app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-manager = Manager(app)
+# manager = Manager(app)
 # db = SQLAlchemy(app)
 
 
@@ -54,25 +54,48 @@ manager = Manager(app)
 # URL Routing
 # -----------
 
-@app.route('/')
+# @app.route('/', methods=['GET', 'POST'])
+# def index():
+#     logger.debug("index")
+
+#     if request.method == 'POST':
+#         name = request.form['name']
+#         guest = Guest(name=name)
+#         db.session.add(guest)
+#         db.session.commit()
+#         return redirect(url_for('index'))
+
+#     return render_template('index.html', guests=Guest.query.all())
+
+
+# class Guest(db.Model):
+#     __tablename__ = 'guests'
+
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(256), nullable=False)
+
+#     def __repr__(self):
+#         return "[Guest: id={}, name={}]".format(self.id, self.name)
+
+@app.route('/',methods=['GET', 'POST'])
 def index():
     # logger.debug("index")
     return render_template('index.html')
 
-@app.route('/showCities')
-def showCities():
-    # logger.debug("cities")
-    return render_template('cities.html')
+# @app.route('/showCities')
+# def showCities():
+#     # logger.debug("cities")
+#     return render_template('cities.html')
 
-@app.route('/showStates')
-def showCities():
-    # logger.debug("cities")
-    return render_template('states.html')
+# @app.route('/showStates')
+# def showCities():
+#     # logger.debug("cities")
+#     return render_template('states.html')
 
-@app.route('/showNeighborhoods')
-def showCities():
-    # logger.debug("cities")
-    return render_template('neighborhoods.html')
+# @app.route('/showNeighborhoods')
+# def showCities():
+#     # logger.debug("cities")
+#     return render_template('neighborhoods.html')
 
 
 # ---------------------
@@ -106,4 +129,4 @@ def showCities():
 # -------
 
 if __name__ == '__main__':
-    manager.run()
+    app.run('0.0.0.0', port = 5000)
