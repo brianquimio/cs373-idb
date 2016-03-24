@@ -1,0 +1,35 @@
+{
+  "state": "TX",
+  "city": "Austin",
+  "neighborhood": "Hyde Park",
+
+  "property-type" : 
+  [
+    "all": 
+    { 
+      "num-properties" : 5,
+      "avg-listing-price" : 43140
+    },
+    "1-bed": 
+    {
+      "num-properties" : 2,
+      "avg-listing-price" : 29313
+    },
+    "2-bed": 
+    {
+      "num-properties" : 2,
+      "avg-listing-price" : 34810 
+    },
+    "3-bed": {
+      "num-properties": 1,
+      "avg-listing-price": 60281
+    }
+
+  ],
+
+  "date": "yyyy-mm-dd",
+  
+  "yelp": "query",
+  "google-maps": "query"
+
+}

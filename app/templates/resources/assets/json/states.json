@@ -1,0 +1,31 @@
+{
+  "states": 
+    [
+      {
+        "state-id": 1,
+        "state-name": "Texas",
+        "date": "yyyy-mm-dd",
+        "property-type": "ALL",
+        "num-properties": 300,
+        "avg-listing-price": 49017
+      },
+      {
+        "state-id": 2,
+        "state-name": "New York",
+        "date": "yyyy-mm-dd",
+        "property-type" : "ALL",
+        "num-properties": 700,
+        "avg-listing-price": 89210
+      },
+      {
+        "state-id": 3,
+        "state-name": "California",
+        "date": "yyyy-mm-dd",
+        "property-type" : "ALL",
+        "num-properties": 1500,
+        "avg-listing-price": 141211
+      }
+
+  ]
+
+}
