@@ -1,8 +1,21 @@
-# Instructions copied from - https://hub.docker.com/_/python/
-FROM python:3-onbuild
+# start from base
+FROM ubuntu:14.04
+MAINTAINER Stephen Perl
 
-# tell the port number the container should expose
+# install system-wide deps for python and node
+RUN apt-get -yqq update
+RUN apt-get -yqq install python-pip python-dev
+RUN ln -s /usr/bin/nodejs /usr/bin/node
+
+# copy our application code
+ADD . /opt/flask-app
+WORKDIR /opt/flask-app
+
+# fetch app specific deps
+RUN pip install -r requirements.txt
+
+# expose port
 EXPOSE 5000
 
-# run the command
-CMD ["python", "./app.py"]
+# start app
+CMD [ "python", "./app.py" ]
