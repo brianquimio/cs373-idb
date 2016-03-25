@@ -5,6 +5,7 @@ MAINTAINER Stephen Perl
 # install system-wide deps for python and node
 RUN apt-get -yqq update
 RUN apt-get -yqq install python-pip python-dev
+RUN ln -s /usr/bin/nodejs /usr/bin/node
 
 # copy our application code
 ADD . /opt/flask-app
