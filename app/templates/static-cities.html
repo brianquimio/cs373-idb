@@ -7,12 +7,12 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="favicon.ico">
 
     <title>Generic Page for VAS</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../lib/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- <link href="../../bower_components/bootstrap/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
@@ -34,7 +34,7 @@
 
   <body>
 
-    <div id="bg"> <img src="../assets/images/background.png"> </div>
+    <div id="bg"> <img src="../img/background.png"> </div>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -45,7 +45,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../../index.html">Virtual Address Space</a>
+          <a class="navbar-brand" href="../index.html">Virtual Address Space</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -65,63 +65,47 @@
       </div>
     </div> -->
     <div class="container-fluid regionTitleContainer">
-      <div class="row containerName"><h2>Texas</h2></div>
+      <div class="row containerName"><h2>Cities</h2></div>
     </div>
 
     <div class="container-fluid dataContainer">
-      <div class="row containerName"><h3>Stats</h3></div>
+      <!-- <div class="row containerName"><h3>Stats</h3></div> -->
       <div class="row containerContents">
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>Key</th>
-              <th>Value</th>
+              <th>ID</th>
+              <th>Name</th>
+              <th>State</th>
+              <th>Date</th>
+              <th># of Properties</th>
+              <th>Avg. Listing Price</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Cities:</td>
-              <td>
-                <a href="static-city-austin-tx.html">Austin</a><br/>
-                <a href="static-city-houston-tx.html">Houston</a><br/>
-                <a href="static-city-dallas-tx.html">Dallas</a>
-              </td>
-            </tr>
-            <tr>
-              <td>Date:</td>
+              <td>1</td>
+              <td><a href="static-city-houston-tx.html">Houston</a></td>
+              <td><a href="static-state-texas.html">Texas</a></td>
               <td>2016-03-22</td>
+              <td>50</td>
+              <td>$75000</td>
             </tr>
             <tr>
-              <td># of "All" Properties</td>
-              <td>300</td>
+              <td>2</td>
+              <td><a href="static-city-austin-tx.html">Austin</a></td>
+              <td><a href="static-state-texas.html">Texas</a></td>
+              <td>2016-03-15</td>
+              <td>10</td>
+              <td>$50000</td>
             </tr>
             <tr>
-              <td>Average Listing</td>
-              <td>$225000</td>
-            </tr>
-            <tr>
-              <td># of "1-bed" Properties</td>
-              <td>195</td>
-            </tr>
-            <tr>
-              <td>Average "1-bed" Listing</td>
-              <td>$185000</td>
-            </tr>
-            <tr>
-              <td># of "2-bed" Properties</td>
-              <td>65</td>
-            </tr>
-            <tr>
-              <td>Average "2-bed" Listing</td>
-              <td>$264000</td>
-            </tr>
-            <tr>
-              <td># of "3-bed" Properties</td>
-              <td>40</td>
-            </tr>
-            <tr>
-              <td>Average "3-bed" Listing</td>
-              <td>$312000</td>
+              <td>3</td>
+              <td><a href="static-city-dallas-tx.html">Dallas</a></td>
+              <td><a href="static-state-texas.html">Texas</td>
+              <td>2016-03-16</td>
+              <td>200</td>
+              <td>$123456</td>
             </tr>
           </tbody>
         </table>

@@ -12,14 +12,14 @@
     <title>Generic Page for VAS</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/lib/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- <link href="../../bower_components/bootstrap/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
     <!-- Custom styles for this template -->
 
-    <link href="../css/generic.css" rel="stylesheet">
-    <link href="../css/splash.css" rel="stylesheet">
+    <link href="../static/css/generic.css" rel="stylesheet">
+    <link href="../static/css/splash.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -33,8 +33,8 @@
   </head>
 
   <body>
-    
-    <div id="bg"> <img src="../assets/images/background.png"> </div>
+
+    <div id="bg"> <img src="../static/img/background.png"> </div>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -65,43 +65,63 @@
       </div>
     </div> -->
     <div class="container-fluid regionTitleContainer">
-      <div class="row containerName"><h2>States</h2></div>
+      <div class="row containerName"><h2>Texas</h2></div>
     </div>
 
     <div class="container-fluid dataContainer">
-      <!-- <div class="row containerName"><h3>Stats</h3></div> -->
+      <div class="row containerName"><h3>Stats</h3></div>
       <div class="row containerContents">
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Date</th>
-              <th># of Properties</th>
-              <th>Avg. Listing Price</th>
+              <th>Key</th>
+              <th>Value</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>1</td>
-              <td><a href="static-state-texas.html">Texas</a></td>
+              <td>Cities:</td>
+              <td>
+                <a href="static-city-austin-tx.html">Austin</a><br/>
+                <a href="static-city-houston-tx.html">Houston</a><br/>
+                <a href="static-city-dallas-tx.html">Dallas</a>
+              </td>
+            </tr>
+            <tr>
+              <td>Date:</td>
               <td>2016-03-22</td>
+            </tr>
+            <tr>
+              <td># of "All" Properties</td>
               <td>300</td>
-              <td>$49017</td>
             </tr>
             <tr>
-              <td>2</td>
-              <td><a href="static-state-new-york.html">New York</a></td>
-              <td>2016-03-15</td>
-              <td>700</td>
-              <td>$89210</td>
+              <td>Average Listing</td>
+              <td>$225000</td>
             </tr>
             <tr>
-              <td>3</td>
-              <td><a href="static-state-california.html">California</a></td>
-              <td>2016-03-16</td>
-              <td>1500</td>
-              <td>$141211</td>
+              <td># of "1-bed" Properties</td>
+              <td>195</td>
+            </tr>
+            <tr>
+              <td>Average "1-bed" Listing</td>
+              <td>$185000</td>
+            </tr>
+            <tr>
+              <td># of "2-bed" Properties</td>
+              <td>65</td>
+            </tr>
+            <tr>
+              <td>Average "2-bed" Listing</td>
+              <td>$264000</td>
+            </tr>
+            <tr>
+              <td># of "3-bed" Properties</td>
+              <td>40</td>
+            </tr>
+            <tr>
+              <td>Average "3-bed" Listing</td>
+              <td>$312000</td>
             </tr>
           </tbody>
         </table>
@@ -114,7 +134,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
     <!-- <script>window.jQuery || document.write('<script src="../../bower_components/bootstrap/assets/js/vendor/jquery.min.js"><\/script>')</script> -->
-    <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../static/lib/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- <script src="../../bower_components/bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script> -->
   </body>
