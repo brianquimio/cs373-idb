@@ -1,0 +1,123 @@
+FORMAT: 1A
+HOST: http://www.virtual-address.space
+
+# TEAM-BASK
+
+So You Wanna Move There? provides new hires with all the knowledge they
+need to inform them on which city they should move to after college.
+
+
+## States [/States]
+
+### Which State Are You Thinking Of Moving To? [GET]
+
++ Response 200 (application/json)
+
+        {   
+        "California": {
+            "State": "California",
+            "Stateid": "CA",
+            "Property Type": "All Properties",
+            "Num Properties": 36309,
+            "Avg Listing": 759071,
+            "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getStateStats&state=CA&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
+                    },
+        "Washington": {
+                "name": "Washington",
+                "Stateid": "WA",
+                "Property Type": "All Properties",
+                "Num Properties": 10116,
+                "Avg Listing":383939,
+                "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getStateStats&state=WA&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
+                    },
+        "Oregon":   {
+                "name": "Oregon"
+                "Stateid": "OR"
+                "Property Type": "All Properties"
+                "Num Properties": 7333
+                "Avg Listing":366618,
+                "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getStateStats&state=OR&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
+                },
+            
+        }
+    
+
+
+##Cities [/Cities]
+
+### Now Lets Look At Some Cities [GET]
+
+What cities are you thinking about living in?
+
++ Response 200 (application/json)
+
+        {
+                "San Francisco": {
+                "City": "San Francisco",
+                "State_name": "California",
+                "Property Type": "All Properties",
+                "Num Properties": "195",
+                "Avg Listing":"1669854",
+                "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getCityStats&city=San%20Francisco&state=CA&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
+                    },
+                "Seattle": {
+                "City": "Seattle",
+                "name": "Washington",
+                "Property Type": "All Properties",
+                "Num Properties": 505,
+                "Avg Listing": 758123,
+                "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getCityStats&city=Seattle&state=WA&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
+                    },
+                "Portland": {
+                "City": "Portland"
+                "name": "Oregon",
+                "Property Type": "All Properties",
+                "Num Properties": "743",
+                "Avg Listing":"484274",
+                "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getCityStats&city=Portland&state=OR&startDate=2016-01-01&endDate=2016-03-22&apikey=nctn3tmtxydytsqj6bmzjzrg"
+                }
+        }
+        
+        
+##Neighborhoods [/Neighborhoods]
+
+### Now which neighborhood? [GET]
+
+What cities are you thinking about living in?
+
++ Response 200 (application/json)
+
+        {
+                "Castro":{
+                "Neighborhoods": "Castro",
+                "nID": 1394,
+                "City": "San Fransisco",
+                "StateID": "CA",
+                "Property Type": "All Properties",
+                "Num Properties": 1,
+                "Avg Listing": 849000,
+                "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getNeighborhoodStats&neighborhoodId=1394&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
+                    },
+                "Victory Heights":{
+                "Neighborhoods": "Victory Heights",
+                "nID": 6882,
+                "City": "Seatle",
+                "StateID": "WA",
+                "Property Type": "All Properties",
+                "Num Properties": 1,
+                "Avg Listing": 480000,
+                "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getNeighborhoodStats&neighborhoodId=1386&startDate=2016-01-01&endDate=2016-03-22&apikey=nctn3tmtxydytsqj6bmzjzrg"
+                    },
+                "Kerns":{
+                "Neighborhoods": "Kerns",
+                "nID": 5698,
+                "City": "Portland",
+                "StateID": "Oregon",
+                "Property Type": "All Properties",
+                "Num Properties": 1,
+                "Avg Listing": 457000,
+                "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getNeighborhoodStats&neighborhoodId=5698&startDate=2016-01-01&endDate=2016-03-22&apikey=nctn3tmtxydytsqj6bmzjzrg"
+                }
+                {
+        }
+        
