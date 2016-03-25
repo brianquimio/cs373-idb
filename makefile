@@ -1,19 +1,22 @@
-IMAGE_NAME_APP := shperl/virtual-address.space
-#IMAGE_NAME_LB := TODO
-DOCKER_HUB_USERNAME := shperl
-FILES :=        \
-    .gitignore  \
-    .travis.yml \
-    makefile    \
-    apiary.apib \
-    IDB1.log    \
-    models.html \
-    models.py   \
-    tests.py    \
-    UML.pdf
+FILES :=                            				\
+	.gitignore						\
+	.travis.yml						\
+	makefile						\
+	apiary.apib						\
+	IDB1.log						\
+	models.html						\
+	models.py 						\
+	tests.py 						\
+	UML.pdf
+
+models.html: models.py
+	pydoc3 -w models
+
+IDB1.log:
+	git log > IDB1.log
 
 check:
-	@not_found=0;                                 \
+	@not_found=0;                             \
     for i in $(FILES);                            \
     do                                            \
         if [ -e $$i ];                            \
@@ -32,21 +35,21 @@ check:
     echo "success";
 
 clean:
-	rm -rf app/__pycache__
+	rm -f  .coverage
+	rm -f  *.pyc
+	rm -f  *.tmp
+	rm -rf __pycache__
 
-docker-build:
-	@if [ -z "$$CONTINUE" ]; then \
-		read -r -p "Have you sourced the docker.env file for our Carina cluster? (y/n): " CONTINUE; \
-	fi ; \
-	[ $$CONTINUE = "y" ] || [ $$CONTINUE = "Y" ] || (echo "Exiting."; exit 1;)
-	@echo "Building the images..."
-	docker login
+config:
+	git config -l
 
-	docker build -t ${DOCKER_HUB_USERNAME}/${IMAGE_NAME_APP} app
-	docker push ${DOCKER_HUB_USERNAME}/${IMAGE_NAME_APP}
+html: models.html
 
-	docker build -t ${DOCKER_HUB_USERNAME}/${IMAGE_NAME_LB} lb
-	docker push ${DOCKER_HUB_USERNAME}/${IMAGE_NAME_LB}
+log: IDB1.log
 
-docker-push:
-	 docker-compose --file docker-compose-prod.yml up -d
+status:
+	make clean
+	@echo
+	git branch
+	git remote -v
+	git status
