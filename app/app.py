@@ -45,6 +45,11 @@ def index():
     # logger.debug("index")
     return send_file('templates/index.html')
 
+@app.route('/about.html')
+def about():
+    # logger.debug("about")
+    return send_file('templates/about.html')
+
 @app.route('/static-cities.html')
 def cities():
     # logger.debug("cities")
