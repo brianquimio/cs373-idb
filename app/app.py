@@ -76,6 +76,36 @@ def states():
     # logger.debug("states")
     return send_file('templates/static-states.html')
 
+@app.route('/static-city-austin-tx.html')
+def splash():
+    # logger.debug("splash")
+    return send_file('templates/static-city-austin-tx.html')
+
+@app.route('/static-city-dallas-tx.html')
+def cities():
+    # logger.debug("cities")
+    return send_file('templates/static-city-dallas-tx.html')
+
+@app.route('/static-city-houston-tx.html')
+def neighborhoods():
+    # logger.debug("neighborhoods")
+    return send_file('templates/static-city-houston-tx.html')
+
+@app.route('/static-neighborhood-hyde-park-austin.html')
+def california():
+    # logger.debug("california")
+    return send_file('templates/static-neighborhood-hyde-park-austin.html')
+
+@app.route('/static-neighborhood-north-university-austin.html')
+def texas():
+    # logger.debug("texas")
+    return send_file('templates/static-neighborhood-north-university-austin.html')
+
+@app.route('/static-state-new-york.html')
+def texas():
+    # logger.debug("texas")
+    return send_file('templates/static-state-new-york.html')
+
 
 # -------
 # Run App
