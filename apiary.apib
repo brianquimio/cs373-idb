@@ -15,32 +15,93 @@ need to inform them on which city they should move to after college.
 
         {   
         "California": {
-            "State": "California",
+            "State": "California":[{
+                 "Cities": [{
+                    "City": "Los Angeles",
+                    "url": "#"
+                    },
+                    {"City": "San Francisco"
+                    "url": "#"
+                    },
+                    {"City": "Sacremento",
+                    "url": "#"}],
+                    "Date": 2016-03-22,
+                    "# of 'All' Properties": 300,
+                    "Average Listing": 225000,
+                    "# of '1-Bed' Properties": 195,
+                    "Average '1-Bed' Listing": 185000,
+                    "# of '2-Bed' Properties": 65,
+                    "Average '2-Bed' Listing": 264000,
+                    "# of '3-Bed' Properties": 40,
+                    "Average '3-Bed' Listing": 312000,
+                 }
             "Stateid": "CA",
-            "Property Type": "All Properties",
-            "Num Properties": 36309,
-            "Avg Listing": 759071,
+            "Date": 2016-03-22,
+            "Num Properties": 300,
+            "Avg Listing": 49017,
             "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getStateStats&state=CA&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
                     },
-        "Washington": {
-                "name": "Washington",
-                "Stateid": "WA",
-                "Property Type": "All Properties",
-                "Num Properties": 10116,
-                "Avg Listing":383939,
-                "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getStateStats&state=WA&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
+        "New York": {
+            "State": "New York":[{
+                 "Cities": [{
+                    "City": "New York City",
+                    "url": "#"
                     },
-        "Oregon":   {
-                "name": "Oregon"
-                "Stateid": "OR"
-                "Property Type": "All Properties"
-                "Num Properties": 7333
-                "Avg Listing":366618,
-                "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getStateStats&state=OR&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
-                },
-            
+                    {"City": "Brooklyn"
+                    "url": "#"
+                    },
+                    {"City": "Queens",
+                    "url": "#"}],
+                    "Date": 2016-03-22,
+                    "# of 'All' Properties": 300,
+                    "Average Listing": 225000,
+                    "# of '1-Bed' Properties": 195,
+                    "Average '1-Bed' Listing": 185000,
+                    "# of '2-Bed' Properties": 65,
+                    "Average '2-Bed' Listing": 264000,
+                    "# of '3-Bed' Properties": 40,
+                    "Average '3-Bed' Listing": 312000,
+                 },
+            "Stateid": "NY",
+            "Date": 2016-03-15
+            "Num Properties": 700,
+            "Avg Listing": 89210,
+            "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getStateStats&state=NY&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
+                    },
+        "Texas": {
+            "State": "Texas":[{
+                 "Cities": [{
+                    "City": "Austin",
+                    "url": "/static-city-austin-tx.html"
+                    },
+                    {"City": "Houston"
+                    "url": "/static-city-houston-tx.html"
+                    },
+                    {"City": "Dallas",
+                    "url": "/static-city-dallas-tx.html"}],
+                    "Date": 2016-03-22,
+                    "# of 'All' Properties": 300,
+                    "Average Listing": 225000,
+                    "# of '1-Bed' Properties": 195,
+                    "Average '1-Bed' Listing": 185000,
+                    "# of '2-Bed' Properties": 65,
+                    "Average '2-Bed' Listing": 264000,
+                    "# of '3-Bed' Properties": 40,
+                    "Average '3-Bed' Listing": 312000,
+                 }
+            "Stateid": "TX",
+            "Date": 2016-03-15
+            "Num Properties": 300,
+            "Avg Listing": 49017,
+            "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getStateStats&state=NY&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
+                    },
         }
     
+##Specific State[/States/{state_name}]
+Returns a json object with information about the specific state
+
++ Parameters
+    + state_name(required, string) - name of the state
 
 
 ##Cities [/Cities]
@@ -52,34 +113,106 @@ What cities are you thinking about living in?
 + Response 200 (application/json)
 
         {
-                "San Francisco": {
-                "City": "San Francisco",
-                "State_name": "California",
-                "Property Type": "All Properties",
-                "Num Properties": "195",
-                "Avg Listing":"1669854",
-                "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getCityStats&city=San%20Francisco&state=CA&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
+            "Cities":[{    
+                "Austin": {
+                "City_url": "static-city-austin"
+                "City": "Austin": [
+                "State": "Texas",
+                "State_url": "/static-state-texas"
+                "Neighborhoods": [{
+                        "neighborhoods": "West Campus",
+                        "url": "/static-neighborhood-west-campus-austin-tx.html"
                     },
-                "Seattle": {
-                "City": "Seattle",
-                "name": "Washington",
-                "Property Type": "All Properties",
-                "Num Properties": 505,
-                "Avg Listing": 758123,
+                    {
+                        "neighborhoods": "North University",
+                        "url": "/static-neighborhood-north-university-austin-tx.html"
+                    },
+                    {
+                        "neighborhoods": "Hyde Park",
+                        "url": "/static-neighborhood-hyde-park-austin-tx.html"
+                    }],
+                "Date": 2016-03-22
+                "# of 'All' Properties": 300,
+                "Avg Listing": 225000,
+                "# of "1-bed" Properties": 195,
+                "Average '1-bed' Listings": 200,000,
+                "# of "2-bed" Properties: 65,
+                "Average '2-bed' Listing": 264000,
+                "# of '3-bed' Listings": 40,
+                "Average '3-bed' Listing": 312000,
                 "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getCityStats&city=Seattle&state=WA&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
+                }],
+                "Date": 2016-03-15,
+                "# of Properties": 10,
+                "Avg. Listing Price:": 50000
+                },
+                "Houston": {
+                "City": "Houston",
+                "State": "Texas",
+                "Neighborhoods": [{
+                        "neighborhoods": "Cypress",
+                        "url": "#"
                     },
-                "Portland": {
-                "City": "Portland"
-                "name": "Oregon",
-                "Property Type": "All Properties",
-                "Num Properties": "743",
-                "Avg Listing":"484274",
-                "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getCityStats&city=Portland&state=OR&startDate=2016-01-01&endDate=2016-03-22&apikey=nctn3tmtxydytsqj6bmzjzrg"
-                }
+                    {
+                        "neighborhoods": "Bellaire",
+                        "url": "#"
+                    },
+                    {
+                        "neighborhoods": "Alief",
+                        "url": "#"
+                    }],
+                "Date": 2016-03-22
+                "# of 'All' Properties": 300,
+                "Avg Listing": 225000,
+                "# of "1-bed" Properties": 195,
+                "Average '1-bed' Listings": 185000,
+                "# of "2-bed" Properties: 65,
+                "Average '2-bed' Listing": 264000,
+                "# of '3-bed' Listings": 40,
+                "Average '3-bed' Listing": 312000,
+                "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getCityStats&city=Seattle&state=WA&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
+                },
+                "Dallas": {
+                "City_url": "static-city-austin"
+                "City": "Dallas",
+                "State": "Texas",
+                "Neighborhoods": [{
+                        "neighborhoods": "Cypress",
+                        "url": "#"
+                    },
+                    {
+                        "neighborhoods": "Bellaire",
+                        "url": "#"
+                    },
+                    {
+                        "neighborhoods": "Alief",
+                        "url": "#"
+                    }],
+                "Date": 2016-03-22
+                "# of 'All' Properties": 300
+                "Avg Listing": 225000,
+                "# of "1-bed" Properties": 195,
+                "Average '1-bed' Listings": 185000,
+                "# of "2-bed" Properties: 65,
+                "Average '2-bed' Listing": 264000,
+                "# of '3-bed' Listings": 40,
+                "Average '3-bed' Listing": 312000,
+                "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getCityStats&city=Seattle&state=WA&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
+                },
+
+            }]
         }
         
+
+##Specific State[/cities/{city}]
+Returns a json object with information about the specific city
+
++ Parameters
+    + city(required, string) - name of the city
         
 ##Neighborhoods [/Neighborhoods]
+
+
 
 ### Now which neighborhood? [GET]
 
@@ -92,32 +225,25 @@ What cities are you thinking about living in?
                 "Neighborhoods": "Castro",
                 "nID": 1394,
                 "City": "San Fransisco",
+                "City_url": "/static-city-san-francisco",
                 "StateID": "CA",
+                "State_url": "static-state-california",
                 "Property Type": "All Properties",
-                "Num Properties": 1,
+                "Num Properties": 10,
                 "Avg Listing": 849000,
+                "# of "1-bed" Properties": 195,
+                "Average '1-bed' Listings": 185000,
+                "# of "2-bed" Properties: 65,
+                "Average '2-bed' Listing": 264000,
+                "# of '3-bed' Listings": 40,
+                "Average '3-bed' Listing": 312000,
                 "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getNeighborhoodStats&neighborhoodId=1394&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
                     },
-                "Victory Heights":{
-                "Neighborhoods": "Victory Heights",
-                "nID": 6882,
-                "City": "Seatle",
-                "StateID": "WA",
-                "Property Type": "All Properties",
-                "Num Properties": 1,
-                "Avg Listing": 480000,
-                "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getNeighborhoodStats&neighborhoodId=1386&startDate=2016-01-01&endDate=2016-03-22&apikey=nctn3tmtxydytsqj6bmzjzrg"
-                    },
-                "Kerns":{
-                "Neighborhoods": "Kerns",
-                "nID": 5698,
-                "City": "Portland",
-                "StateID": "Oregon",
-                "Property Type": "All Properties",
-                "Num Properties": 1,
-                "Avg Listing": 457000,
-                "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getNeighborhoodStats&neighborhoodId=5698&startDate=2016-01-01&endDate=2016-03-22&apikey=nctn3tmtxydytsqj6bmzjzrg"
-                }
-                {
         }
+
+##Specific Neighborhood[/Neighborhoods/{nID}]
+Returns a json object with information about the specific state
+
++ Parameters
+    + nID(required, integer) - ID number of the neighborhood
         
