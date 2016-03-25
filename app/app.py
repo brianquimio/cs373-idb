@@ -45,12 +45,6 @@ def index():
     # logger.debug("index")
     return send_file('templates/index.html')
 
-
-@app.route('/splash.html')
-def splash():
-    # logger.debug("splash")
-    return send_file('templates/splash.html')
-
 @app.route('/static-cities.html')
 def cities():
     # logger.debug("cities")
