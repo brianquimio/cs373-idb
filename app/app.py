@@ -85,15 +85,20 @@ def houston():
     # logger.debug("neighborhoods")
     return send_file('templates/static-city-houston-tx.html')
 
-@app.route('/static-neighborhood-hyde-park-austin.html')
+@app.route('/static-neighborhood-hyde-park-austin-tx.html')
 def hyde_park():
     # logger.debug("california")
-    return send_file('templates/static-neighborhood-hyde-park-austin.html')
+    return send_file('templates/static-neighborhood-hyde-park-austin-tx.html')
 
-@app.route('/static-neighborhood-north-university-austin.html')
+@app.route('/static-neighborhood-north-university-austin-tx.html')
 def north_university():
     # logger.debug("texas")
-    return send_file('templates/static-neighborhood-north-university-austin.html')
+    return send_file('templates/static-neighborhood-north-university-austin-tx.html')
+
+@app.route('/static-neighborhood-west-campus-austin-tx.html')
+def west_campus():
+    # logger.debug("texas")
+    return send_file('templates/static-neighborhood-west-campus-austin-tx.html')
 
 @app.route('/static-state-new-york.html')
 def new_york():
