@@ -71,32 +71,32 @@ def states():
     return send_file('templates/static-states.html')
 
 @app.route('/static-city-austin-tx.html')
-def splash():
+def austin():
     # logger.debug("splash")
     return send_file('templates/static-city-austin-tx.html')
 
 @app.route('/static-city-dallas-tx.html')
-def cities():
+def dallas():
     # logger.debug("cities")
     return send_file('templates/static-city-dallas-tx.html')
 
 @app.route('/static-city-houston-tx.html')
-def neighborhoods():
+def houston():
     # logger.debug("neighborhoods")
     return send_file('templates/static-city-houston-tx.html')
 
 @app.route('/static-neighborhood-hyde-park-austin.html')
-def california():
+def hyde_park():
     # logger.debug("california")
     return send_file('templates/static-neighborhood-hyde-park-austin.html')
 
 @app.route('/static-neighborhood-north-university-austin.html')
-def texas():
+def north_university():
     # logger.debug("texas")
     return send_file('templates/static-neighborhood-north-university-austin.html')
 
 @app.route('/static-state-new-york.html')
-def texas():
+def new_york():
     # logger.debug("texas")
     return send_file('templates/static-state-new-york.html')
 
