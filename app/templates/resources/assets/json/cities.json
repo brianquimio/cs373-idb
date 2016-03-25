@@ -1,5 +1,5 @@
 {
-  "cities": 
+  "cities":
     [
       {
         "city-id": 1,
@@ -12,7 +12,7 @@
       },
       {
         "city-id": 2,
-        "state-name": "TX"
+        "state-name": "TX",
         "city-name": "Austin",
         "date": "yyyy-mm-dd",
         "property-type" : "ALL",

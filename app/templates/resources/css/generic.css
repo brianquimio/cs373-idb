@@ -2,10 +2,11 @@ body {
   padding-top: 50px;
   background-color: #F3F5FA;
 }
-.starter-template {
-  padding: 40px 15px;
+
+table {
   text-align: center;
 }
+
 .regionTitleContainer {
   background-color: #EAECFF;
   font-weight: bold;

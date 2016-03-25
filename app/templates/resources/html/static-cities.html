@@ -16,9 +16,10 @@
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- <link href="../../bower_components/bootstrap/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
-
     <!-- Custom styles for this template -->
+
     <link href="../css/generic.css" rel="stylesheet">
+    <link href="../css/splash.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -33,6 +34,8 @@
 
   <body>
 
+    <div id="bg"> <img src="../assets/images/background.png"> </div>
+
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -42,14 +45,14 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Virtual Address Space</a>
+          <a class="navbar-brand" href="../../index.html">Virtual Address Space</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="../../index.html">Home</a></li>
-            <li><a href="#States">States</a></li>
-            <li><a href="#Cities">Cities</a></li>
-            <li><a href="#Neighborhoods">Neighborhoods</a></li>
+            <li><a href="static-states.html">States</a></li>
+            <li><a href="static-cities.html">Cities</a></li>
+            <li><a href="static-neighborhoods.html">Neighborhoods</a></li>
           </ul>
         </div>
       </div>
@@ -62,45 +65,50 @@
       </div>
     </div> -->
     <div class="container-fluid regionTitleContainer">
-      <div class="row containerName"><h2>{region}</h2></div>
+      <div class="row containerName"><h2>Cities</h2></div>
     </div>
 
     <div class="container-fluid dataContainer">
-      <div class="row containerName"><h3>Stats</h3></div>
+      <!-- <div class="row containerName"><h3>Stats</h3></div> -->
       <div class="row containerContents">
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>Property</th>
-              <th>Value</th>
-              <th>three</th>
+              <th>ID</th>
+              <th>Name</th>
+              <th>State</th>
+              <th>Date</th>
+              <th># of Properties</th>
+              <th>Avg. Listing Price</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>PropertyA</td>
-              <td>ValueA</td>
-              <td>ValueA</td>
+              <td>1</td>
+              <td><a href="static-city-houston-tx.html">Houston</a></td>
+              <td><a href="static-state-texas.html">Texas</a></td>
+              <td>2016-03-22</td>
+              <td>50</td>
+              <td>$75000</td>
             </tr>
             <tr>
-              <td>PropertyB</td>
-              <td>ValueB</td>
-              <td>ValueB</td>
+              <td>2</td>
+              <td><a href="static-city-austin-tx.html">Austin</a></td>
+              <td><a href="static-state-texas.html">Texas</a></td>
+              <td>2016-03-15</td>
+              <td>10</td>
+              <td>$50000</td>
             </tr>
             <tr>
-              <td>PropertyC</td>
-              <td>ValueC</td>
-              <td>ValueC</td>
+              <td>3</td>
+              <td><a href="static-city-dallas-tx.html">Dallas</a></td>
+              <td><a href="static-state-texas.html">Texas</td>
+              <td>2016-03-16</td>
+              <td>200</td>
+              <td>$123456</td>
             </tr>
           </tbody>
         </table>
-      </div>
-    </div>
-
-    <div class="container-fluid dataContainer">
-      <div class="row containerName"><h3>External Data (Yelp?)</h3></div>
-      <div class="row containerContents">
-        plug in external stuff in own containers
       </div>
     </div>
 

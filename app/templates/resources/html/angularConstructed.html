@@ -46,11 +46,11 @@
              <span class="icon-bar"></span>
              <span class="icon-bar"></span>
            </button>
-           <a class="navbar-brand" href="#">Project name</a>
+           <a class="navbar-brand" href="./../../index.html">Project name</a>
          </div>
          <div id="navbar" class="collapse navbar-collapse">
            <ul class="nav navbar-nav">
-             <li class="active"><a href="#">Home</a></li>
+             <li class="active"><a href="./../../index.html">Home</a></li>
              <li><a href="#states">States</a></li>
              <li><a href="#cities">Cities</a></li>
            </ul>
@@ -64,9 +64,9 @@
 
     <div ng-controller="containerGenerator as congen" class="container-fluid">
       <div ng-repeat="container in congen.containers" class="container-fluid">
-        <div ng-class="{{container.classes}}">
+        <div class ="container-fluid" ng-class="{{container.classes}}">
           <div class="row containerName"><h3>{{container.name}}</h3></div>
-          <div ng-show=container.hasContent class="row containerContents">
+          <div ng-show="container.content" class="row containerContents">
             {{container.content}}
           </div>
         </div>

@@ -1,14 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Team Bask</title>
-</head>
-<body>
-    <h1>This is a beautiful splash page.</h1>
-    <h2>Yay, an h2 header!</h2>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!--<meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">-->
 
-    <h2>Blah!</h2>
+    <title>BASK</title>
 
-</body>
+    <!--jQuery-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="resources/css/splash.css" rel="stylesheet">
+
+    <!--Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+
+  </head>
+
+  <body>
+
+  <div id="bg"> <img src="resources/assets/images/background.png"> </div>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Virtual Address Space</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#about">About</a></li>
+          <li><a href="resources/html/static-states.html">States</a></li>
+          <li><a href="resources/html/static-cities.html">Cities</a></li>
+          <li><a href="resources/html/static-neighborhoods.html">Neighborhoods</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="starter-template">
+      <p><b>Welcome.</b></h1>
+    </div>
+
+    <!--Search bar here-->
+    <form id="search_bar">
+      <input type="text" value="Enter a location..">
+      <input type="submit" value="Submit">
+    </form>
+
+  </div>
+
+  </body>
+
 </html>
