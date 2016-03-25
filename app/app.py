@@ -46,6 +46,35 @@ def index():
     return send_file('templates/index.html')
 
 
+@app.route('/splash.html')
+def splash():
+    # logger.debug("splash")
+    return send_file('templates/splash.html')
+
+@app.route('/static-cities.html')
+def cities():
+    # logger.debug("cities")
+    return send_file('templates/static-cities.html')
+
+@app.route('/static-neighborhoods.html')
+def neighborhoods():
+    # logger.debug("neighborhoods")
+    return send_file('templates/static-neighborhoods.html')
+
+@app.route('/static-state-california.html')
+def california():
+    # logger.debug("california")
+    return send_file('templates/static-state-california.html')
+
+@app.route('/static-state-texas.html')
+def texas():
+    # logger.debug("texas")
+    return send_file('templates/static-state-texas.html')
+
+@app.route('/static-states.html')
+def states():
+    # logger.debug("states")
+    return send_file('templates/static-states.html')
 
 
 # -------
