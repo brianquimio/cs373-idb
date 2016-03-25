@@ -1,0 +1,39 @@
+{
+  "state": "Texas",
+  "cities": 
+  [
+    "Austin", 
+    "Dallas", 
+    "Houston"
+  ],
+
+  "property-type" : 
+  [
+    "all": 
+    { 
+      "num-properties" : 300,
+      "avg-listing-price" : 225000
+    },
+    "1-bed": 
+    {
+      "num-properties" : 195,
+      "avg-listing-price" : 185000 
+    },
+    "2-bed": 
+    {
+      "num-properties" : 65,
+      "avg-listing-price" : 264000
+    },
+    "3-bed": {
+      "num-properties": 40,
+      "avg-listing-price": 312000
+    }
+
+  ],
+
+  "date": "yyyy-mm-dd",
+  
+  "yelp": "query",
+  "google-maps": "query"
+
+}

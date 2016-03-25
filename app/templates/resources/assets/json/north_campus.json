@@ -1,0 +1,35 @@
+{
+  "state": "TX",
+  "city": "Austin",
+  "neighborhood": "North Campus",
+
+  "property-type" : 
+  [
+    "all": 
+    { 
+      "num-properties" : 20,
+      "avg-listing-price" : 80209
+    },
+    "1-bed": 
+    {
+      "num-properties" : 6,
+      "avg-listing-price" : 43180
+    },
+    "2-bed": 
+    {
+      "num-properties" : 9,
+      "avg-listing-price" : 73741 
+    },
+    "3-bed": {
+      "num-properties": 5,
+      "avg-listing-price": 10348
+    }
+
+  ],
+
+  "date": "yyyy-mm-dd",
+  
+  "yelp": "query",
+  "google-maps": "query"
+
+}

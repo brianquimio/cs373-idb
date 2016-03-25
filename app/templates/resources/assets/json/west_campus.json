@@ -1,0 +1,35 @@
+{
+  "state": "TX",
+  "city": "Austin",
+  "neighborhood": "West Campus",
+
+  "property-type" : 
+  [
+    "all": 
+    { 
+      "num-properties" : 25,
+      "avg-listing-price" : 62347
+    },
+    "1-bed": 
+    {
+      "num-properties" : 8,
+      "avg-listing-price" : 48243
+    },
+    "2-bed": 
+    {
+      "num-properties" : 11,
+      "avg-listing-price" : 61049 
+    },
+    "3-bed": {
+      "num-properties": 6,
+      "avg-listing-price": 80271
+    }
+
+  ],
+
+  "date": "yyyy-mm-dd",
+  
+  "yelp": "query",
+  "google-maps": "query"
+
+}
