@@ -2,17 +2,17 @@
 # Imports
 # -------
 
-from flask.ext.sqlalchemy import SQLAlchemy
-<<<<<<< HEAD
+from flask import Flask, render_template, request, redirect, url_for, send_file
+import flask.ext.sqlalchemy
 # from flask.ext.app.builder
-
-=======
->>>>>>> f91e82b3e3b69e3b05f840a81cb3466cac31420a
-
 
 # -----------
 # DB models
 # -----------
+
+app = Flask(__name__)
+app.config['SQLACHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+db = SQLAlchemy(app)
 
 class State(db.Model):
     __tablename__ = 'State'
