@@ -7,19 +7,19 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="/favicon.ico">
 
     <title>Generic Page for VAS</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/lib/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- <link href="../../bower_components/bootstrap/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
     <!-- Custom styles for this template -->
 
-    <link href="../css/generic.css" rel="stylesheet">
-    <link href="../css/splash.css" rel="stylesheet">
+    <link href="../static/css/generic.css" rel="stylesheet">
+    <link href="../static/css/splash.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -34,7 +34,7 @@
 
   <body>
 
-    <div id="bg"> <img src="../assets/images/background.png"> </div>
+    <div id="bg"> <img src="../static/img/background.png"> </div>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -45,11 +45,12 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../../index.html">Virtual Address Space</a>
+          <a class="navbar-brand" href="./index.html">Virtual Address Space</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="../../index.html">Home</a></li>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
             <li><a href="static-states.html">States</a></li>
             <li><a href="static-cities.html">Cities</a></li>
             <li><a href="static-neighborhoods.html">Neighborhoods</a></li>
@@ -65,7 +66,7 @@
       </div>
     </div> -->
     <div class="container-fluid regionTitleContainer">
-      <div class="row containerName"><h2>California</h2></div>
+      <div class="row containerName"><h2>Dallas</h2></div>
     </div>
 
     <div class="container-fluid dataContainer">
@@ -80,11 +81,15 @@
           </thead>
           <tbody>
             <tr>
-              <td>Cities:</td>
+              <td>State:</td>
+              <td><a href="static-state-texas.html">Texas</a></td>
+            </tr>
+            <tr>
+              <td>Neighborhoods:</td>
               <td>
-                <a href="static-city-los-angeles-ca.html">Los Angeles</a><br/>
-                <a href="static-city-san-francisco-ca.html">San Francisco</a><br/>
-                <a href="static-city-Palo Alto.html">Dallas</a>
+                <a href="#static-neighborhood-belmont-dallas-tx.html">Belmont</a><br/>
+                <a href="#static-neighborhood-eastwood-dallas-tx.html">Eastwood</a><br/>
+                <a href="#static-neighborhood-west-village-dallas-tx.html">West Village</a>
               </td>
             </tr>
             <tr>
@@ -131,17 +136,16 @@
     <div class="container-fluid dataContainer">
       <div class="row containerName"><h3>Map</h3></div>
       <div class="row containerContents">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6509713.084021231!2d-123.77347912442343!3d37.1866687017569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb9fe5f285e3d%3A0x8b5109a227086f55!2sCalifornia!5e0!3m2!1sen!2sus!4v1458871633347" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d214587.6009045658!2d-96.87176606969435!3d32.82058616643509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c19f77b45974b%3A0xb9ec9ba4f647678f!2sDallas%2C+TX!5e0!3m2!1sen!2sus!4v1458872784817" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
       </div>
     </div>
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
     <!-- <script>window.jQuery || document.write('<script src="../../bower_components/bootstrap/assets/js/vendor/jquery.min.js"><\/script>')</script> -->
-    <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../static/lib/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- <script src="../../bower_components/bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script> -->
   </body>

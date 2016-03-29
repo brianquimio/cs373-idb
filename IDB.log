@@ -1,0 +1,252 @@
+commit 03acdf8baf946ef006bd9743f51ea8c43cf3fb97
+Merge: deb71ec 681812b
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Fri Mar 25 21:37:09 2016 -0500
+
+    merge stuff
+
+commit deb71ec609432839351df715720fe6af982a34aa
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Fri Mar 25 21:34:23 2016 -0500
+
+    remove lb files
+
+commit 681812b910741c6a17538566b111fbbe5b54942b
+Merge: fcf2b4f 2e9d473
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Fri Mar 25 21:00:46 2016 -0500
+
+    Merge branch 'master' of https://github.com/brianquimio/cs373-idb
+
+commit fcf2b4f0935da7d72de0ff0f205c368bc2a23884
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Fri Mar 25 21:00:26 2016 -0500
+
+    changed imports for models.py
+
+commit 2e9d473a723a915f240e3c5f722772f7a582a248
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Fri Mar 25 20:32:24 2016 -0500
+
+    readded lost lines about commits and issues in about page
+
+commit 64657e3c3ddccd1fbe14e7ab3f74b5a60f39d023
+Merge: 8972a90 f91e82b
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Mar 25 18:36:19 2016 -0500
+
+    fixed merge conflict with comment in models
+
+commit 8972a90303c62bd26783d7f16ebe9f2915d7dc32
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Mar 25 18:35:38 2016 -0500
+
+    modified html files in order to attempt fixing the nav bar on about
+
+commit f91e82b3e3b69e3b05f840a81cb3466cac31420a
+Author: Adam Alloy <aralloy@gmail.com>
+Date:   Fri Mar 25 17:56:37 2016 -0500
+
+    updates to models
+
+commit 0feaa180084b1c33cf7728d771095d721c7e3a19
+Merge: f24ea0e 9a70c7d
+Author: Adam Alloy <aralloy@gmail.com>
+Date:   Fri Mar 25 17:40:15 2016 -0500
+
+    Merge branch 'master' of https://github.com/brianquimio/cs373-idb
+
+commit f24ea0eefa7317efd8d3cf1ba847a7a5f2f0da35
+Author: Adam Alloy <aralloy@gmail.com>
+Date:   Fri Mar 25 17:39:46 2016 -0500
+
+    final updates on api
+
+commit 9a70c7d7beba17cf488897dc4e7f55ae05c6f641
+Merge: 95e484f 2b56583
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Mar 25 17:28:23 2016 -0500
+
+    Merge branch 'master' of https://github.com/brianquimio/cs373-idb
+
+commit 95e484f69b2c04d3cc0f55d237fca646eb7dc551
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Mar 25 17:27:46 2016 -0500
+
+    fixes 19 -- the nav bar URLs were incorrect
+
+commit 2b565838a5908f540251371113fb8fd219c9ebbd
+Author: Adam Alloy <aralloy@gmail.com>
+Date:   Fri Mar 25 17:13:19 2016 -0500
+
+    updated html to fix layout
+
+commit 6ecee8dc66f93351bb43990b5c9d9a625b62f0d0
+Merge: a7c9a7a 4ba2724
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Mar 25 16:21:57 2016 -0500
+
+    html changes
+
+commit a7c9a7ab0cadd7304a1457f38a3d0787b1ef2e09
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Mar 25 16:11:17 2016 -0500
+
+    modified the port to expose port 80
+
+commit 4ba27241e0625f5cc857a6174847cccae327ab07
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Fri Mar 25 16:10:18 2016 -0500
+
+    close #19
+
+commit 6ad4d9febf8129f3725fec4735eef6febd746cfc
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Fri Mar 25 15:36:25 2016 -0500
+
+    Update about.html with commit and issue info.
+
+commit 736d95ef612486b812a3ad1eb04755ea749cf66d
+Merge: 3316c45 2967cbe
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Mar 25 15:18:53 2016 -0500
+
+    Merge branch 'master' of https://github.com/brianquimio/cs373-idb
+
+commit 3316c45115100a1c82d91bf3f98f6dbcef7733b8
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Mar 25 15:18:38 2016 -0500
+
+    added requirements.txt there was no flask install requirement
+
+commit 2967cbe9282e8d3fd737579bafc96040c80c0e6f
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Fri Mar 25 14:53:10 2016 -0500
+
+    add about page and routing
+
+commit bc246324d3d888939cfdd2bece8873a8da9f51ce
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Mar 25 14:40:55 2016 -0500
+
+    added content to the dockerfile
+
+commit 04665f29031ed768f014955ed549ebbaeedf45ec
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Fri Mar 25 14:27:58 2016 -0500
+
+    add embedded content to california and texas
+
+commit 4ab49a471b91100e26dd0bb195d065ca0cac1441
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Fri Mar 25 14:13:22 2016 -0500
+
+    attempt 1 of getting travis build to pass
+
+commit 6b95c5b611b5ef98c4c5ad1f115f0f7af24107ea
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Fri Mar 25 02:45:22 2016 -0500
+
+    fixed some more static routing issues for and on neighborhood pages and fixed background reference for cities
+
+commit d4bfb25de5e2ffcff04d0fd383690b3e6830564e
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Fri Mar 25 02:21:39 2016 -0500
+
+    made fixed dead links
+
+commit 9b916277002808e535594ea313bce74d3c1f8b79
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Fri Mar 25 02:11:40 2016 -0500
+
+    more typos yayayayayaya
+
+commit f85a6ef2da0f1f4980cde346001d1338324a091f
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Fri Mar 25 02:01:24 2016 -0500
+
+    typos
+
+commit 4085fe4a3a52bbd2d0921ee745d48e6577fbe39b
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Fri Mar 25 01:59:06 2016 -0500
+
+    remove splash, splash and index are same thing
+
+commit 901063caaba4bd651368deafa76c1ba0c5ad3bec
+Author: Adam Alloy <aralloy@gmail.com>
+Date:   Fri Mar 25 01:56:35 2016 -0500
+
+    more static routing fixes
+
+commit 3ab6b64c573bd697efb45ee154fbb895c0061872
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Fri Mar 25 01:44:56 2016 -0500
+
+    add cities and neighborhoods and change paths
+
+commit 5b32072eef73712af626d65aeb7b04841ff2f0b3
+Author: Adam Alloy <aralloy@gmail.com>
+Date:   Fri Mar 25 01:31:52 2016 -0500
+
+    added more routing to app.py
+
+commit aac7fa8f9237f207cf5ba41d4fbb3286fc06cbea
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Mar 25 01:21:28 2016 -0500
+
+    fixed file path for index.html
+
+commit 3fbb0b0c536746abbb25b25ab568f32252cf8dd5
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Fri Mar 25 01:08:45 2016 -0500
+
+    moving html files to template and renaming href paths
+
+commit 23e8d51d344377d98d2b7e86afd5c993be9491ff
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Thu Mar 24 22:16:14 2016 -0500
+
+    adding lib
+
+commit a73ad36dfd81f6352647e8fecab10617e1ae3204
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Thu Mar 24 22:13:05 2016 -0500
+
+    created other dir
+
+commit f91ea9dde0530f6216f657bf1cea61f761f2b5d4
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Thu Mar 24 22:10:22 2016 -0500
+
+    revamping file structure
+
+commit 35570e9b9e6b37c338e7fe2c88fad3ec8b5dfb11
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Thu Mar 24 21:47:03 2016 -0500
+
+    adding front-end and trulia api
+
+commit a09bd0b5de57a685a70d1c8509adecf51a7bb462
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Thu Mar 24 21:33:54 2016 -0500
+
+    adding master file structure
+
+commit ffd0da24a6e0d35a35c6d2c500f7a0cd885511eb
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Thu Mar 24 21:29:46 2016 -0500
+
+    moving files to master
+
+commit a51cb40126e5b1b365d6863b06861d0bb7f0aa4e
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Tue Mar 8 19:06:14 2016 -0600
+
+    dummy files
+
+commit 898ec49e0d7519600991b587510d8f8ed1ee2eed
+Author: Brian Quimio <brian.quimio@utexas.edu>
+Date:   Tue Mar 8 19:01:40 2016 -0600
+
+    Initial commit

@@ -9,7 +9,7 @@
 # Imports
 # -------
 
-from db             import db, app
+from app            import db, app
 from io             import StringIO
 from urllib.request import urlopen
 from unittest       import main, TestCase
