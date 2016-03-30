@@ -3,7 +3,7 @@
 # -------
 
 from flask import Flask, render_template, request, redirect, url_for, send_file
-import flask.ext.sqlalchemy
+from flask.ext.sqlalchemy import SQLAlchemy
 # from flask.ext.app.builder
 
 # -----------

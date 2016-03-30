@@ -1,0 +1,287 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module models</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>models</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/sperl/Desktop/Personal/cs373/proj_3/cs373-idb/models.py">/Users/sperl/Desktop/Personal/cs373/proj_3/cs373-idb/models.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-------<br>
+#&nbsp;Imports<br>
+#&nbsp;-------</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial">flask_sqlalchemy.Model(<a href="flask_sqlalchemy.html#Model">flask_sqlalchemy.Model</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="models.html#City">City</a>
+</font></dt><dt><font face="helvetica, arial"><a href="models.html#Neighborhood">Neighborhood</a>
+</font></dt><dt><font face="helvetica, arial"><a href="models.html#State">State</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="City">class <strong>City</strong></a>(flask_sqlalchemy.Model)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>city_id&nbsp;is&nbsp;a&nbsp;unique&nbsp;identifier&nbsp;for&nbsp;the&nbsp;city,&nbsp;state&nbsp;combination<br>
+state_id&nbsp;is&nbsp;a&nbsp;unique&nbsp;identifier&nbsp;for&nbsp;the&nbsp;state<br>
+date&nbsp;is&nbsp;a&nbsp;record&nbsp;of&nbsp;when&nbsp;the&nbsp;data&nbsp;was&nbsp;inserted&nbsp;to&nbsp;the&nbsp;db<br>
+city_name&nbsp;is&nbsp;the&nbsp;name&nbsp;of&nbsp;a&nbsp;city&nbsp;as&nbsp;a&nbsp;string<br>
+property_type&nbsp;is&nbsp;a&nbsp;string&nbsp;that&nbsp;describes&nbsp;the&nbsp;number&nbsp;of&nbsp;bedrooms&nbsp;a&nbsp;property&nbsp;has<br>
+num_properties&nbsp;are&nbsp;the&nbsp;number&nbsp;of&nbsp;properties&nbsp;listed&nbsp;given&nbsp;the&nbsp;parameters&nbsp;above<br>
+avg_listing_price&nbsp;is&nbsp;the&nbsp;average&nbsp;listing&nbsp;price&nbsp;during&nbsp;the&nbsp;given&nbsp;time&nbsp;period<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="models.html#City">City</a></dd>
+<dd>flask_sqlalchemy.Model</dd>
+<dd><a href="flask_sqlalchemy.html#Model">flask_sqlalchemy.Model</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="City-__init__"><strong>__init__</strong></a>(self, **kwargs)</dt><dd><tt>A&nbsp;simple&nbsp;constructor&nbsp;that&nbsp;allows&nbsp;initialization&nbsp;from&nbsp;kwargs.<br>
+&nbsp;<br>
+Sets&nbsp;attributes&nbsp;on&nbsp;the&nbsp;constructed&nbsp;instance&nbsp;using&nbsp;the&nbsp;names&nbsp;and<br>
+values&nbsp;in&nbsp;``kwargs``.<br>
+&nbsp;<br>
+Only&nbsp;keys&nbsp;that&nbsp;are&nbsp;present&nbsp;as<br>
+attributes&nbsp;of&nbsp;the&nbsp;instance's&nbsp;class&nbsp;are&nbsp;allowed.&nbsp;These&nbsp;could&nbsp;be,<br>
+for&nbsp;example,&nbsp;any&nbsp;mapped&nbsp;columns&nbsp;or&nbsp;relationships.</tt></dd></dl>
+
+<dl><dt><a name="City-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>avg_listing_price</strong></dt>
+</dl>
+<dl><dt><strong>city_id</strong></dt>
+</dl>
+<dl><dt><strong>city_name</strong></dt>
+</dl>
+<dl><dt><strong>date</strong></dt>
+</dl>
+<dl><dt><strong>num_properties</strong></dt>
+</dl>
+<dl><dt><strong>property_type</strong></dt>
+</dl>
+<dl><dt><strong>state_id</strong></dt>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__mapper__</strong> = &lt;Mapper at 0x108e42190; City&gt;</dl>
+
+<dl><dt><strong>__table__</strong> = Table('City', MetaData(bind=None), Column('city_...ey('State.state_id'), table=&lt;City&gt;), schema=None)</dl>
+
+<dl><dt><strong>__tablename__</strong> = 'City'</dl>
+
+<hr>
+Methods inherited from flask_sqlalchemy.Model:<br>
+<strong>query</strong> = &lt;flask_sqlalchemy.BaseQuery object&gt;
+<hr>
+Data and other attributes inherited from flask_sqlalchemy.Model:<br>
+<dl><dt><strong>metadata</strong> = MetaData(bind=None)</dl>
+
+<hr>
+Data descriptors inherited from <a href="flask_sqlalchemy.html#Model">flask_sqlalchemy.Model</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask_sqlalchemy.html#Model">flask_sqlalchemy.Model</a>:<br>
+<dl><dt><strong>query_class</strong> = &lt;class 'flask_sqlalchemy.BaseQuery'&gt;<dd><tt>The&nbsp;default&nbsp;query&nbsp;object&nbsp;used&nbsp;for&nbsp;models,&nbsp;and&nbsp;exposed&nbsp;as<br>
+:attr:`~SQLAlchemy.Query`.&nbsp;This&nbsp;can&nbsp;be&nbsp;subclassed&nbsp;and<br>
+replaced&nbsp;for&nbsp;individual&nbsp;models&nbsp;by&nbsp;setting&nbsp;the&nbsp;:attr:`~Model.query_class`<br>
+attribute.&nbsp;&nbsp;This&nbsp;is&nbsp;a&nbsp;subclass&nbsp;of&nbsp;a&nbsp;standard&nbsp;SQLAlchemy<br>
+:class:`~sqlalchemy.orm.query.Query`&nbsp;class&nbsp;and&nbsp;has&nbsp;all&nbsp;the&nbsp;methods&nbsp;of&nbsp;a<br>
+standard&nbsp;query&nbsp;as&nbsp;well.</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Neighborhood">class <strong>Neighborhood</strong></a>(flask_sqlalchemy.Model)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>neighbordhood_id&nbsp;is&nbsp;a&nbsp;unique&nbsp;identifier&nbsp;(pk)&nbsp;for&nbsp;a&nbsp;neighborhood<br>
+city_id&nbsp;is&nbsp;a&nbsp;unique&nbsp;identifier&nbsp;for&nbsp;the&nbsp;city,&nbsp;state&nbsp;combination<br>
+state_id&nbsp;is&nbsp;a&nbsp;unique&nbsp;identifier&nbsp;for&nbsp;the&nbsp;state<br>
+date&nbsp;is&nbsp;a&nbsp;record&nbsp;of&nbsp;when&nbsp;the&nbsp;data&nbsp;was&nbsp;inserted&nbsp;to&nbsp;the&nbsp;db<br>
+neighborhood_name&nbsp;is&nbsp;the&nbsp;name&nbsp;of&nbsp;a&nbsp;neighborhood&nbsp;as&nbsp;a&nbsp;string<br>
+property_type&nbsp;is&nbsp;a&nbsp;string&nbsp;that&nbsp;describes&nbsp;the&nbsp;number&nbsp;of&nbsp;bedrooms&nbsp;a&nbsp;property&nbsp;has<br>
+num_properties&nbsp;are&nbsp;the&nbsp;number&nbsp;of&nbsp;properties&nbsp;listed&nbsp;given&nbsp;the&nbsp;parameters&nbsp;above<br>
+avg_listing_price&nbsp;is&nbsp;the&nbsp;average&nbsp;listing&nbsp;price&nbsp;during&nbsp;the&nbsp;given&nbsp;time&nbsp;period<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="models.html#Neighborhood">Neighborhood</a></dd>
+<dd>flask_sqlalchemy.Model</dd>
+<dd><a href="flask_sqlalchemy.html#Model">flask_sqlalchemy.Model</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Neighborhood-__init__"><strong>__init__</strong></a>(self, **kwargs)</dt><dd><tt>A&nbsp;simple&nbsp;constructor&nbsp;that&nbsp;allows&nbsp;initialization&nbsp;from&nbsp;kwargs.<br>
+&nbsp;<br>
+Sets&nbsp;attributes&nbsp;on&nbsp;the&nbsp;constructed&nbsp;instance&nbsp;using&nbsp;the&nbsp;names&nbsp;and<br>
+values&nbsp;in&nbsp;``kwargs``.<br>
+&nbsp;<br>
+Only&nbsp;keys&nbsp;that&nbsp;are&nbsp;present&nbsp;as<br>
+attributes&nbsp;of&nbsp;the&nbsp;instance's&nbsp;class&nbsp;are&nbsp;allowed.&nbsp;These&nbsp;could&nbsp;be,<br>
+for&nbsp;example,&nbsp;any&nbsp;mapped&nbsp;columns&nbsp;or&nbsp;relationships.</tt></dd></dl>
+
+<dl><dt><a name="Neighborhood-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>avg_listing_price</strong></dt>
+</dl>
+<dl><dt><strong>city_id</strong></dt>
+</dl>
+<dl><dt><strong>date</strong></dt>
+</dl>
+<dl><dt><strong>neighborhood_id</strong></dt>
+</dl>
+<dl><dt><strong>neighborhood_name</strong></dt>
+</dl>
+<dl><dt><strong>num_properties</strong></dt>
+</dl>
+<dl><dt><strong>state_id</strong></dt>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__mapper__</strong> = &lt;Mapper at 0x108e42790; Neighborhood&gt;</dl>
+
+<dl><dt><strong>__table__</strong> = Table('Neighborhood', MetaData(bind=None), Colum...ty.city_id'), table=&lt;Neighborhood&gt;), schema=None)</dl>
+
+<dl><dt><strong>__tablename__</strong> = 'Neighborhood'</dl>
+
+<hr>
+Methods inherited from flask_sqlalchemy.Model:<br>
+<strong>query</strong> = &lt;flask_sqlalchemy.BaseQuery object&gt;
+<hr>
+Data and other attributes inherited from flask_sqlalchemy.Model:<br>
+<dl><dt><strong>metadata</strong> = MetaData(bind=None)</dl>
+
+<hr>
+Data descriptors inherited from <a href="flask_sqlalchemy.html#Model">flask_sqlalchemy.Model</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask_sqlalchemy.html#Model">flask_sqlalchemy.Model</a>:<br>
+<dl><dt><strong>query_class</strong> = &lt;class 'flask_sqlalchemy.BaseQuery'&gt;<dd><tt>The&nbsp;default&nbsp;query&nbsp;object&nbsp;used&nbsp;for&nbsp;models,&nbsp;and&nbsp;exposed&nbsp;as<br>
+:attr:`~SQLAlchemy.Query`.&nbsp;This&nbsp;can&nbsp;be&nbsp;subclassed&nbsp;and<br>
+replaced&nbsp;for&nbsp;individual&nbsp;models&nbsp;by&nbsp;setting&nbsp;the&nbsp;:attr:`~Model.query_class`<br>
+attribute.&nbsp;&nbsp;This&nbsp;is&nbsp;a&nbsp;subclass&nbsp;of&nbsp;a&nbsp;standard&nbsp;SQLAlchemy<br>
+:class:`~sqlalchemy.orm.query.Query`&nbsp;class&nbsp;and&nbsp;has&nbsp;all&nbsp;the&nbsp;methods&nbsp;of&nbsp;a<br>
+standard&nbsp;query&nbsp;as&nbsp;well.</tt></dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="State">class <strong>State</strong></a>(flask_sqlalchemy.Model)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>state_id&nbsp;is&nbsp;a&nbsp;unique&nbsp;identifier&nbsp;for&nbsp;the&nbsp;state<br>
+date&nbsp;is&nbsp;a&nbsp;record&nbsp;of&nbsp;when&nbsp;the&nbsp;data&nbsp;was&nbsp;inserted&nbsp;to&nbsp;the&nbsp;db<br>
+state_name&nbsp;is&nbsp;a&nbsp;2&nbsp;digit&nbsp;postal&nbsp;code&nbsp;for&nbsp;the&nbsp;state<br>
+property_type&nbsp;is&nbsp;a&nbsp;string&nbsp;that&nbsp;describes&nbsp;the&nbsp;number&nbsp;of&nbsp;bedrooms&nbsp;a&nbsp;property&nbsp;has<br>
+num_properties&nbsp;are&nbsp;the&nbsp;number&nbsp;of&nbsp;properties&nbsp;listed&nbsp;given&nbsp;the&nbsp;parameters&nbsp;above<br>
+avg_listing_price&nbsp;is&nbsp;the&nbsp;average&nbsp;listing&nbsp;price&nbsp;during&nbsp;the&nbsp;given&nbsp;time&nbsp;period<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="models.html#State">State</a></dd>
+<dd>flask_sqlalchemy.Model</dd>
+<dd><a href="flask_sqlalchemy.html#Model">flask_sqlalchemy.Model</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="State-__init__"><strong>__init__</strong></a>(self, **kwargs)</dt><dd><tt>A&nbsp;simple&nbsp;constructor&nbsp;that&nbsp;allows&nbsp;initialization&nbsp;from&nbsp;kwargs.<br>
+&nbsp;<br>
+Sets&nbsp;attributes&nbsp;on&nbsp;the&nbsp;constructed&nbsp;instance&nbsp;using&nbsp;the&nbsp;names&nbsp;and<br>
+values&nbsp;in&nbsp;``kwargs``.<br>
+&nbsp;<br>
+Only&nbsp;keys&nbsp;that&nbsp;are&nbsp;present&nbsp;as<br>
+attributes&nbsp;of&nbsp;the&nbsp;instance's&nbsp;class&nbsp;are&nbsp;allowed.&nbsp;These&nbsp;could&nbsp;be,<br>
+for&nbsp;example,&nbsp;any&nbsp;mapped&nbsp;columns&nbsp;or&nbsp;relationships.</tt></dd></dl>
+
+<dl><dt><a name="State-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>avg_listing_price</strong></dt>
+</dl>
+<dl><dt><strong>date</strong></dt>
+</dl>
+<dl><dt><strong>num_properties</strong></dt>
+</dl>
+<dl><dt><strong>property_type</strong></dt>
+</dl>
+<dl><dt><strong>state_id</strong></dt>
+</dl>
+<dl><dt><strong>state_name</strong></dt>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__mapper__</strong> = &lt;Mapper at 0x108e15ad0; State&gt;</dl>
+
+<dl><dt><strong>__table__</strong> = Table('State', MetaData(bind=None), Column('stat...g_price', Integer(), table=&lt;State&gt;), schema=None)</dl>
+
+<dl><dt><strong>__tablename__</strong> = 'State'</dl>
+
+<hr>
+Methods inherited from flask_sqlalchemy.Model:<br>
+<strong>query</strong> = &lt;flask_sqlalchemy.BaseQuery object&gt;
+<hr>
+Data and other attributes inherited from flask_sqlalchemy.Model:<br>
+<dl><dt><strong>metadata</strong> = MetaData(bind=None)</dl>
+
+<hr>
+Data descriptors inherited from <a href="flask_sqlalchemy.html#Model">flask_sqlalchemy.Model</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask_sqlalchemy.html#Model">flask_sqlalchemy.Model</a>:<br>
+<dl><dt><strong>query_class</strong> = &lt;class 'flask_sqlalchemy.BaseQuery'&gt;<dd><tt>The&nbsp;default&nbsp;query&nbsp;object&nbsp;used&nbsp;for&nbsp;models,&nbsp;and&nbsp;exposed&nbsp;as<br>
+:attr:`~SQLAlchemy.Query`.&nbsp;This&nbsp;can&nbsp;be&nbsp;subclassed&nbsp;and<br>
+replaced&nbsp;for&nbsp;individual&nbsp;models&nbsp;by&nbsp;setting&nbsp;the&nbsp;:attr:`~Model.query_class`<br>
+attribute.&nbsp;&nbsp;This&nbsp;is&nbsp;a&nbsp;subclass&nbsp;of&nbsp;a&nbsp;standard&nbsp;SQLAlchemy<br>
+:class:`~sqlalchemy.orm.query.Query`&nbsp;class&nbsp;and&nbsp;has&nbsp;all&nbsp;the&nbsp;methods&nbsp;of&nbsp;a<br>
+standard&nbsp;query&nbsp;as&nbsp;well.</tt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>app</strong> = &lt;Flask 'models'&gt;<br>
+<strong>db</strong> = &lt;SQLAlchemy engine='sqlite://'&gt;<br>
+<strong>request</strong> = &lt;LocalProxy unbound&gt;</td></tr></table>
+</body></html>
