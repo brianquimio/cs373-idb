@@ -24,17 +24,19 @@ class Locations(object):
 
 
     # -------------------
-    # Function decorators
+    # Method decorators
     # -------------------
 
     def get_results(f):
-        def g(n):
+        def g(*args, **kwargs):
 
-            xml = requests.get(url, params=parameters)
+            xml = requests.get(args[0].url, params=f(*args, **kwargs))
             results = xmltodict.parse(xml.content)
-            retval = results["TruliaWebServices"]["response"]["LocationInfo"][self.aggregation]
+            retval = results["TruliaWebServices"]["response"]["LocationInfo"][args[0].aggregation]
 
-        return retval
+            return retval
+
+        return g
 
 
     # -------------

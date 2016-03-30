@@ -6,6 +6,7 @@
 # -------
 
 import requests, xmltodict, datetime
+from datetime import timedelta, date
 
 
 # ---------------------------------
@@ -27,16 +28,16 @@ class TruliaStats(object):
 	# Function decorators
 	# -------------------
 
-	def get_stats(f):
-	"""
-	function decorator that returns the results for trulia stats api calls
-	"""
-	def g(n):
-		xml = requests.get(self.url, params=f(n))
-        results = xmltodict.parse(xml.content)
-        city_stats = results["TruliaWebServices"]["response"]["TruliaStats"]
-        return stats
-    return g
+    def get_stats(f):
+        """
+        function decorator that returns the results for trulia stats api calls
+        """
+        def g(*args, **kwargs):
+            xml = requests.get(args[0].url, params=f(*args, **kwargs))
+            results = xmltodict.parse(xml.content)
+            stats = results["TruliaWebServices"]["response"]["TruliaStats"]
+            return stats
+        return g
 
 
     # -------------
@@ -44,7 +45,7 @@ class TruliaStats(object):
 	# -------------
 
     @get_stats
-    def get_city_stats(self, city, state, start=date.today()-timedelta(days=90), end=date.today(), type="all"):
+    def get_city_stats(self, city, state, start=date.today()-timedelta(days=30), end=date.today(), type="all"):
         """
         city is string value for name of city
         state is two character postal code
@@ -53,7 +54,6 @@ class TruliaStats(object):
         returns an OrderedDict of stats for specified city/state
         """
 
-        url = "http://api.trulia.com/webservices.php"
         parameters = {
             "library": "TruliaStats",
             "function": "getCityStats",
@@ -69,7 +69,7 @@ class TruliaStats(object):
 
 
     @get_stats
-    def get_county_stats(self, county, state, start=date.today()-timedelta(days=90), end=date.today(), type="all"):
+    def get_county_stats(self, county, state, start=date.today()-timedelta(days=30), end=date.today(), type="all"):
         """
         county is string name of county
         state is two character postal code
@@ -92,7 +92,7 @@ class TruliaStats(object):
         return parameters
 
     @get_stats
-    def get_neighborhood_stats(self, neighborhood_id, start=date.today()-timedelta(days=90), end=date.today(), type="all"):
+    def get_neighborhood_stats(self, neighborhood_id, start=date.today()-timedelta(days=30), end=date.today(), type="all"):
         """
         neighborhood_id is unique integer value for trulia neighborhood
         start is start date of data set
@@ -113,7 +113,7 @@ class TruliaStats(object):
         return parameters
 
     @get_stats
-    def get_state_stats(self, state, start=date.today()-timedelta(days=90), end=date.today(), type="all"):
+    def get_state_stats(self, state, start=date.today()-timedelta(days=30), end=date.today(), type="all"):
         """
         state is two character postal code
         start is start date of data set
@@ -134,7 +134,7 @@ class TruliaStats(object):
         return parameters
 
     @get_stats
-    def get_zip_data(self, zipcode, start=date.today()-timedelta(days=90), end=date.today(), type="all"):
+    def get_zip_data(self, zipcode, start=date.today()-timedelta(days=30), end=date.today(), type="all"):
         """
         zipcode is 5 digit integer zip code
         start is start date of data set
