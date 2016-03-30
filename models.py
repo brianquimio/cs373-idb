@@ -15,6 +15,14 @@ app.config['SQLACHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 db = SQLAlchemy(app)
 
 class State(db.Model):
+    """
+    state_id is a unique identifier for the state
+    date is a record of when the data was inserted to the db
+    state_name is a 2 digit postal code for the state
+    property_type is a string that describes the number of bedrooms a property has
+    num_properties are the number of properties listed given the parameters above
+    avg_listing_price is the average listing price during the given time period
+    """
     __tablename__ = 'State'
 
 	# Dimensions
@@ -31,6 +39,15 @@ class State(db.Model):
         return "[State: state_id={}, state_name={}]".format(self.state_id, self.state_name)
 
 class City(db.Model):
+    """
+    city_id is a unique identifier for the city, state combination
+    state_id is a unique identifier for the state
+    date is a record of when the data was inserted to the db
+    city_name is the name of a city as a string
+    property_type is a string that describes the number of bedrooms a property has
+    num_properties are the number of properties listed given the parameters above
+    avg_listing_price is the average listing price during the given time period
+    """
     __tablename__ = 'City'
 
     # Dimensions
@@ -51,6 +68,16 @@ class City(db.Model):
         return "[City: city_id={}, city_name={}, state_name={}]".format(self.city_id, self.city_name, self.state_name)
 
 class Neighborhood(db.Model):
+    """
+    neighbordhood_id is a unique identifier (pk) for a neighborhood
+    city_id is a unique identifier for the city, state combination
+    state_id is a unique identifier for the state
+    date is a record of when the data was inserted to the db
+    neighborhood_name is the name of a neighborhood as a string
+    property_type is a string that describes the number of bedrooms a property has
+    num_properties are the number of properties listed given the parameters above
+    avg_listing_price is the average listing price during the given time period
+    """
     __tablename__ = 'Neighborhood'
 
 	# Dimensions
