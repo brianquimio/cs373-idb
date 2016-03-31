@@ -83,8 +83,8 @@ class TruliaStats(object):
             "function": "getCountyStats",
             "county": county,
             "state": state,
-            "startDate": start_date,
-            "endDate": end_date,
+            "startDate": start,
+            "endDate": end,
             "statType": type,
             "apikey": self.apikey
         }
@@ -104,8 +104,8 @@ class TruliaStats(object):
             "library": "TruliaStats",
             "function": "getNeighborhoodStats",
             "neighborhoodId": neighborhood_id,
-            "startDate": start_date,
-            "endDate": end_date,
+            "startDate": start,
+            "endDate": end,
             "statType": type,
             "apikey": self.apikey
         }
