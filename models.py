@@ -34,6 +34,9 @@ class State(db.Model):
     num_properties = db.Column(db.Integer)
     avg_listing_price = db.Column(db.Integer)
 
+    #from campground API
+    park_name - db.Column(db.String)
+
     	
     def __repr__(self):
         return "[State: state_id={}, state_name={}]".format(self.state_id, self.state_name)
