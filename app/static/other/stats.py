@@ -51,6 +51,7 @@ class TruliaStats(object):
         state is two character postal code
         start is start date of data set
         end is end data of data set
+        type can be 'all', 'traffic', or 'listings' 
         returns an OrderedDict of stats for specified city/state
         """
 
@@ -75,6 +76,7 @@ class TruliaStats(object):
         state is two character postal code
         start is start date of data set
         end is end data of data set
+        type can be 'all', 'traffic', or 'listings' 
         returns OrderedDict of stats for specified county/state
         """
 
@@ -97,6 +99,7 @@ class TruliaStats(object):
         neighborhood_id is unique integer value for trulia neighborhood
         start is start date of data set
         end is end data of data set
+        type can be 'all', 'traffic', or 'listings' 
         returns an OrderedDict of stats for specified neighborhood
         """
 
@@ -118,6 +121,7 @@ class TruliaStats(object):
         state is two character postal code
         start is start date of data set
         end is end data of data set
+        type can be 'all', 'traffic', or 'listings' 
         Returns OrderedDict of stats for specified state
         """
 
@@ -139,6 +143,7 @@ class TruliaStats(object):
         zipcode is 5 digit integer zip code
         start is start date of data set
         end is end data of data set
+        type can be 'all', 'traffic', or 'listings' 
         returns OrderedDict of stats for specified zipcode
         """
 
