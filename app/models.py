@@ -35,7 +35,10 @@ class State(db.Model):
     avg_listing_price = db.Column(db.Integer)
 
     #from campground API
-    park_name - db.Column(db.String)
+    # TODO: This needs to be contained within it's own table
+    # Parks should be contained within a "parks" table that have foreign keys
+    # The foreign keys should link to the state, city, lat, long, etc.
+    park_name = db.Column(db.String)
 
     	
     def __repr__(self):
