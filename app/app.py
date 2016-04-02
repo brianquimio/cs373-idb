@@ -7,31 +7,40 @@
 import logging
 import os
 from flask import Flask, render_template, request, redirect, url_for, send_file
+from flask.ext.script import Manager
+from flask.ext.sqlalchemy import SQLAlchemy
+from models import *
 
 
 # ------------------------------
 # Configure logger for debugging
 # ------------------------------
 
-
-def get_file(filename):  # pragma: no cover
-    try:
-        src = os.path.join(root_dir(), filename)
-        # Figure out how flask returns static files
-        # Tried:
-        # - render_template
-        # - send_file
-        # This should not be so non-obvious
-        return open(src).read()
-    except IOError as exc:
-        return str(exc)
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(levelname)s: %(message)s')
+logger = logging.getLogger(__name__)
+logger.debug("Welcome to Carina Guestbook")
 
 # -------------
 # Configure app
 # -------------
 
-app = Flask(__name__)
+SQLALCHEMY_DATABASE_URI = \
+    '{engine}://{username}:{password}@{hostname}/{database}'.format(
+        engine='mysql+pymysql',
+        username=os.getenv('MYSQL_USER'),
+        password=os.getenv('MYSQL_PASSWORD'),
+        hostname=os.getenv('MYSQL_HOST'),
+        database=os.getenv('MYSQL_DATABASE'))
 
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+manager = Manager(app)
+db = SQLAlchemy(app)
 
 
 # -----------
@@ -111,9 +120,25 @@ def new_york():
     return send_file('templates/static-state-new-york.html')
 
 
+# ----------------
+# Manager Commands
+# ----------------
+
+@manager.command
+def create_db():
+    # logger.debug("create_db")
+    app.config['SQLALCHEMY_ECHO'] = True
+    db.create_all()
+
+@manager.command
+def drop_db():
+    logger.debug("drop_db")
+    app.config['SQLALCHEMY_ECHO'] = True
+    db.drop_all()
+
 # -------
 # Run App
 # -------
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=80)
+    manager.run()
