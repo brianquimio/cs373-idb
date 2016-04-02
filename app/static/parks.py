@@ -5,7 +5,7 @@
 # Imports
 # -------
 
-import requests, jsontodict, datetime
+import requests, xmltodict, datetime
 
 class Parks(object):
 
@@ -14,32 +14,28 @@ class Parks(object):
     """
 
     def __init__ (self, apikey):
-    self.apikey = apikey
-    self.url = "http://api.amp.active.com/camping/campgrounds?"
+    	self.apikey = apikey
+    	self.url = "http://api.amp.active.com/camping/campgrounds"
 
 
     #requested information to be returned in json, but online calls say "This XML file does not appear to have any style information associated with it."
     #wiil need to test to see which information is being returned. 
-    def get_parks(f):
-        def g(n):
 
-            xml = requests.get(url, params=parameters)
-            results = xmltodict.parse(xml.content)
-            retval = results[""]["response"]["LocationInfo"]
-
-        return retval
-
-    @get_parks
     def get_state_parks(self, pstate):
         """
         state is two character  code
-        returns an OrderedDict of stats for specified city/state
+        returns an OrderedDict of stats about the park
         """
 
-        url = "http://api.trulia.com/webservices.php"
+
         parameters = {
             "pstate": pstate,
             "apikey": self.apikey
         }
 
-        return parameters
+        xml = requests.get(url, params=parameters)
+        results = xmltodict.parse(xml.content)
+        retval = results["facilityName"]
+
+
+        return retval
