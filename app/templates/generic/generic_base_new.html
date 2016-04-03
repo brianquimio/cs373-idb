@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!-- Based on the jumbotron-narrow example from the bootstrap repo (v3.3.6) -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Narrow Jumbotron Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./../../static/lib/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="generic-base-new.css" rel="stylesheet">
+
+
+
+  </head>
+
+  <body ng-app="project">
+
+      <div ng-controller="navbarController as navbarCtrl" class="header clearfix">
+        <nav>
+          <h3 class="pull-left text-muted" ng-bind="name"></h3>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation"
+            ng-repeat="elem in navlinks"
+            ng-class="{active: navbarCtrl.isActive(elem.display)}"
+            ng-click="navbarCtrl.followRef(elem.display)">
+              <a ng-href="{{elem.ref}}">{{elem.display}}</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+    <div ng-controller="contentController as contentCtrl" class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box page-header text-center"><h1 ng-bind="currentPage"></h1></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box text-center"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13007371.348722573!2d-104.67670999953044!3d37.2565381220657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited+States!5e0!3m2!1sen!2sus!4v1459651817880" width="100%" height="300" style="border:0" allowfullscreen></iframe></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="box text-center">General</div>
+        </div>
+        <div class="col-sm-6">
+          <div class="box text-center">Property</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box text-center">Yelp</div>
+        </div>
+      </div>
+    </div>
+
+      <!-- <div class="row" ng-bind="content"></div> -->
+      <!-- <div class="jumbotron">
+        <h1>Jumbotron heading</h1>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <h4>Subheading</h4>
+          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+          <h4>Subheading</h4>
+          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+          <h4>Subheading</h4>
+          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+
+        <div class="col-md-4">
+          <h4>Subheading</h4>
+          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+          <h4>Subheading</h4>
+          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+          <h4>Subheading</h4>
+          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+        <div class="col-md-4">
+          <h4>Subheading</h4>
+          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+          <h4>Subheading</h4>
+          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+          <h4>Subheading</h4>
+          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p>&copy; 2015 Company, Inc.</p>
+      </footer>
+    </div> -->
+    <script src="../../static/lib/angular.min.js"></script>
+    <script src="../../static/lib/angular-resource.min.js"></script>
+    <script src="../../static/js/app.js"></script>
+
+  </body>
+</html>
