@@ -30,10 +30,12 @@ class Locations(object):
     def get_results(f):
         def g(*args, **kwargs):
 
-            xml = requests.get(args[0].url, params=f(*args, **kwargs))
-            results = xmltodict.parse(xml.content)
-            retval = results["TruliaWebServices"]["response"]["LocationInfo"][args[0].aggregation]
-
+            try:
+                xml = requests.get(args[0].url, params=f(*args, **kwargs))
+                results = xmltodict.parse(xml.content)
+                retval = results["TruliaWebServices"]["response"]["LocationInfo"][args[0].aggregation]
+            except KeyError as e:
+                retval = []
             return retval
 
         return g
