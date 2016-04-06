@@ -21,17 +21,17 @@
 
   </head>
 
-  <body ng-app="project">
+  <body ng-app="VASapp" ng-controller="mainController as main">
 
       <div ng-controller="navbarController as navbarCtrl" class="header clearfix">
         <nav>
-          <h3 class="pull-left text-muted" ng-bind="name"></h3>
+          <h3 class="pull-left text-muted" ng-bind="name" ng-click="main.followRef({display:'Home',ref:'/app/static/json/test-about.json'})"></h3>
           <ul class="nav nav-pills pull-right">
             <li role="presentation"
-            ng-repeat="elem in navlinks"
+            ng-repeat="elem in navLinks"
             ng-class="{active: navbarCtrl.isActive(elem.display)}"
-            ng-click="navbarCtrl.followRef(elem.display)">
-              <a ng-href="{{elem.ref}}">{{elem.display}}</a>
+            ng-click="main.followRef(elem)">
+              <a href="#">{{elem.display}}</a>
             </li>
           </ul>
         </nav>
@@ -43,6 +43,22 @@
           <div class="box page-header text-center"><h1 ng-bind="currentPage"></h1></div>
         </div>
       </div>
+      <div ng-show="contentCtrl.showContent('table')" class="row">
+        <div class="col-md-12">
+          <div class="box">
+            <table class="table">
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+              </tr>
+              <tr nr-repeat="row in data['table-rows']">
+                <td>{{row['row-id']}}</td>
+                <td>{{row['row-name']}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col-md-12">
           <div class="box text-center"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13007371.348722573!2d-104.67670999953044!3d37.2565381220657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited+States!5e0!3m2!1sen!2sus!4v1459651817880" width="100%" height="300" style="border:0" allowfullscreen></iframe></div>
@@ -50,7 +66,12 @@
       </div>
       <div class="row">
         <div class="col-sm-6">
-          <div class="box text-center">General</div>
+          <div class="box text-center">
+            General<br/>
+            <p ng-bind="data.name"></p>
+            <p ng-bind="data['category']"></p>
+            <p ng-bind="data['table-rows'][0]['row-id']"></p>
+          </div>
         </div>
         <div class="col-sm-6">
           <div class="box text-center">Property</div>

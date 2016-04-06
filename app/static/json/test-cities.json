@@ -1,0 +1,14 @@
+{
+  "name":"Cities",
+  "category":"table",
+  "table-rows": [
+    {
+      "row-id":1,
+      "row-name":"houston"
+    },
+    {
+      "row-id":2,
+      "row-name":"texas"
+    }
+  ]
+}
