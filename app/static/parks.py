@@ -33,8 +33,8 @@ class Parks(object):
 
 		xml = requests.get(self.url, params=parameters)
 		results = xmltodict.parse(xml.content)
-		print(results)
-		retval = results["resultset"]["result"][0]["@facilityName"]
-		print(retval)
+		retval = list()
+		for x in results["resultset"]["result"] :
+			retval.append(x['@facilityName'])
 
 		return retval
