@@ -11,14 +11,6 @@ import json
 import time
 
 
-#---------------------------------------
-# Contruct Trulia API Extraction Objects
-#---------------------------------------
-
-places = Locations(truliaKey)
-stats = TruliaStats(truliaKey)
-
-
 #--------------------------------
 # Get all states as a json object
 #--------------------------------
@@ -36,8 +28,6 @@ def write_states(places, state_filter=None):
 
 	if state_filter:
 		states = [state for state in states if state['stateCode'] in state_filter]
-
-	# states = json.loads(json.dumps(states))
 
 	return states
 
@@ -64,11 +54,6 @@ def write_cities(places, state, city_filter=None):
 	# add foreign key to JSON for the state
 	for city in cities:
 		city['stateCode'] = state['stateCode']
-
-	# check if caller specified a subset of cities and filter if so
-
-	# Parse the list and convert it to JSON
-	# cities = json.loads(json.dumps(cities))
 
 	# Return the modified states JSON object that now contains cities
 	return cities
@@ -98,9 +83,6 @@ def write_neighborhoods(places, city):
 		neighborhood['stateCode'] = city['stateCode']
 		neighborhood['city'] = city['cityId']
 
-	# Parse the list and convert it to JSON
-	# neighborhoods = json.loads(json.dumps(neighborhoods))
-
 	return neighborhoods
 
 
@@ -116,9 +98,9 @@ def write_state_stats(state, stats):
 	returns a modified JSON object that contains stats for each state in provided input
 	"""
 
-	state_stats = stats.get_state_stats(state['stateCode'], start=date.today()-timedelta(years=2), type="listings")
+	state_stats = stats.get_state_stats(state['stateCode'], start=date.today()-timedelta(days=30), type="1 Bedroom Properties")
+	print(state_stats)
 
-	# return json.loads(json.dumps(state_stats))
 	return state_stats
 
 #------------------------
@@ -134,9 +116,8 @@ def write_city_stats(city, stats):
 	returns a modified JSON object that contains stats for each state in provided input
 	"""
 
-	city_stats = stats.get_city_stats(city['name'], city['stateCode'], start=date.today()-timedelta(years=2), type="listings")
+	city_stats = stats.get_city_stats(city['name'], city['stateCode'], start=date.today()-timedelta(days=30), type="1 Bedroom Properties")
 
-	# return json.loads(json.dumps(city_stats))
 	return city_stats
 
 #--------------------------------
@@ -152,7 +133,7 @@ def write_neighborhood_stats(neighborhood, stats):
 	returns a modified JSON object that contains stats for each state in provided input
 	"""
 
-	neighborhood_stats = stats.get_neighborhoood_stats(neighborhood['neighborhoodId'], start=date.today()-timedelta(years=2), type="listings")
+	neighborhood_stats = stats.get_neighborhoood_stats(neighborhood['neighborhoodId'], start=date.today()-timedelta(days=30), type="1 Bedroom Properties")
 
 	# return json.loads(json.dumps(neighborhood_stats))
 	return neighborhood_stats
@@ -164,54 +145,62 @@ def write_neighborhood_stats(neighborhood, stats):
 
 if __name__ == '__main__':
 
+	#---------------------------------------
+	# Contruct Trulia API Extraction Objects
+	#---------------------------------------
+
+	places = Locations(truliaKey)
+	stats = TruliaStats(truliaKey)
+
 	# Specify a subset of States and cities
-	state_filter = ['CA','TX','NY','WA']
-	city_filter = ['Dallas', 'Fort Worth', 'Houston', 'San Antonio', 'Austin', 'San Francisco', 'San Jose', 'Redwood City', 'Palo Alto', 'Mountain View', 'Cupertino', 'Sunnyvale', 'Los Gatos', 'Milpitas', 'Fremont', 'Menlo Park', 'South San Francisco', 'San Mateo', 'Seattle', 'Bellevue', 'Redmond', 'Renton', 'Newcastle', 'Mercer Island', 'Bainbridge Island', 'Sammamish', 'Issaquah', 'Bothell', 'New York City', 'Long Beach', 'Yonkers', 'Glen Cove']
+	# state_filter = ['CA','TX','NY','WA']
+	state_filter = ['TX']
+	city_filter = ['Dallas', 'Houston', 'Austin', 'San Francisco', 'San Jose', 'Redwood City', 'Palo Alto', 'Mountain View', 'Cupertino', 'Fremont', 'Menlo Park', 'South San Francisco', 'San Mateo', 'Seattle', 'Bellevue', 'Redmond', 'Renton', 'Newcastle', 'Sammamish', 'Issaquah', 'New York City', 'Long Beach', 'Yonkers']
 
 	# Query for all states from Trulia (applying filter)
 	states = write_states(places, state_filter)
 	states_json = json.loads(json.dumps(states))
 	time.sleep(31)
 
-	# Query for each city in specified states (applying filter)
-	cities = []
-	print("States :" + str(states))
-	for state in states:
-		cities += write_cities(places, state, city_filter)
-		print("writing city: " + str(cities[-1]))
-		time.sleep(31)
-	cities_json = json.loads(json.dumps(cities))
-
-	# Query for neighborhood in all cities
-	neighborhoods = []
-	print("Cities: " + str(cities))
-	for city in cities:
-		test = write_neighborhoods(places, city)
-		if len(test) > 0:
-			time.sleep(31)
-			neighborhoods += test
-			print("writing neighborhood: " + str(neighborhoods[-1]))
-	neighborhoods_json = json.loads(json.dumps(neighborhoods))
-
 	# Query for the listing stats for each state
-	state_stats = []
+	state_stats = {}
 	for state in states:
-		state_stats += write_state_stats(state, stats)
+		state_stats[state['stateCode']] = write_state_stats(state, stats)
 		time.sleep(31)
 	state_stats_json = json.loads(json.dumps(state_stats))
 
+	# Query for each city in specified states (applying filter)
+	# cities = []
+	# print("States :" + str(states))
+	# for state in states:
+	# 	cities += write_cities(places, state, city_filter)
+	# 	print("writing city: " + str(cities[-1]))
+	# 	time.sleep(31)
+	# cities_json = json.loads(json.dumps(cities))
+
+	# Query for neighborhood in all cities
+	# neighborhoods = []
+	# print("Cities: " + str(cities))
+	# for city in cities:
+	# 	test = write_neighborhoods(places, city)
+	# 	time.sleep(31)
+	# 	if len(test) > 0:
+	# 		neighborhoods += test
+	# 		print("writing neighborhood: " + str(neighborhoods[-1]))
+	# neighborhoods_json = json.loads(json.dumps(neighborhoods))
+
 	# Query for the listing stats for each city
-	city_stats = []
-	for city in cities:
-		city_stats += write_city_stats(city, stats)
-		time.sleep(31)
-	city_stats_json = json.loads(json.dumps(city_stats))
+	# city_stats = []
+	# for city in cities:
+	# 	city_stats += write_city_stats(city, stats)
+	# 	time.sleep(31)
+	# city_stats_json = json.loads(json.dumps(city_stats))
 
 	# Query for the listing stats for each neighborhood
-	neighborhood_stats = []
-	for neighborhood in neighborhoods:
-		neighborhood_stats += write_neighborhood_stats(neighborhood, stats)
-		time.sleep(31)
+	# neighborhood_stats = []
+	# for neighborhood in neighborhoods:
+	# 	neighborhood_stats += write_neighborhood_stats(neighborhood, stats)
+	# 	time.sleep(31)
 
 
 #--------------------------------------
@@ -219,36 +208,36 @@ if __name__ == '__main__':
 #--------------------------------------
 
 	file = open('states.json', 'a')
-	file.write(str(states_json))
+	file.write('"states": ' + str(states_json))
 	file.close
 
 	file = open('state_stats.json', 'a')
-	file.write(str(states_stats_json))
+	file.write('"states": [' + str(state_stats_json) + "]")
 	file.close
 
 #-----------------------------------
 # Write City and City Stats to files
 #-----------------------------------
 
-	file = open('cities.json', 'a')
-	file.write(str(cities_json))
-	file.close
+	# file = open('cities.json', 'a')
+	# file.write('"cities:["' + str(cities_json) + "]")
+	# file.close
 
-	file = open('city_stats.json', 'a')
-	file.write(str(city_stats_json))
-	file.close
+	# file = open('city_stats.json', 'a')
+	# file.write(str(city_stats_json))
+	# file.close
 
 #---------------------------------------------------
 # Write Neighborhood and Neighborhood Stats to files
 #---------------------------------------------------
 
-	file = open('neighborhoods.json', 'a')
-	file.write(str(neighborhoods_json))
-	file.close
+	# file = open('neighborhoods.json', 'a')
+	# file.write(str(neighborhoods_json))
+	# file.close
 
-	file = open('neighborhood_stats.json', 'a')
-	file.write(str(neighborhood_stats_json))
-	file.close
+	# file = open('neighborhood_stats.json', 'a')
+	# file.write(str(neighborhood_stats_json))
+	# file.close
 
 
 
