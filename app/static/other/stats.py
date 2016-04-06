@@ -35,7 +35,7 @@ class TruliaStats(object):
         def g(*args, **kwargs):
             xml = requests.get(args[0].url, params=f(*args, **kwargs))
             results = xmltodict.parse(xml.content)
-            stats = results["TruliaWebServices"]["response"]["TruliaStats"]
+            stats = results["TruliaWebServices"]["response"]["TruliaStats"]["listingStats"]
             return stats
         return g
 

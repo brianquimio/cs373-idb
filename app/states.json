@@ -1,0 +1,6 @@
+"states": [
+	{'longitude': '-119.61164', 'latitude': '37.261463', 'name': 'California', 'stateCode': 'CA'}, 
+	{'longitude': '-75.507057', 'latitude': '42.946097', 'name': 'New York', 'stateCode': 'NY'}, 
+	{'longitude': '-99.358380', 'latitude': '31.497160', 'name': 'Texas', 'stateCode': 'TX'}, 
+	{'longitude': '-120.42532', 'latitude': '47.367338', 'name': 'Washington', 'stateCode': 'WA'}
+]

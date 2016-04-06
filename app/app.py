@@ -132,7 +132,7 @@ def create_db():
 
 @manager.command
 def drop_db():
-    logger.debug("drop_db")
+    # logger.debug("drop_db")
     app.config['SQLALCHEMY_ECHO'] = True
     db.drop_all()
 
