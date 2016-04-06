@@ -40,9 +40,8 @@ def init_state_stats(state_stats_file):
 
 				stats = StateStats(week_of, code, property_type, num_properties, med_listing_price, avg_listing_price)
 				
-				db.session.add(s)
+				db.session.add(stats)
 				db.session.commit()
-
 
 
 def init_cities(cities_file):
@@ -75,7 +74,7 @@ def init_city_stats(city_stats_file):
 
 				stats = CityStats(week_of, code, property_type, num_properties, med_listing_price, avg_listing_price)
 				
-				db.session.add(s)
+				db.session.add(stats)
 				db.session.commit()
 
 def init_neighborhoods(neighborhood_file):
@@ -107,7 +106,7 @@ def init_neighborhood_stats(neighborhood_stats_file):
 
 				stats = NeighborhoodStats(week_of, code, property_type, num_properties, med_listing_price, avg_listing_price)
 				
-				db.session.add(s)
+				db.session.add(stats)
 				db.session.commit()
 
 def create_db():
