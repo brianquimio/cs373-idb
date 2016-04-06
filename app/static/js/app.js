@@ -64,7 +64,24 @@
   }]);
 
   app.controller('mapController',['$rootScope', function($rootScope){
-
+    this.mapSrcBuilder = function(data = $rootScope.data) {
+      var embedKey = "AIzaSyCADkkH1GoSKSlgVxk_oyLp6roM6XEx44I"
+      var q = "";
+      if (data.hasOwnProperty("neighborhood")){
+        q += data["neighborhood"].replace(/ /g, "+");
+      };
+      if (data.hasOwnProperty("city")){
+        q += data["city"].replace(/ /g, "+");
+      };
+      if (data.hasOwnProperty("state")){
+        q += data["state"].replace(/ /g, "+");
+      };
+      var src = "https://www.google.com/maps/embed/v1/place?key=";
+      src += embedKey;
+      src += "&q=";
+      src += q;
+      return src;
+    };
   }]);
 
   function Link(display, ref) {
