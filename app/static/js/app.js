@@ -43,19 +43,27 @@
       };
   }]);
 
-  app.controller('contentController',
-    [ '$rootScope',
-      function($rootScope){
-        this.showContent = function(category){
-          // return false;
-          return $rootScope.data['category'] === category;
-        };
+  app.controller('contentController',[ '$rootScope',function($rootScope){
+    this.showContent = function(category){
+      // return false;
+      return $rootScope.data['category'] === category;
+    };
   }]);
 
-    app.controller('tableController',
-      [ '$scope',
-        function($scope){
-          $scope.tableRows = $scope.data["table-rows"];
+  app.controller('tableController',[ '$rootScope', function($rootScope){
+    this.showColumn = function (subCategory, depth) {
+      this.depth = this.showHelper(subCategory);
+      return this.depth >= depth;
+    };
+    this.showHelper = function(subCategory){
+      if (subCategory === "neighborhood") return 3;
+      if (subCategory === "city") return 2;
+      if (subCategory === "state") return 1;
+      return 0;
+    };
+  }]);
+
+  app.controller('mapController',['$rootScope', function($rootScope){
 
   }]);
 

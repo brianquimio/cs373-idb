@@ -46,38 +46,42 @@
       <div ng-show="contentCtrl.showContent('table')" class="row">
         <div class="col-md-12">
           <div class="box">
-            <table class="table">
+            <table ng-controller="tableController as tableCtrl" class="table">
               <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th ng-show="tableCtrl.showColumn(data['sub-category'],3)">Neighborhood</th>
+                <th ng-show="tableCtrl.showColumn(data['sub-category'],2)">City</th>
+                <th ng-show="tableCtrl.showColumn(data['sub-category'],1)">State</th>
               </tr>
-              <tr nr-repeat="row in data['table-rows']">
+              <tr ng-repeat="row in data['table-rows']">
                 <td>{{row['row-id']}}</td>
-                <td>{{row['row-name']}}</td>
+                <td ng-show="tableCtrl.showColumn(data['sub-category'],3)">{{row['row-neighborhood']}}</td>
+                <td ng-show="tableCtrl.showColumn(data['sub-category'],2)">{{row['row-city']}}</td>
+                <td ng-show="tableCtrl.showColumn(data['sub-category'],1)">{{row['row-state']}}</td>
               </tr>
             </table>
           </div>
         </div>
       </div>
-      <div class="row">
+      <div ng-show="contentCtrl.showContent('general')" class="row">
         <div class="col-md-12">
-          <div class="box text-center"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13007371.348722573!2d-104.67670999953044!3d37.2565381220657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited+States!5e0!3m2!1sen!2sus!4v1459651817880" width="100%" height="300" style="border:0" allowfullscreen></iframe></div>
+          <div ng-controller="mapController as mapCtrl" class="box text-center"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13007371.348722573!2d-104.67670999953044!3d37.2565381220657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited+States!5e0!3m2!1sen!2sus!4v1459651817880" width="100%" height="300" style="border:0" allowfullscreen></iframe></div>
         </div>
       </div>
-      <div class="row">
+      <div ng-show="contentCtrl.showContent('general')" class="row">
         <div class="col-sm-6">
           <div class="box text-center">
             General<br/>
-            <p ng-bind="data.name"></p>
-            <p ng-bind="data['category']"></p>
+            <p ng-bind="data['name']"></p>
+            <a ng-bind="data['category']"></a>
             <p ng-bind="data['table-rows'][0]['row-id']"></p>
           </div>
         </div>
-        <div class="col-sm-6">
+        <div ng-show="contentCtrl.showContent('general')" class="col-sm-6">
           <div class="box text-center">Property</div>
         </div>
       </div>
-      <div class="row">
+      <div ng-show="contentCtrl.showContent('general')" class="row">
         <div class="col-md-12">
           <div class="box text-center">Yelp</div>
         </div>

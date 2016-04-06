@@ -1,14 +1,22 @@
 {
   "name":"Cities",
   "category":"table",
+  "sub-category":"city",
   "table-rows": [
     {
       "row-id":1,
-      "row-name":"houston"
+      "row-city":"Austin",
+      "row-state":"Texas"
     },
     {
       "row-id":2,
-      "row-name":"texas"
+      "row-city":"Houston",
+      "row-state":"Texas"
+    },
+    {
+      "row-id":3,
+      "row-city":"Dallas",
+      "row-state":"Texas"
     }
   ]
 }
