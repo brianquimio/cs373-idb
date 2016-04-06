@@ -33,8 +33,37 @@ class Parks(object):
 
 		xml = requests.get(self.url, params=parameters)
 		results = xmltodict.parse(xml.content)
-		print(results)
-		retval = results["resultset"]["result"][0]["@facilityName"]
-		print(retval)
+		retval = list()
+		for x in results["resultset"]["result"] :
+			retval.append(x['@facilityName'])
+			retval.append(x['@faciltyPhoto'])
 
 		return retval
+
+	def get_parks_around_city(self, longitude, latitude):
+		"""
+		longitude and latitude are floats returned from the trulia city api
+		returns an OrderedDict of stats about the park
+		"""
+
+		parameteres = {
+			"landmarkName" : "true",
+			"landmarkLat" : latitude,
+			"landmarkLong" : longitude,
+			"xml" : "true",
+			"api_key" : self.apikey
+		}
+
+		xml = requests.get(self.url, params=parameters)
+		results = xmltodict.parse(xml.content)
+		retval = list()
+		for x in results["resultset"]["result"] :
+			retval.append(x['@facilityName'])
+			retval.append(x['@faciltyPhoto'])
+		return retval
+
+
+
+
+
+

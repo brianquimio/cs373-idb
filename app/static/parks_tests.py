@@ -31,25 +31,9 @@ class TestParks(TestCase):
         parks = data.get_state_parks(pstate = 'NY')
         self.assertTrue(parks is not None)
 
-    # def test_get_state_parks_2(self):
-    #     parks = data.get_state_parks(pstate = 'TX')
-    #     self.assertTrue(parks['Big Bend'] is not None)
-
-
-    #------------
-    # stress test
-    #------------
-
-    # def test_for_stress(self):
-    #     states = ('AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'Fl','GA',
-    #             'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
-    #             'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
-    #             'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 
-    #             'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY')
-    #     for s in states :
-    #         parks = data.get_state_parks(pstate = s)
-    #         self.assertTrue(parks is not None)
-
+    def test_get_state_parks_2(self):
+        parks = data.get_state_parks(pstate = 'TX')
+        self.assertTrue('AIRPORT PARK' in parks)
 
 # ----
 # Main
