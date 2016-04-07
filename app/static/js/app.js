@@ -34,10 +34,10 @@
       this.addLink = function(link) {
         $rootScope.navLinks.push(link);
       };
-      this.addLink(new Link("About", "/app/static/json/test-about.json"));
-      this.addLink(new Link("States", "/app/static/json/test-states.json"));
-      this.addLink(new Link("Cities", "/app/static/json/test-cities.json"));
-      this.addLink(new Link("Neighborhoods", "/app/static/json/test-neighborhoods.json"));
+      this.addLink(new Link("About", "../json/test-about.json"));
+      this.addLink(new Link("States", "../json/test-states.json"));
+      this.addLink(new Link("Cities", "../json/test-cities.json"));
+      this.addLink(new Link("Neighborhoods", "../json/test-neighborhoods.json"));
       this.isActive = function(pageName){
         return $rootScope.currentPage === pageName;
       };
@@ -45,13 +45,14 @@
 
   app.controller('contentController',[ '$rootScope',function($rootScope){
     this.showContent = function(category){
-      // return false;
-      return $rootScope.data['category'] === category;
+       return true;
+      //return $rootScope.data['category'] === category;
     };
   }]);
 
   app.controller('tableController',[ '$scope', function($scope){
-    this.tableData = [
+     
+    this.tableData = [    
       {
         "City": "Houston",
         "State": "Texas"
@@ -72,6 +73,7 @@
         "City": "Los Angeles",
         "State": "California"
       }
+      
     ];
     $scope.shownColumns = {};
     $scope.headers = [];
@@ -165,7 +167,8 @@
       src += q;
       console.log(src);
 
-      return $sce.trustAsResourceUrl(src);
+      var x ="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6509713.084021231!2d-123.77347912442343!3d37.1866687017569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb9fe5f285e3d%3A0x8b5109a227086f55!2sCalifornia!5e0!3m2!1sen!2sus!4v1458871633347"
+      return $sce.trustAsResourceUrl(x);
     };
   }]);
 
