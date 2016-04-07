@@ -46,18 +46,17 @@
       <div ng-show="contentCtrl.showContent('table')" class="row">
         <div class="col-md-12">
           <div class="box">
-            <table ng-controller="tableController as tableCtrl" class="table">
+            <table ng-controller="tableController as tableCtrl" class="table" ng-init="tableCtrl.buildTable()">
               <tr>
-                <th>ID</th>
-                <th ng-show="tableCtrl.showColumn(data['sub-category'],3)">Neighborhood</th>
-                <th ng-show="tableCtrl.showColumn(data['sub-category'],2)">City</th>
-                <th ng-show="tableCtrl.showColumn(data['sub-category'],1)">State</th>
+                <th ng-repeat="header in headers"
+                    ng-show="tableCtrl.colIsShown(header)"
+                    ng-click="tableCtrl.sortBy(header)"
+                    ng-bind="header"></th>
               </tr>
-              <tr ng-repeat="row in data['table-rows']">
-                <td>{{row['row-id']}}</td>
-                <td ng-show="tableCtrl.showColumn(data['sub-category'],3)">{{row['row-neighborhood']}}</td>
-                <td ng-show="tableCtrl.showColumn(data['sub-category'],2)" ng-click="main.followRef({'display':'Austin', 'ref':'/app/static/json/test-Austin.json'})"><a href="#">{{row['row-city']}}</a></td>
-                <td ng-show="tableCtrl.showColumn(data['sub-category'],1)">{{row['row-state']}}</td>
+              <tr ng-repeat="row in rows | orderBy:sorting['column']:sorting['descending']">
+                <td ng-repeat="(key,value) in row"
+                    ng-show="tableCtrl.colIsShown(key)"
+                    ng-bind="value"></td>
               </tr>
             </table>
           </div>
