@@ -4,7 +4,6 @@
 # Imports
 # -------
 
-
 import os
 import subprocess
 from db import app, db, manager, logger
@@ -19,8 +18,6 @@ from create_db import *
 # URL Routing
 # -----------
 
-
-
 @app.route('/')
 def splash():
     logger.debug("splash")
@@ -28,7 +25,7 @@ def splash():
 
 @app.route('/about.html')
 def about():
-    # logger.debug("about")
+    logger.debug("about")
     return send_file('templates/about.html')
 
 
@@ -42,6 +39,7 @@ def render_tests():
     # logger.debug("create_db")
     test_results = subprocess.getoutput("python3 tests.py")
     return json.dumps({'test_results': str(test_results)})
+
 
 # ----------------
 # Manager Commands
@@ -65,3 +63,5 @@ def drop_db():
 
 if __name__ == '__main__':
     manager.run()
+    manager.create_db()
+

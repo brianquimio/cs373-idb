@@ -29,7 +29,7 @@ services:
 
   db:
     # The database container. Built from the db/Dockerfile.
-    container_name: vas_db
+    container_name: test_db
     build: db
     restart: unless-stopped
     networks:

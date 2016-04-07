@@ -2,14 +2,14 @@
 
 # -------------------------------
 # Copyright (C) 2016
-# Virtual_Address IDB
+# Virtual-Address.space IDB
 # -------------------------------
 
 # -------
 # Imports
 # -------
 
-from app            import db, app
+import db, app
 from io             import StringIO
 from urllib.request import urlopen
 from unittest       import main, TestCase

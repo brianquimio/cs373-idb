@@ -32,4 +32,5 @@ app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 manager = Manager(app)
+manager.add_command("runserver", Server(host="0.0.0.0", use_debugger=True))
 db = SQLAlchemy(app)
