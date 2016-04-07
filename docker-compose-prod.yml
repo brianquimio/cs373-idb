@@ -7,7 +7,7 @@ services:
     extends:
       file: docker-compose-common.yml
       service: lb
-    image: shperl/test_lb
+    image: shperl/pythonwebapp_lb
     environment:
       # Always deploy to n1 so the lb always has the same IP address. This is
       # just for convenience and isn't strictly necessary.
@@ -17,11 +17,11 @@ services:
     extends:
       file: docker-compose-common.yml
       service: app
-    image: shperl/test_app
+    image: shperl/pythonwebapp_app
     expose:
       # Expose port 8000 so it's only visibile on the container, not the host
       - "8000"
-    # env_file: pythonwebapp-mysql-prod.env
+    env_file: pythonwebapp-mysql-prod.env
     command: gunicorn app:app --bind 0.0.0.0:8000
       # Run Gunicorn to serve app requests
 
@@ -29,13 +29,13 @@ services:
     extends:
       file: docker-compose-common.yml
       service: db
-    image: shperl/test_db
+    image: shperl/pythonwebapp_db
     expose:
       # Expose port 3306 so it's only visibile on the container, not the host
       - "3306"
     env_file:
-      - vas-mysql-prod.env
-      - vas-mysql-root-prod.env
+      - pythonwebapp-mysql-prod.env
+      - pythonwebapp-mysql-root-prod.env
     volumes_from:
       # Mount the volumes from the data container to store our MySQL files
       - data
