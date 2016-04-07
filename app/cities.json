@@ -1,7 +1,6 @@
 "cities":[
 	{"longitude": "-118.155212", "latitude": "33.776864", "stateCode": "CA", "cityId": "43000", "name": "Long Beach"}, 
 	{"longitude": "-122.072181", "latitude": "37.40071", "stateCode": "CA", "cityId": "49670", "name": "Mountain View"}, 
-	{"longitude": "-122.145996", "latitude": "37.435067", "stateCode": "CA", "cityId": "55282", "name": "Palo Alto"}, 
 	{"longitude": "-122.256960646405", "latitude": "37.4843929647298", "stateCode": "CA", "cityId": "60102", "name": "Redwood City"}, 
 	{"longitude": "-122.448635", "latitude": "37.764744", "stateCode": "CA", "cityId": "67000", "name": "San Francisco"}, 
 	{"longitude": "-121.834306787753", "latitude": "37.3759603331905", "stateCode": "CA", "cityId": "68000", "name": "San Jose"}, 

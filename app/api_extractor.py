@@ -138,7 +138,6 @@ def write_neighborhood_stats(neighborhood, stats):
 
 	neighborhood_stats = stats.get_neighborhood_stats(neighborhood['id'], start=date.today()-timedelta(days=30), type="listings")
 
-	# return json.loads(json.dumps(neighborhood_stats))
 	return neighborhood_stats
 
 
@@ -167,11 +166,11 @@ if __name__ == '__main__':
 
 
 	# Query for the listing stats for each state
-	# state_stats = {}
-	# for state in states:
-	# 	state_stats[state['stateCode']] = write_state_stats(state, stats)
-	# 	time.sleep(1)
-	# state_stats_json = json.loads(json.dumps(state_stats))
+	state_stats = {}
+	for state in states:
+		state_stats[state['stateCode']] = write_state_stats(state, stats)
+		time.sleep(1)
+	state_stats_json = json.loads(json.dumps(state_stats))
 
 	# Query for each city in specified states (applying filter)
 	cities = []
@@ -182,11 +181,11 @@ if __name__ == '__main__':
 
 
 	# Query for the listing stats for each city
-	# city_stats = {}
-	# for city in cities:
-	# 	city_stats[city['cityId']] = write_city_stats(city, stats)
-	# 	time.sleep(1)
-	# city_stats_json = json.loads(json.dumps(city_stats))
+	city_stats = {}
+	for city in cities:
+		city_stats[city['cityId']] = write_city_stats(city, stats)
+		time.sleep(1)
+	city_stats_json = json.loads(json.dumps(city_stats))
 
 	# Query for neighborhood in all cities
 	neighborhoods = []
@@ -208,33 +207,33 @@ if __name__ == '__main__':
 # Write States and State Stats to files
 #--------------------------------------
 
-	# file = open('states.json', 'a')
-	# file.write('"states": ' + str(states_json))
-	# file.close
+	file = open('states.json', 'a')
+	file.write('"states": ' + str(states_json))
+	file.close
 
-	# file = open('state_stats.json', 'a')
-	# file.write('"stateStats": [' + str(state_stats_json) + "]")
-	# file.close
+	file = open('state_stats.json', 'a')
+	file.write('"stateStats": [' + str(state_stats_json) + "]")
+	file.close
 
 #-----------------------------------
 # Write City and City Stats to files
 #-----------------------------------
 
-	# file = open('cities.json', 'a')
-	# file.write('"cities":' + str(cities_json))
-	# file.close
+	file = open('cities.json', 'a')
+	file.write('"cities":' + str(cities_json))
+	file.close
 
-	# file = open('city_stats.json', 'a')
-	# file.write(str(city_stats_json))
-	# file.close
+	file = open('city_stats.json', 'a')
+	file.write(str(city_stats_json))
+	file.close
 
 #---------------------------------------------------
 # Write Neighborhood and Neighborhood Stats to files
 #---------------------------------------------------
 
-	# file = open('neighborhoods.json', 'a')
-	# file.write('neighborhoods: [' + str(neighborhoods_json) + ']')
-	# file.close
+	file = open('neighborhoods.json', 'a')
+	file.write('neighborhoods: [' + str(neighborhoods_json) + ']')
+	file.close
 
 	file = open('neighborhood_stats.json', 'a')
 	file.write(str(neighborhood_stats_json))

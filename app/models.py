@@ -1,18 +1,18 @@
+#!/usr/local/bin/python
+
 # -------
 # Imports
 # -------
 
 from flask import Flask, render_template, request, redirect, url_for, send_file
 from flask.ext.sqlalchemy import SQLAlchemy
+from db import db
 # from flask.ext.app.builder
 
-# -----------
+# ---------
 # DB models
-# -----------
+# ---------
 
-app = Flask(__name__)
-app.config['SQLACHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
-db = SQLAlchemy(app)
 
 class State(db.Model):
     """
@@ -24,13 +24,17 @@ class State(db.Model):
 
 	# Dimensions
     state_id = db.Column(db.Integer, unique=True)
-    state_code = db.Column(db.String(256), primary_key=Tru)
+    state_code = db.Column(db.String(256), primary_key=True)
     state_name = db.Column(db.String(256), unique=True)
+    latitude = db.Column(db.String(256))
+    longitude = db.Column(db.String(256))
 
-    def __init__(self, state_id, state_code, state_name):
+    def __init__(self, state_id, state_code, state_name, latitude, longitude):
         self.state_id = state_id
         self.state_code = state_code
         self.state_name = state_name
+        self.latitude = latitude
+        self.longitude = longitude
 
     def __repr__(self):
         return "[State: state_id={}, state_name={}]".format(self.state_id, self.state_code)
@@ -45,19 +49,25 @@ class StateStats(db.Model):
     avg_listing_price is the average listing price during the given time period
     med_listing_price is the median listing price during the given time period
     """
+
+    __tablename__ = 'StateStats'
+
+
     # Dimensions
+    id = db.Column(db.Integer, primary_key=True)
     week_of = db.Column(db.Date)
     property_type = db.Column(db.String(256))
 
     # Measures
     num_properties = db.Column(db.Integer)
-    avg_listing_price = db.Column(db.Integer)
     med_listing_price = db.Column(db.Integer)
+    avg_listing_price = db.Column(db.Integer)
+
 
     # Relationships
-    state_code = db.Column(db.String(256), db.ForeignKey(State.state_code))
+    state_code = db.Column(db.String(256), db.ForeignKey('State.state_code'))
 
-    def __init__(self, week_of, property_type, num_properties, avg_listing_price, med_listing_price):
+    def __init__(self, week_of, property_type, num_properties, med_listing_price, avg_listing_price):
         self.week_of = week_of
         self.property_type = property_type
         self.num_properties = num_properties
@@ -78,15 +88,17 @@ class City(db.Model):
     city_name = db.Column(db.String(256), nullable=False)
 
     # Relationships
-    state_code = db.Column(db.String(256), db.ForeignKey('State.state_id'))
+    state_code = db.Column(db.String(256), db.ForeignKey('State.state_code'))
 
-    def __init__(self, city_id, city_name, state_code):
+    def __init__(self, city_id, city_name, state_code, latitude, longitude):
         self.city_id = city_id
         self.city_name = city_name
         self.state_code = state_code
+        self.latitude = latitude
+        self.longitude = longitude
 
     def __repr__(self):
-        return "[City: city_id={}, city_name={}, state_name={}]".format(self.city_id, self.city_name, self.state_code)
+        return "[City: city_id={}, city_name={}, state_name={}]".format(self.city_id, self.city_name, self.state_code, self.latitude, self.longitude)
 
 
 class CityStats(db.Model):
@@ -100,7 +112,10 @@ class CityStats(db.Model):
     city_id is the foreign_key to uniquely identify which city the information belongs to
     """
 
+    __tablename__ = 'CityStats'
+
     # Dimensions
+    id = db.Column(db.Integer, primary_key=True)
     week_of = db.Column(db.Date)
     state_code = db.Column(db.String(256), unique=True)
     property_type = db.Column(db.String(256))
@@ -160,6 +175,7 @@ class NeighborhoodStats(db.Model):
     """
 
     # Dimensions
+    id = db.Column(db.Integer, primary_key=True)
     week_of = db.Column(db.Date)
     property_type = db.Column(db.String(256))
 
@@ -171,33 +187,10 @@ class NeighborhoodStats(db.Model):
     # Relationships
     neighborhood_id = db.Column(db.Integer, db.ForeignKey('Neighborhood.neighborhood_id'))
 
-    def __init__(self, week_of, property_type, num_properties, avg_listing_price, med_listing_price, neighborhood_id):
+    def __init__(self, week_of, neighborhood_id, property_type, num_properties, med_listing_price, avg_listing_price):
         self.week_of = week_of
         self.property_type = property_type
         self.num_properties = num_properties
         self.avg_listing_price = avg_listing_price
         self.med_listing_price = med_listing_price
         self.neighborhood_id = neighborhood_id
-
-
-class Park(db.Model):
-    """
-    facilityID is the primary key of the park
-    facilityName is the possibly unique name of the park
-    state_code is the foreign key that identifies which state the park is in
-    """
-
-    # Dimensions
-    facilityID = db.Column(db.Integer, unique=True)
-    facilityName = db.String(256)
-
-    # Measures
-    
-
-    # Relationships
-    state_code = db.Column(db.String(256), db.ForeignKey('State.state_code'))
-
-    def __init__(self, facilityID, facilityName, state_code):
-        self.facilityID = facilityID
-        self.facilityName = facilityName
-        self.state_code = state_code

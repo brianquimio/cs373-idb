@@ -4,7 +4,7 @@
 # Imports
 #--------
 
-from app import db
+from db import db
 from models import State, StateStats, City, CityStats, Neighborhood, NeighborhoodStats
 import json
 
@@ -38,7 +38,7 @@ def init_state_stats(state_stats_file):
 				avg_listing_price = int(subcat['averageListingPrice'])
 				property_type = subcat['type']
 
-				stats = StateStats(week_of, code, property_type, num_properties, med_listing_price, avg_listing_price)
+				stats = StateStats(week_of, property_type, num_properties, med_listing_price, avg_listing_price, code)
 				
 				db.session.add(stats)
 				db.session.commit()
@@ -52,7 +52,7 @@ def init_cities(cities_file):
 	cities_json = json.loads(cities_file)
 
 	for city in cities_json["states"]:
-		s = City(city['cityId'], city['name'], city['latitude'], city['longitude'], city['stateCode'])
+		s = City(city['cityId'], city['name'], city['stateCode'], city['latitude'], city['longitude'])
 		db.session.add(s)
 		db.session.commit()
 
@@ -72,7 +72,7 @@ def init_city_stats(city_stats_file):
 				avg_listing_price = int(subcat['averageListingPrice'])
 				property_type = subcat['type']
 
-				stats = CityStats(week_of, code, property_type, num_properties, med_listing_price, avg_listing_price)
+				stats = CityStats(week_of, code, property_type, num_properties, avg_listing_price, med_listing_price)
 				
 				db.session.add(stats)
 				db.session.commit()
@@ -109,7 +109,7 @@ def init_neighborhood_stats(neighborhood_stats_file):
 				db.session.add(stats)
 				db.session.commit()
 
-def create_db():
+def init_db():
 	"""
 	initialize the database for virtual-address.space
 	"""
