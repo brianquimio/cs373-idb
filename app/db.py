@@ -18,13 +18,23 @@ logger.debug("Welcome to Virtual Address Space")
 # Configure app
 # -------------
 
+print("===================================================")
+print(os.getenv('MYSQL_DATABASE'))
+print(os.getenv('MYSQL_PASSWORD'))
+print(os.getenv('MYSQL_USER'))
+print(os.getenv('MYSQL_HOST'))
 SQLALCHEMY_DATABASE_URI = \
     '{engine}://{username}:{password}@{hostname}/{database}'.format(
-        engine='mysql+pymysql',
+        # engine='mysql+pymysql',
         username=os.getenv('MYSQL_USER'),
+        # username='vas_admin',
         password=os.getenv('MYSQL_PASSWORD'),
+        # password='my-random-password',
         hostname=os.getenv('MYSQL_HOST'),
-        database=os.getenv('MYSQL_DATABASE'))
+        # hostname='cs373-idb_db',
+        database=os.getenv('MYSQL_DATABASE')
+        # database='guestbook'
+        )
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
