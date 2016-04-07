@@ -50,16 +50,92 @@
     };
   }]);
 
-  app.controller('tableController',[ '$rootScope', function($rootScope){
-    this.showColumn = function (subCategory, depth) {
-      this.depth = this.showHelper(subCategory);
-      return this.depth >= depth;
+  app.controller('tableController',[ '$scope', function($scope){
+    this.tableData = [
+      {
+        "City": "Houston",
+        "State": "Texas"
+      },
+      {
+        "City": "Austin",
+        "State": "Texas"
+      },
+      {
+        "City": "Dallas",
+        "State": "Texas"
+      },
+      {
+        "City": "New York City",
+        "State": "New York"
+      },
+      {
+        "City": "Los Angeles",
+        "State": "California"
+      }
+    ];
+    $scope.shownColumns = {};
+    $scope.headers = [];
+    $scope.rows = [];
+    $scope.sorting = {
+      "column": "",
+      "descending": false
     };
-    this.showHelper = function(subCategory){
-      if (subCategory === "neighborhood") return 3;
-      if (subCategory === "city") return 2;
-      if (subCategory === "state") return 1;
-      return 0;
+    //reset the table to blank slate
+    this.resetTable = function() {
+      $scope.shownColumns = {};
+      $scope.headers = [];
+      $scope.rows = [];
+    };
+    //add a new column (header)
+    this.addHeader = function(name) {
+      $scope.headers.push(name);
+      $scope.shownColumns[name]=true;
+    };
+    //add a new row
+    this.addRow = function(rowAsJSON) {
+      $scope.rows.push(rowAsJSON);
+    };
+    //build the table from a json
+    this.buildTable = function() {
+      this.resetTable();
+      //get the property names from the first element
+      for( var o in this.tableData[0] ) {
+        this.addHeader(o);
+      };
+      //for each row, build and add
+      for(var rowData in this.tableData) {
+        var newRow = this.tableData[rowData];
+        this.addRow(newRow);
+      };
+      $scope.sorting["column"]=$scope.headers[0];
+    };
+    //column is shown
+    this.colIsShown = function(columnName) {
+      return $scope.shownColumns[columnName];
+    };
+    //make column visible
+    this.showCol = function(columnName) {
+      if ($scope.shownColumns.hasOwnProperty(columnName)) {
+        $scope.shownColumns[columnName] = true;
+      };
+    };
+    //make column hidden
+    this.hideCol = function(columnName) {
+      if ($scope.shownColumns.hasOwnProperty(columnName)) {
+        $scope.shownColumns[columnName] = false;
+      };
+    };
+    //sort the table
+    this.sortBy = function(columnName) {
+      if ($scope.sorting["column"] = columnName) {
+        this.flipDir();
+      } else {
+        $scope.sorting["column"] = columnName;
+      };
+    };
+    //flip the direction of the table
+    this.flipDir = function() {
+      $scope.sorting["descending"] = !$scope.sorting["descending"];
     };
   }]);
 
