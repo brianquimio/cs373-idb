@@ -63,24 +63,33 @@
     };
   }]);
 
-  app.controller('mapController',['$rootScope', function($rootScope){
+  app.controller('mapController',['$rootScope', '$sce', function($rootScope, $sce){
     this.mapSrcBuilder = function(data = $rootScope.data) {
       var embedKey = "AIzaSyCADkkH1GoSKSlgVxk_oyLp6roM6XEx44I"
       var q = "";
-      if (data.hasOwnProperty("neighborhood")){
+      if (data.hasOwnProperty("neighborhood") && data["neighborhood"]){
         q += data["neighborhood"].replace(/ /g, "+");
+        q += ',';
       };
-      if (data.hasOwnProperty("city")){
+      if (data.hasOwnProperty("city") && data["city"]){
         q += data["city"].replace(/ /g, "+");
+        q += ',';
       };
-      if (data.hasOwnProperty("state")){
+      if (data.hasOwnProperty("state") && data["state"]){
         q += data["state"].replace(/ /g, "+");
+        q += ',';
       };
-      var src = "https://www.google.com/maps/embed/v1/place?key=";
+      // var src = "https://maps.googleapis.com/maps/api/staticmap?center=";
+      // src += q;
+      // src += "&zoom=14&size=400x400&key=";
+      // src += embedKey;
+      var src = "https://www.google.com/maps/embed/v1/place?key="
       src += embedKey;
       src += "&q=";
       src += q;
-      return src;
+      console.log(src);
+
+      return $sce.trustAsResourceUrl(src);
     };
   }]);
 
