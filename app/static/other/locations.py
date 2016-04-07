@@ -34,9 +34,10 @@ class Locations(object):
                 xml = requests.get(args[0].url, params=f(*args, **kwargs))
                 results = xmltodict.parse(xml.content)
                 retval = results["TruliaWebServices"]["response"]["LocationInfo"][args[0].aggregation]
+                return retval
             except KeyError as e:
                 retval = []
-            return retval
+                return retval
 
         return g
 

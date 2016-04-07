@@ -51,6 +51,7 @@ def write_cities(places, state, city_filter=None):
 	if city_filter:
 		cities = [city for city in cities if city['name'] in city_filter]
 
+	cities = list(cities)
 	# add foreign key to JSON for the state
 	for city in cities:
 		city['stateCode'] = state['stateCode']
@@ -77,6 +78,7 @@ def write_neighborhoods(places, city):
 	# Make a call to trulia for a list of OrderedDicts of cities
 	neighborhoods = places.get_neighborhoods_in_city(city['name'],city['stateCode'])
 	neighborhoods = [neighborhood for neighborhood in neighborhoods]
+	neighborhoods = list(neighborhoods)
 
 	# Add foreign keys
 	for neighborhood in neighborhoods:
@@ -100,7 +102,6 @@ def write_state_stats(state, stats):
 	"""
 
 	state_stats = stats.get_state_stats(state['stateCode'], start=date.today()-timedelta(days=30), type="listings")
-	print(state_stats)
 
 	return state_stats
 
@@ -134,6 +135,7 @@ def write_neighborhood_stats(neighborhood, stats):
 	returns a modified JSON object that contains stats for each state in provided input
 	"""
 
+
 	neighborhood_stats = stats.get_neighborhood_stats(neighborhood['id'], start=date.today()-timedelta(days=30), type="listings")
 
 	# return json.loads(json.dumps(neighborhood_stats))
@@ -150,18 +152,19 @@ if __name__ == '__main__':
 	# Contruct Trulia API Extraction Objects
 	#---------------------------------------
 
-	places = Locations(truliaKey)
-	stats = TruliaStats(truliaKey)
+	places = Locations(truliaKey2)
+	stats = TruliaStats(truliaKey2)
 
 	# Specify a subset of States and cities
 	state_filter = ['CA','TX','NY','WA']
-	city_filter = ['Dallas', 'Houston', 'Austin', 'San Francisco', 'San Jose', 'Redwood City', 'Palo Alto', 'Mountain View', 'South San Francisco', 'San Mateo', 'Seattle', 'Bellevue', 'Redmond', 'Renton', 'Issaquah', 'New York City', 'Long Beach', 'Yonkers']
+	city_filter = ['Dallas', 'Houston', 'Austin', 'San Francisco', 'San Jose', 'Redwood City', 'Palo Alto', 'Mountain View', 'South San Francisco', 'San Mateo', 'Seattle', 'Bellevue', 'Redmond', 'Renton', 'New York City', 'Long Beach']
 
 
 	# Query for all states from Trulia (applying filter)
 	states = write_states(places, state_filter)
 	states_json = json.loads(json.dumps(states))
 	time.sleep(1)
+
 
 	# Query for the listing stats for each state
 	# state_stats = {}
@@ -177,6 +180,7 @@ if __name__ == '__main__':
 		time.sleep(1)
 	cities_json = json.loads(json.dumps(cities))
 
+
 	# Query for the listing stats for each city
 	# city_stats = {}
 	# for city in cities:
@@ -191,12 +195,14 @@ if __name__ == '__main__':
 		time.sleep(1)
 	neighborhoods_json = json.loads(json.dumps(neighborhoods))
 
+
 	# Query for the listing stats for each neighborhood
 	neighborhood_stats = {}
 	for neighborhood in neighborhoods:
 		neighborhood_stats[neighborhood['id']] = write_neighborhood_stats(neighborhood, stats)
 		time.sleep(1)
 	neighborhood_stats_json = json.loads(json.dumps(neighborhood_stats))
+
 
 #--------------------------------------
 # Write States and State Stats to files
