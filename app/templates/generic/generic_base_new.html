@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!-- Based on the jumbotron-narrow example from the bootstrap repo (v3.3.6) -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Narrow Jumbotron Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/app/static/lib/css/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="generic-base-new.css" rel="stylesheet">
+
+
+
+  </head>
+
+  <body ng-app="VASapp" ng-controller="mainController as main">
+
+      <div ng-controller="navbarController as navbarCtrl" class="header clearfix">
+        <nav>
+          <h3 class="pull-left text-muted" ng-bind="name" ng-click="main.followRef({display:'Home',ref:'/app/static/json/test-about.json'})"></h3>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation"
+            ng-repeat="elem in navLinks"
+            ng-class="{active: navbarCtrl.isActive(elem.display)}"
+            ng-click="main.followRef(elem)">
+              <a href="#">{{elem.display}}</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+    <div ng-controller="contentController as contentCtrl" class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box page-header text-center"><h1 ng-bind="currentPage"></h1></div>
+        </div>
+      </div>
+      <div ng-show="contentCtrl.showContent('table')" class="row">
+        <div class="col-md-12">
+          <div class="box">
+            <table ng-controller="tableController as tableCtrl" class="table">
+              <tr>
+                <th>ID</th>
+                <th ng-show="tableCtrl.showColumn(data['sub-category'],3)">Neighborhood</th>
+                <th ng-show="tableCtrl.showColumn(data['sub-category'],2)">City</th>
+                <th ng-show="tableCtrl.showColumn(data['sub-category'],1)">State</th>
+              </tr>
+              <tr ng-repeat="row in data['table-rows']">
+                <td>{{row['row-id']}}</td>
+                <td ng-show="tableCtrl.showColumn(data['sub-category'],3)">{{row['row-neighborhood']}}</td>
+                <td ng-show="tableCtrl.showColumn(data['sub-category'],2)" ng-click="main.followRef({'display':'Austin', 'ref':'/app/static/json/test-Austin.json'})"><a href="#">{{row['row-city']}}</a></td>
+                <td ng-show="tableCtrl.showColumn(data['sub-category'],1)">{{row['row-state']}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div ng-show="contentCtrl.showContent('general')" class="row">
+        <div class="col-md-12">
+          <!-- <div ng-controller="mapController as mapCtrl" class="box text-center"><iframe ng-src={{mapCtrl.mapSrcBuilder()}} width="100%" height="300" style="border:0" allowfullscreen></iframe></div> -->
+
+          <!-- <div ng-controller="mapController as mapCtrl" class="box text-center"><img src="https://maps.googleapis.com/maps/api/staticmap?center=Austin,Texas&zoom=14&size=400x400&key=AIzaSyCADkkH1GoSKSlgVxk_oyLp6roM6XEx44I"></img></div> -->
+          <div ng-controller="mapController as mapCtrl" class="box text-center"><iframe ng-src="{{mapCtrl.mapSrcBuilder()}}" width="100%" height="300" style="border:0" allowfullscreen></iframe></div>
+        </div>
+      </div>
+      <div ng-show="contentCtrl.showContent('general')" class="row">
+        <div class="col-sm-6">
+          <div class="box text-center">
+            General<br/>
+            <p ng-bind="data['name']"></p>
+            <a ng-bind="data['category']"></a>
+            <p ng-bind="data['table-rows'][0]['row-id']"></p>
+          </div>
+        </div>
+        <div ng-show="contentCtrl.showContent('general')" class="col-sm-6">
+          <div class="box text-center">Property</div>
+        </div>
+      </div>
+      <div ng-show="contentCtrl.showContent('general')" class="row">
+        <div class="col-md-12">
+          <div class="box text-center">Yelp</div>
+        </div>
+      </div>
+    </div>
+
+      <!-- <div class="row" ng-bind="content"></div> -->
+      <!-- <div class="jumbotron">
+        <h1>Jumbotron heading</h1>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <h4>Subheading</h4>
+          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+          <h4>Subheading</h4>
+          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+          <h4>Subheading</h4>
+          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+
+        <div class="col-md-4">
+          <h4>Subheading</h4>
+          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+          <h4>Subheading</h4>
+          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+          <h4>Subheading</h4>
+          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+        <div class="col-md-4">
+          <h4>Subheading</h4>
+          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+          <h4>Subheading</h4>
+          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+          <h4>Subheading</h4>
+          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p>&copy; 2015 Company, Inc.</p>
+      </footer>
+    </div> -->
+    <script src="../../static/lib/js/angular.min.js"></script>
+    <script src="../../static/lib/js/angular-resource.min.js"></script>
+    <script src="../../static/js/app.js"></script>
+
+  </body>
+</html>
