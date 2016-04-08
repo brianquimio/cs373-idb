@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box">
+      <div class="panel panel-default">
+        <div class="panel-heading" ng-bind="pageName"></div>
+        <table class="table table-hover">
+          <tr>
+            <th ng-repeat="header in headers"
+                ng-show=true
+                ng-click="sortBy(header)"
+                ng-bind="header"></th>
+          </tr>
+          <tr ng-repeat="row in rows | orderBy:sorting['column']:sorting['descending']">
+            <td ng-repeat="(key,value) in row"
+                ng-show=true
+                ng-bind="value"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

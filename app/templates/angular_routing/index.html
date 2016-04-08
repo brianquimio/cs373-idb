@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- Based on the jumbotron-narrow example from the bootstrap repo (v3.3.6) -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <base href="/app/templates/angular_routing/">
+    <link rel="icon" href="/favicon.ico">
+
+    <title>VAS Angular Routing</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/app/static/lib/css/bootstrap.css" rel="stylesheet">
+
+
+  </head>
+
+  <body ng-app="VASapp" ng-controller="mainCtrl as main">
+
+    <div ng-controller="navbarCtrl as navbar" class="header clearfix">
+      <nav>
+        <a href="index.html"><h3 class="pull-left text-muted" ng-bind="name"></h3></a>
+        <ul class="nav nav-pills pull-right">
+          <li role="presentation"
+          ng-repeat="linkName in navLinks"
+          ng-class="{active: navbar.isActive(linkName)}"
+          ng-click="main.updateData(linkName)">
+            <a ng-href="{{linkName}}" ng-bind="linkName"></a>
+          </li>
+          <li role="presentation"
+          ng-click="main.printInfo()"> <a ng-href="#PrintInfo">Print Info to Console</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="container">
+      <div ng-view></div>
+    </div>
+
+    <script src="/app/static/lib/js/angular.js"></script>
+    <script src="/app/static/lib/js/angular-resource.js"></script>
+    <script src="/app/static/lib/js/angular-route.js"></script>
+    <script src="/app/templates/angular_routing/app.js"></script>
+    <script src="/app/templates/angular_routing/controllers.js"></script>
+  </body>
+</html>
