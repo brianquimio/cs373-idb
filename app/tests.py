@@ -18,9 +18,9 @@ from models         import *
 
 TEST_DB_URI = "sqlite://"
 
-# -----
-# State
-# -----
+# --------------------
+# State and StateStats
+# --------------------
 
 class TestState (TestCase):
 
@@ -37,9 +37,9 @@ class TestState (TestCase):
         db.session.add(state1)
         db.session.add(state2)
         db.session.add(state3)
-        stat1 = StateStats('03-01-16', '1-bedroom', 9, 12345, 12000)
-        stat2 = StateStats('03-01-16', '2-bedroom', 6, 11111, 12000)
-        stat3 = StateStats('03-01-16', '3-bedroom', 3, 15678, 16000)
+        stat1 = StateStats('03-01-16', '1-bedroom', 9, 12345, 12000, 'TX')
+        stat2 = StateStats('03-01-16', '2-bedroom', 6, 11111, 12000, 'TX')
+        stat3 = StateStats('03-01-16', '3-bedroom', 3, 15678, 16000, 'TX')
         db.session.add(stat1)
         db.session.add(stat2)
         db.session.add(stat3)
@@ -70,14 +70,22 @@ class TestState (TestCase):
         self.assertTrue(state.state_id == 3 and state.state_name == 'New York')
 
     def test_state_stat_1(self):
-        stat = StateStats.query.filter_by(property_type = '1-bedroom')
-        self.assertEqual(9, stat.num_properties)
+        stats = StateStats.query.filter_by(property_type = '1-bedroom')
+        self.assertEqual(9, stats.num_properties)
+
+    def test_state_stat_2(self):
+        stats = StateStats.query.filter_by(state_code = 'TX')
+        self.assertEqual(3, len(stats))
+
+    def test_state_stat_3(self):
+        stats = StateStats.query.filter_by(state_code = 'TX')
+        self.assertEqual(3, stats[2].num_properties)
 
 
 
-# ----
-# City
-# ----
+# ------------------
+# City and CityStats
+# ------------------
 
 class TestCity (TestCase):
 
@@ -94,6 +102,12 @@ class TestCity (TestCase):
         db.session.add(city1)
         db.session.add(city2)
         db.session.add(city3)
+        city_stat1 = CityStats('04-01-2016', 'TX', '1-bedroom', 10, 10000, 15000, 4)
+        city_stat2 = CityStats('04-01-2016', 'TX', '2-bedroom', 11, 11000, 16000, 4)
+        city_stat2 = CityStats('04-01-2016', 'TX', '3-bedroom', 9, 12000, 17000, 4)
+        db.session.add(city_stat1)
+        db.session.add(city_stat2)
+        db.session.add(city_stat3)
         db.session.commit()
 
     def tearDown(self):
@@ -116,10 +130,24 @@ class TestCity (TestCase):
         city = City.query.filter_by(city_code == 'NY')
         self.assertTrue(city is None)
 
+    def test_citystats_1(self):
+        stats = CityStats.query.filter_by(state_code = 'TX')
+        self.assertTrue(len(stats) = 3)
 
-# -------------
-# Neightborhood
-# -------------
+    def test_citystats_2(self):
+        stats = CityStats.query.filter_by(state_code = 'TX')
+        self.assertEqual(11, stats[1].num_properties)
+
+    def test_citystats_3(self):
+        stats = CityStats.query.filter_by(state_code = 'TX')
+        self.assertEqual(12000, stats[2].avg_listing_price)
+
+
+
+
+# -----------------------------------
+# Neightborhood and NeighborhoodStats
+# -----------------------------------
 
 class TestNeighborhood (TestCase):
 
@@ -134,6 +162,8 @@ class TestNeighborhood (TestCase):
         neighborhood2 = Neighborhood(7, 'Twin Peaks', 'TX', 4)
         db.session.add(neighborhood1)
         db.session.add(neighborhood2)
+        neighborhood_stat1 = NeighborhoodStats('01-31-16', 6, '1-bedroom', 50, 11111, 10000)
+        db.session.add(neighborhood_stat1)
         db.session.commit()
 
     def tearDown(self):
@@ -155,6 +185,18 @@ class TestNeighborhood (TestCase):
     def test_neighborhood_4(self):
         nb = Neighborhood.query.filter_by(city_id = 4)
         self.assertEqual('West University', nb.neighborhood_name)
+
+    def test_neighborhood_stats_1(self):
+        nbs = NeighborhoodStats.query.filter_by(neighborhood_id = 6)
+        self.assertTrue(len(nbs) == 1)
+
+    def test_neighborhood_stats_2(self):
+        nbs = NeighborhoodStats.query.filter_by(neighborhood_id = 6)
+        self.assertEqual(50, nbs.num_properties)
+
+    def test_neighborhood_stats_3(self):
+        nbs = NeighborhoodStats.query.filter_by(neighborhood_id = 6)
+        self.assertEqual(10000, nbs.avg_listing_price)
 
 
 # ----

@@ -67,12 +67,13 @@ class StateStats(db.Model):
     # Relationships
     state_code = db.Column(db.String(256), db.ForeignKey('State.state_code'))
 
-    def __init__(self, week_of, property_type, num_properties, med_listing_price, avg_listing_price):
+    def __init__(self, week_of, property_type, num_properties, med_listing_price, avg_listing_price, state_code):
         self.week_of = week_of
         self.property_type = property_type
         self.num_properties = num_properties
         self.avg_listing_price = avg_listing_price
         self.med_listing_price = med_listing_price
+        self.state_code = state_code
 
 
 class City(db.Model):
@@ -128,13 +129,14 @@ class CityStats(db.Model):
     # Relationships
     city_id = db.Column(db.Integer, db.ForeignKey('City.city_id'))
 
-    def __init__(self, week_of, state_code, property_type, num_properties, avg_listing_price, med_listing_price):
+    def __init__(self, week_of, state_code, property_type, num_properties, avg_listing_price, med_listing_price, city_id):
         self.week_of = week_of
         self.state_code = state_code
         self.property_type = property_type
         self.num_properties = num_properties
         self.avg_listing_price = avg_listing_price
         self.med_listing_price = med_listing_price
+        self.city_id = city_id
 
 
 class Neighborhood(db.Model):
