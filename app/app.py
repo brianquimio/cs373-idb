@@ -7,7 +7,7 @@
 import os
 import subprocess
 from db import app, db, manager, logger
-from flask import Flask, render_template, request, redirect, url_for, send_file
+from flask import Flask, render_template, request, redirect, url_for, send_file, jsonify
 from flask.ext.script import Manager
 from flask.ext.sqlalchemy import SQLAlchemy
 from models import State, StateStats, City, CityStats, Neighborhood, NeighborhoodStats
@@ -39,7 +39,7 @@ def api_root():
                                                 'state_url': '/state',
                                                 'city_url': '/city',
                                                 'neighborhood': '/neighborhood'
-                            }
+                            }}
         return jsonify(data)
 
 
@@ -64,19 +64,19 @@ def api_cities_all():
     return jsonify(jsonData)
 
 @app.route('/api/cities/<cityID>')
-def api_state_spec(cityID):
+def api_city_spec(cityID):
     citydata = City.query.get(cityID)
     return jsonify(citydata.serialize())
 
 @app.route('/api/neighborhoods/')
-def api_cities_all():
+def api_neighborhood_all():
     jsonData = {}
     for data in Neighborhood.query:
         jsonData[data.name] = data.serialize()
     return jsonify(jsonData)
 
-@app.route('/api/cities/<nID>')
-def api_state_spec(cityID):
+@app.route('/api/neighborhood/<nID>')
+def api_neighborhood_spec(nID):
     nData = Neighborhood.query.get(nID)
     return jsonify(nData.serialize())
 
@@ -115,4 +115,3 @@ def drop_db():
 if __name__ == '__main__':
     manager.run()
     manager.create_db()
-
