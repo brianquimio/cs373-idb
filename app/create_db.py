@@ -9,24 +9,26 @@ from models import State, StateStats, City, CityStats, Neighborhood, Neighborhoo
 import json
 
 
-def init_states(states_file):
+def init_states(states_json):
 	"""
 	Insert data for states pulled from trulia API
 	"""
 
-	states_json = json.loads(states_file)
+
+	i = 1
 
 	for state in states_json["states"]:
-		s = State(state['stateCode'], state['name'], state['latitude'], state['longitude'])
+		print(state)
+		s = State(i, state['stateCode'], state['name'], state['latitude'], state['longitude'])
+		i += 1
 		db.session.add(s)
 		db.session.commit()
 
-def init_state_stats(state_stats_file):
+def init_state_stats(state_stats_json):
 	"""
 	Insert data for state stats pulled from trulia API
 	"""
 
-	state_stats_json = json.loads(state_stats_file)
 	state_codes = state_stats_json['stateStats'].keys()
 
 	for code in state_codes:
@@ -45,23 +47,21 @@ def init_state_stats(state_stats_file):
 				db.session.commit()
 
 
-def init_cities(cities_file):
+def init_cities(cities_json):
 	"""
 	Insert data for cities pulled from trulia API
 	"""
-
-	cities_json = json.loads(cities_file)
 
 	for city in cities_json["cities"]:
 		s = City(city['cityId'], city['name'], city['stateCode'], city['latitude'], city['longitude'])
 		db.session.add(s)
 		db.session.commit()
 
-def init_city_stats(city_stats_file):
+def init_city_stats(city_stats_json):
 	"""
 	Insert data for city stats pulled from trulia API
 	"""
-	city_stats_json = json.loads(city_stats_file)
+
 	city_codes = city_stats_json['cityStats'].keys()
 
 	for code in city_codes:
@@ -78,22 +78,21 @@ def init_city_stats(city_stats_file):
 				db.session.add(stats)
 				db.session.commit()
 
-def init_neighborhoods(neighborhood_file):
+def init_neighborhoods(neighborhood_json):
 	"""
 	Insert data for neighborhoods pulled from trulia API
 	"""
-	neighborhoods_json = json.loads(neighborhood_file)
 
 	for neighborhood in neighborhoods_json["neighborhoods"]:
 		s = Neighborhood(neighborhood['id'], neighborhood['name'], neighborhood['stateCode'], neighborhood['city'])
 		db.session.add(s)
 		db.session.commit()
 
-def init_neighborhood_stats(neighborhood_stats_file):
+def init_neighborhood_stats(neighborhood_stats_json):
 	"""
 	Insert data for neighborhood stats from trulia API
 	"""
-	neighborhood_stats_json = json.loads(neighborhood_stats_file)
+
 	neighborhood_codes = neighborhood_stats_json['neighborhoodStats'].keys()
 
 	for code in neighborhood_codes:
@@ -123,24 +122,24 @@ def init_db():
 		init_states(json.loads(states))
 
 	# Init state stats
-	# with open('state_stats.json') as state_stats:
-	# 	init_state_stats(json.loads(state_stats))
+	with open('state_stats.json') as state_stats:
+		init_state_stats(json.loads(state_stats))
 
 	# # Init cities
 	with open('cities.json') as cities:
 		init_cities(json.loads(cities))
 
 	# # Init city stats
-	# with open('city_stats.json') as city_stats:
-	# 	init_city_stats(json.loads(city_stats))
+	with open('city_stats.json') as city_stats:
+		init_city_stats(json.loads(city_stats))
 
 	# # Init neighborhoods
-	# with open('neighborhoods.json') as neighborhoods:
-	# 	init_neighborhoods(json.loads(neighborhoods))
+	with open('neighborhoods.json') as neighborhoods:
+		init_neighborhoods(json.loads(neighborhoods))
 
 	# # Init neighborhood stats
-	# with open('neighborhood_stats.json') as neighborhood_stats:
-	# 	init_neighborhood_stats(json.loads(neighborhood_stats))
+	with open('neighborhood_stats.json') as neighborhood_stats:
+		init_neighborhood_stats(json.loads(neighborhood_stats))
 
 
 
