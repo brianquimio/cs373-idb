@@ -252,7 +252,6 @@ def about():
 # API Routing
 # ----------------
 
-<<<<<<< HEAD
 @app.route('/api/')
 def api_root():
         data = {
@@ -300,55 +299,7 @@ def api_neighborhood_all():
 def api_neighborhood_spec(nID):
     nData = Neighborhood.query.get(nID)
     return jsonify(nData.serialize())
-=======
-# @app.route('/api/')
-# def api_root():
-#         data = {
-#                             'urls': {
-#                                                 'state_url': '/state',
-#                                                 'city_url': '/city',
-#                                                 'neighborhood': '/neighborhood'
-#                             }}
-#         return jsonify(data)
 
-
-# @app.route('/api/state/')
-# def api_state_all():
-#     jsonData = {}
-#     for data in State.query():
-#         jsonData[data.name] = data.serialize()
-#     return jsonify(jsonData)
-
-# @app.route('/api/state/<statecode>')
-# def api_state_spec(statecode):
-#     statedata = State.query.get(statecode)
-#     return jsonify(statedata.serialize())
-
-
-# @app.route('/api/cities/')
-# def api_cities_all():
-#     jsonData = {}
-#     for data in City.query:
-#         jsonData[data.name] = data.serialize()
-#     return jsonify(jsonData)
-
-# @app.route('/api/cities/<cityID>')
-# def api_city_spec(cityID):
-#     citydata = City.query.get(cityID)
-#     return jsonify(citydata.serialize())
-
-# @app.route('/api/neighborhoods/')
-# def api_neighborhood_all():
-#     jsonData = {}
-#     for data in Neighborhood.query:
-#         jsonData[data.name] = data.serialize()
-#     return jsonify(jsonData)
-
-# @app.route('/api/neighborhood/<nID>')
-# def api_neighborhood_spec(nID):
-#     nData = Neighborhood.query.get(nID)
-#     return jsonify(nData.serialize())
->>>>>>> api-returns-empty
 
 
 #------
