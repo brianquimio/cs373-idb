@@ -6,13 +6,20 @@
 
 from flask import Flask, render_template, request, redirect, url_for, send_file
 from flask.ext.sqlalchemy import SQLAlchemy
-from db import db
+from app import db
 # from flask.ext.app.builder
 
 # ---------
 # DB models
 # ---------
 
+class Guest(db.Model):
+    __tablename__ = 'guests'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(256), nullable=False)
+
+    def __repr__(self):
+        return "[Guest: id={}, name={}]".format(self.id, self.name)
 
 class State(db.Model):
     """
@@ -29,12 +36,12 @@ class State(db.Model):
     latitude = db.Column(db.String(256))
     longitude = db.Column(db.String(256))
 
-    def __init__(self, state_id, state_code, state_name, latitude, longitude):
-        self.state_id = state_id
-        self.state_code = state_code
-        self.state_name = state_name
-        self.latitude = latitude
-        self.longitude = longitude
+    # def __init__(self, state_id, state_code, state_name, latitude, longitude):
+    #     self.state_id = state_id
+    #     self.state_code = state_code
+    #     self.state_name = state_name
+    #     self.latitude = latitude
+    #     self.longitude = longitude
 
     def __repr__(self):
         return "[State: state_id={}, state_name={}]".format(self.state_id, self.state_code)
@@ -67,12 +74,12 @@ class StateStats(db.Model):
     # Relationships
     state_code = db.Column(db.String(256), db.ForeignKey('State.state_code'))
 
-    def __init__(self, week_of, property_type, num_properties, med_listing_price, avg_listing_price):
-        self.week_of = week_of
-        self.property_type = property_type
-        self.num_properties = num_properties
-        self.avg_listing_price = avg_listing_price
-        self.med_listing_price = med_listing_price
+    # def __init__(self, week_of, property_type, num_properties, med_listing_price, avg_listing_price,state_code):
+    #     self.week_of = week_of
+    #     self.property_type = property_type
+    #     self.num_properties = num_properties
+    #     self.avg_listing_price = avg_listing_price
+    #     self.med_listing_price = med_listing_price
 
 
 class City(db.Model):
@@ -90,12 +97,12 @@ class City(db.Model):
     # Relationships
     state_code = db.Column(db.String(256), db.ForeignKey('State.state_code'))
 
-    def __init__(self, city_id, city_name, state_code, latitude, longitude):
-        self.city_id = city_id
-        self.city_name = city_name
-        self.state_code = state_code
-        self.latitude = latitude
-        self.longitude = longitude
+    # def __init__(self, city_id, city_name, state_code, latitude, longitude):
+    #     self.city_id = city_id
+    #     self.city_name = city_name
+    #     self.state_code = state_code
+    #     self.latitude = latitude
+    #     self.longitude = longitude
 
     def __repr__(self):
         return "[City: city_id={}, city_name={}, state_name={}]".format(self.city_id, self.city_name, self.state_code, self.latitude, self.longitude)
@@ -128,13 +135,13 @@ class CityStats(db.Model):
     # Relationships
     city_id = db.Column(db.Integer, db.ForeignKey('City.city_id'))
 
-    def __init__(self, week_of, state_code, property_type, num_properties, avg_listing_price, med_listing_price):
-        self.week_of = week_of
-        self.state_code = state_code
-        self.property_type = property_type
-        self.num_properties = num_properties
-        self.avg_listing_price = avg_listing_price
-        self.med_listing_price = med_listing_price
+    # def __init__(self, week_of, state_code, property_type, num_properties, avg_listing_price, med_listing_price):
+    #     self.week_of = week_of
+    #     self.state_code = state_code
+    #     self.property_type = property_type
+    #     self.num_properties = num_properties
+    #     self.avg_listing_price = avg_listing_price
+    #     self.med_listing_price = med_listing_price
 
 
 class Neighborhood(db.Model):
@@ -154,11 +161,11 @@ class Neighborhood(db.Model):
     state_code = db.Column(db.String(256), db.ForeignKey('State.state_code'))
     city_id = db.Column(db.Integer, db.ForeignKey('City.city_id'))
 
-    def __init__(self, neighborhood_id, neighborhood_name, state_code, city_id):
-        self.neighborhood_id = neighborhood_id
-        self.neighborhood_name = neighborhood_name
-        self.state_code = state_code
-        self.city_id = city_id
+    # def __init__(self, neighborhood_id, neighborhood_name, state_code, city_id):
+    #     self.neighborhood_id = neighborhood_id
+    #     self.neighborhood_name = neighborhood_name
+    #     self.state_code = state_code
+    #     self.city_id = city_id
 
     def __repr__(self):
         return "[Neighborhood: neighborhood_id={}, neighborhood_name={}".format(self.neighborhood_id, self.neighborhood_name)
@@ -187,10 +194,10 @@ class NeighborhoodStats(db.Model):
     # Relationships
     neighborhood_id = db.Column(db.Integer, db.ForeignKey('Neighborhood.neighborhood_id'))
 
-    def __init__(self, week_of, neighborhood_id, property_type, num_properties, med_listing_price, avg_listing_price):
-        self.week_of = week_of
-        self.property_type = property_type
-        self.num_properties = num_properties
-        self.avg_listing_price = avg_listing_price
-        self.med_listing_price = med_listing_price
-        self.neighborhood_id = neighborhood_id
+    # def __init__(self, week_of, neighborhood_id, property_type, num_properties, med_listing_price, avg_listing_price):
+    #     self.week_of = week_of
+    #     self.property_type = property_type
+    #     self.num_properties = num_properties
+    #     self.avg_listing_price = avg_listing_price
+    #     self.med_listing_price = med_listing_price
+    #     self.neighborhood_id = neighborhood_id
