@@ -67,7 +67,7 @@ class StateStats(db.Model):
     # Relationships
     state_code = db.Column(db.String(256), db.ForeignKey('State.state_code'))
 
-    def __init__(self, week_of, property_type, num_properties, med_listing_price, avg_listing_price):
+    def __init__(self, week_of, property_type, num_properties, med_listing_price, avg_listing_price,state_code):
         self.week_of = week_of
         self.property_type = property_type
         self.num_properties = num_properties

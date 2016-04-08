@@ -38,6 +38,7 @@ def init_state_stats(state_stats_file):
 				avg_listing_price = int(subcat['averageListingPrice'])
 				property_type = subcat['type']
 
+
 				stats = StateStats(week_of, property_type, num_properties, med_listing_price, avg_listing_price, code)
 				
 				db.session.add(stats)
@@ -51,7 +52,7 @@ def init_cities(cities_file):
 
 	cities_json = json.loads(cities_file)
 
-	for city in cities_json["states"]:
+	for city in cities_json["cities"]:
 		s = City(city['cityId'], city['name'], city['stateCode'], city['latitude'], city['longitude'])
 		db.session.add(s)
 		db.session.commit()
@@ -122,24 +123,24 @@ def init_db():
 		init_states(json.loads(states))
 
 	# Init state stats
-	with open('state_stats.json') as state_stats:
-		init_state_stats(json.loads(state_stats))
+	# with open('state_stats.json') as state_stats:
+	# 	init_state_stats(json.loads(state_stats))
 
-	# Init cities
+	# # Init cities
 	with open('cities.json') as cities:
 		init_cities(json.loads(cities))
 
-	# Init city stats
-	with open('city_stats.json') as city_stats:
-		init_city_stats(json.loads(city_stats))
+	# # Init city stats
+	# with open('city_stats.json') as city_stats:
+	# 	init_city_stats(json.loads(city_stats))
 
-	# Init neighborhoods
-	with open('neighborhoods.json') as neighborhoods:
-		init_neighborhoods(json.loads(neighborhoods))
+	# # Init neighborhoods
+	# with open('neighborhoods.json') as neighborhoods:
+	# 	init_neighborhoods(json.loads(neighborhoods))
 
-	# Init neighborhood stats
-	with open('neighborhood_stats.json') as neighborhood_stats:
-		init_neighborhood_stats(json.loads(neighborhood_stats))
+	# # Init neighborhood stats
+	# with open('neighborhood_stats.json') as neighborhood_stats:
+	# 	init_neighborhood_stats(json.loads(neighborhood_stats))
 
 
 
