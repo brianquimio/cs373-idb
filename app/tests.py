@@ -132,7 +132,7 @@ class TestCity (TestCase):
 
     def test_citystats_1(self):
         stats = CityStats.query.filter_by(state_code = 'TX')
-        self.assertTrue(len(stats) = 3)
+        self.assertTrue(len(stats) == 3)
 
     def test_citystats_2(self):
         stats = CityStats.query.filter_by(state_code = 'TX')
