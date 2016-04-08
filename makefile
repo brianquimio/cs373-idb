@@ -51,4 +51,4 @@ status:
 	git status
 
 test:
-	python3 tests.py
+	python3 app/tests.py

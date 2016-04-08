@@ -13,7 +13,7 @@ from app            import db, app
 from io             import StringIO
 from urllib.request import urlopen
 from unittest       import main, TestCase
-from models         import *
+#from models         import *
 import json
 
 
