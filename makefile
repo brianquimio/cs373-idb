@@ -3,10 +3,10 @@ FILES :=                            				\
 	.travis.yml						\
 	makefile						\
 	apiary.apib						\
-	IDB1.log						\
+	IDB2.log						\
 	models.html						\
-	models.py 						\
-	tests.py 						\
+	app/models.py 						\
+	app/tests.py 						\
 	UML.pdf
 
 models.html: models.py
