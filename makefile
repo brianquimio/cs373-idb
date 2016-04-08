@@ -3,10 +3,10 @@ FILES :=                            				\
 	.travis.yml						\
 	makefile						\
 	apiary.apib						\
-	IDB1.log						\
+	IDB2.log						\
 	models.html						\
-	models.py 						\
-	tests.py 						\
+	app/models.py 						\
+	app/tests.py 						\
 	UML.pdf
 
 models.html: models.py
@@ -43,13 +43,12 @@ clean:
 config:
 	git config -l
 
-html: models.html
-
-log: IDB1.log
-
 status:
 	make clean
 	@echo
 	git branch
 	git remote -v
 	git status
+
+test:
+	python3 app/tests.py

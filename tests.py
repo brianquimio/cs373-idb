@@ -2,14 +2,14 @@
 
 # -------------------------------
 # Copyright (C) 2016
-# Virtual_Address IDB
+# Virtual-Address.space IDB
 # -------------------------------
 
 # -------
 # Imports
 # -------
 
-from app            import db, app
+import db, app
 from io             import StringIO
 from urllib.request import urlopen
 from unittest       import main, TestCase
@@ -143,6 +143,26 @@ class TestNeighborhood (TestCase):
     def test_neighborhood_4(self):
         nb = Neighborhood.query.filter_by(city_id = 4)
         self.assertEqual('West University', nb.neighborhood_name)
+
+# -------------
+# State Parks
+# -------------
+
+# class TestStateParks (TestCase):
+
+#     def make_app(self):
+#         app.config['TESTING'] = True
+#         app.config['SQLALCHEMY_DATABASE_URI'] = TEST_DB_URI
+#         return app
+
+#     def setUp(self):
+#         db.create_all()
+#         park1 = Neighborhood(CA)
+#         park2 = Neighborhood(CO)
+#         db.session.add(neighborhood1)
+#         db.session.add(neighborhood2)
+#         db.session.commit()
+
 
 # ----
 # Main

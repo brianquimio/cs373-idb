@@ -1,21 +1,11 @@
-# start from base
-FROM ubuntu:14.04
-MAINTAINER Stephen Perl
+FROM python:3.4
 
-# install system-wide deps for python and node
-RUN apt-get -yqq update
-RUN apt-get -yqq install python-pip python-dev
-RUN ln -s /usr/bin/nodejs /usr/bin/node
+ENV PYTHONUNBUFFERED 1
 
-# copy our application code
-ADD . /opt/flask-app
-WORKDIR /opt/flask-app
+ADD . /src
 
-# fetch app specific deps
+WORKDIR /src
+
 RUN pip install -r requirements.txt
 
-# expose port
-EXPOSE 80
-
-# start app
-CMD [ "python", "./app.py" ]
+CMD gunicorn db:app -b 0.0.0.0:8000

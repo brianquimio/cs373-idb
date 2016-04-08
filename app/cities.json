@@ -1,0 +1,21 @@
+"cities":[
+	{"longitude": "-118.155212", "latitude": "33.776864", "stateCode": "CA", "cityId": "43000", "name": "Long Beach"}, 
+	{"longitude": "-122.072181", "latitude": "37.40071", "stateCode": "CA", "cityId": "49670", "name": "Mountain View"}, 
+	{"longitude": "-122.256960646405", "latitude": "37.4843929647298", "stateCode": "CA", "cityId": "60102", "name": "Redwood City"}, 
+	{"longitude": "-122.448635", "latitude": "37.764744", "stateCode": "CA", "cityId": "67000", "name": "San Francisco"}, 
+	{"longitude": "-121.834306787753", "latitude": "37.3759603331905", "stateCode": "CA", "cityId": "68000", "name": "San Jose"}, 
+	{"longitude": "-122.307129495105", "latitude": "37.551213018337", "stateCode": "CA", "cityId": "68252", "name": "San Mateo"}, 
+	{"longitude": "-122.40547084985", "latitude": "37.6537979966249", "stateCode": "CA", "cityId": "73262", "name": "South San Francisco"}, 
+	{"longitude": "-73.6693818384998", "latitude": "40.5893035105807", "stateCode": "NY", "cityId": "43335", "name": "Long Beach"}, 
+	{"longitude": "-73.896617", "latitude": "40.937118", "stateCode": "NY", "cityId": "84000", "name": "Yonkers"}, 
+	{"longitude": "-97.745876", "latitude": "30.265887", "stateCode": "TX", "cityId": "05000", "name": "Austin"}, 
+	{"longitude": "-98.0163214693602", "latitude": "33.6338544894988", "stateCode": "TX", "cityId": "07396", "name": "Bellevue"}, 
+	{"longitude": "-96.798477", "latitude": "32.775728", "stateCode": "TX", "cityId": "19000", "name": "Dallas"}, 
+	{"longitude": "-95.365104", "latitude": "29.754839", "stateCode": "TX", "cityId": "35000", "name": "Houston"}, 
+	{"longitude": "-122.121582998787", "latitude": "47.6120339995241", "stateCode": "WA", "cityId": "05210", "name": "Bellevue"}, 
+	{"longitude": "-122.041373510301", "latitude": "47.5491680040152", "stateCode": "WA", "cityId": "33805", "name": "Issaquah"}, 
+	{"longitude": "-124.050326102283", "latitude": "46.3605875382172", "stateCode": "WA", "cityId": "40070", "name": "Long Beach"}, 
+	{"longitude": "-122.081545185594", "latitude": "47.6955722678668", "stateCode": "WA", "cityId": "57535", "name": "Redmond"}, 
+	{"longitude": "-122.230477376736", "latitude": "47.4896894770116", "stateCode": "WA", "cityId": "57745", "name": "Renton"}, 
+	{"longitude": "-122.291736499725", "latitude": "47.6148699998936", "stateCode": "WA", "cityId": "63000", "name": "Seattle"}
+]

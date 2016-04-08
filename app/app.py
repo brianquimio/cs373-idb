@@ -1,119 +1,118 @@
-
+#!/usr/local/bin/python
 
 # -------
 # Imports
 # -------
 
-import logging
 import os
+import subprocess
+from db import app, db, manager, logger
 from flask import Flask, render_template, request, redirect, url_for, send_file
-
-
-# ------------------------------
-# Configure logger for debugging
-# ------------------------------
-
-
-def get_file(filename):  # pragma: no cover
-    try:
-        src = os.path.join(root_dir(), filename)
-        # Figure out how flask returns static files
-        # Tried:
-        # - render_template
-        # - send_file
-        # This should not be so non-obvious
-        return open(src).read()
-    except IOError as exc:
-        return str(exc)
-
-# -------------
-# Configure app
-# -------------
-
-app = Flask(__name__)
-
+from flask.ext.script import Manager
+from flask.ext.sqlalchemy import SQLAlchemy
+from models import State, StateStats, City, CityStats, Neighborhood, NeighborhoodStats
+from create_db import *
 
 
 # -----------
 # URL Routing
 # -----------
 
-
-@app.route('/index.html')
 @app.route('/')
-def index():
-    # logger.debug("index")
+def splash():
+    logger.debug("splash")
     return send_file('templates/index.html')
 
 @app.route('/about.html')
 def about():
-    # logger.debug("about")
+    logger.debug("about")
     return send_file('templates/about.html')
 
-@app.route('/static-cities.html')
-def cities():
-    # logger.debug("cities")
-    return send_file('templates/static-cities.html')
+# ----------------
+# API Routing
+# ----------------
 
-@app.route('/static-neighborhoods.html')
-def neighborhoods():
-    # logger.debug("neighborhoods")
-    return send_file('templates/static-neighborhoods.html')
+@app.route('/api/')
+def api_root():
+        data = {
+                            'urls': {
+                                                'state_url': '/state',
+                                                'city_url': '/city',
+                                                'neighborhood': '/neighborhood'
+                            }}
+        return jsonify(data)
 
-@app.route('/static-state-california.html')
-def california():
-    # logger.debug("california")
-    return send_file('templates/static-state-california.html')
 
-@app.route('/static-state-texas.html')
-def texas():
-    # logger.debug("texas")
-    return send_file('templates/static-state-texas.html')
+@app.route('/api/state/')
+def api_state_all():
+    jsonData = {}
+    for data in State.query:
+        jsonData[data.name] = data.serialize()
+    return jsonify(jsonData)
 
-@app.route('/static-states.html')
-def states():
-    # logger.debug("states")
-    return send_file('templates/static-states.html')
+@app.route('/api/state/<statecode>')
+def api_state_spec(statecode):
+    statedata = State.query.get(statecode)
+    return jsonify(statedata.serialize())
 
-@app.route('/static-city-austin-tx.html')
-def austin():
-    # logger.debug("splash")
-    return send_file('templates/static-city-austin-tx.html')
 
-@app.route('/static-city-dallas-tx.html')
-def dallas():
-    # logger.debug("cities")
-    return send_file('templates/static-city-dallas-tx.html')
+@app.route('/api/cities/')
+def api_cities_all():
+    jsonData = {}
+    for data in City.query:
+        jsonData[data.name] = data.serialize()
+    return jsonify(jsonData)
 
-@app.route('/static-city-houston-tx.html')
-def houston():
-    # logger.debug("neighborhoods")
-    return send_file('templates/static-city-houston-tx.html')
+@app.route('/api/cities/<cityID>')
+def api_city_spec(cityID):
+    citydata = City.query.get(cityID)
+    return jsonify(citydata.serialize())
 
-@app.route('/static-neighborhood-hyde-park-austin-tx.html')
-def hyde_park():
-    # logger.debug("california")
-    return send_file('templates/static-neighborhood-hyde-park-austin-tx.html')
+@app.route('/api/neighborhoods/')
+def api_neighborhood_all():
+    jsonData = {}
+    for data in Neighborhood.query:
+        jsonData[data.name] = data.serialize()
+    return jsonify(jsonData)
 
-@app.route('/static-neighborhood-north-university-austin-tx.html')
-def north_university():
-    # logger.debug("texas")
-    return send_file('templates/static-neighborhood-north-university-austin-tx.html')
+@app.route('/api/neighborhood/<nID>')
+def api_neighborhood_spec(nID):
+    nData = Neighborhood.query.get(nID)
+    return jsonify(nData.serialize())
 
-@app.route('/static-neighborhood-west-campus-austin-tx.html')
-def west_campus():
-    # logger.debug("texas")
-    return send_file('templates/static-neighborhood-west-campus-austin-tx.html')
 
-@app.route('/static-state-new-york.html')
-def new_york():
-    # logger.debug("texas")
-    return send_file('templates/static-state-new-york.html')
+#------
+# Tests
+#------
 
+@app.route('/tests')
+def render_tests():
+    # logger.debug("create_db")
+    test_results = subprocess.getoutput("python3 tests.py")
+    return json.dumps({'test_results': str(test_results)})
+
+
+# ----------------
+# Manager Commands
+# ----------------
+
+@manager.command
+def create_db():
+    # logger.debug("create_db")
+    app.config['SQLALCHEMY_ECHO'] = True
+    init_db()
+
+@manager.command
+def drop_db():
+    # logger.debug("drop_db")
+    app.config['SQLALCHEMY_ECHO'] = True
+    db.drop_all()
 
 # -------
 # Run App
 # -------
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=80)
+    manager.run()
+    manager.create_db()
+
