@@ -43,13 +43,12 @@ clean:
 config:
 	git config -l
 
-html: models.html
-
-log: IDB1.log
-
 status:
 	make clean
 	@echo
 	git branch
 	git remote -v
 	git status
+
+test:
+	python3 tests.py
