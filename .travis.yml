@@ -16,6 +16,7 @@ install :
   - pip install Flask-SQLAlchemy
   - pip install gunicorn
   - pip install requests
+  - pip install PyMySQL
 
 before_script: 
   - uname -a
