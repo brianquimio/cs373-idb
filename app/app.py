@@ -10,6 +10,7 @@ import subprocess
 from flask import Flask, render_template, request, redirect, url_for, send_file, jsonify
 from flask.ext.script import Manager
 from flask.ext.sqlalchemy import SQLAlchemy
+import json
 
 
 
@@ -33,6 +34,11 @@ SQLALCHEMY_DATABASE_URI = \
 logger.debug("The log statement below is for educational purposes only. Do *not* log credentials.")
 logger.debug("%s", SQLALCHEMY_DATABASE_URI)
 
+logger.debug("FKH:LKJDHASOGHLKJ:LASKDJl")
+
+asdf = json.load(open('json_data/states.json','r'))
+logger.debug(asdf)
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
@@ -41,13 +47,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 manager = Manager(app)
 db = SQLAlchemy(app)
 
-class Guest(db.Model):
-    __tablename__ = 'guests'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(256), nullable=False)
 
-    def __repr__(self):
-        return "[Guest: id={}, name={}]".format(self.id, self.name)
+
 
 class State(db.Model):
     """
@@ -64,15 +65,21 @@ class State(db.Model):
     latitude = db.Column(db.String(256))
     longitude = db.Column(db.String(256))
 
-    # def __init__(self, state_id, state_code, state_name, latitude, longitude):
-    #     self.state_id = state_id
-    #     self.state_code = state_code
-    #     self.state_name = state_name
-    #     self.latitude = latitude
-    #     self.longitude = longitude
+    def __init__(self, state_id, state_code, state_name, latitude, longitude):
+        self.state_id = state_id
+        self.state_code = state_code
+        self.state_name = state_name
+        self.latitude = latitude
+        self.longitude = longitude
 
     def __repr__(self):
         return "[State: state_id={}, state_name={}]".format(self.state_id, self.state_code)
+
+
+    def serialize(self):
+        return dict(state_id=self.state_id, state_code=self.state_code,
+                    state_name=self.state_name, latitude=self.latitude,
+                    longitude=self.longitude)
 
 
 class StateStats(db.Model):
@@ -102,12 +109,12 @@ class StateStats(db.Model):
     # Relationships
     state_code = db.Column(db.String(256), db.ForeignKey('State.state_code'))
 
-    # def __init__(self, week_of, property_type, num_properties, med_listing_price, avg_listing_price,state_code):
-    #     self.week_of = week_of
-    #     self.property_type = property_type
-    #     self.num_properties = num_properties
-    #     self.avg_listing_price = avg_listing_price
-    #     self.med_listing_price = med_listing_price
+    def __init__(self, week_of, property_type, num_properties, med_listing_price, avg_listing_price,state_code):
+        self.week_of = week_of
+        self.property_type = property_type
+        self.num_properties = num_properties
+        self.avg_listing_price = avg_listing_price
+        self.med_listing_price = med_listing_price
 
 
 class City(db.Model):
@@ -125,12 +132,15 @@ class City(db.Model):
     # Relationships
     state_code = db.Column(db.String(256), db.ForeignKey('State.state_code'))
 
-    # def __init__(self, city_id, city_name, state_code, latitude, longitude):
-    #     self.city_id = city_id
-    #     self.city_name = city_name
-    #     self.state_code = state_code
-    #     self.latitude = latitude
-    #     self.longitude = longitude
+    def __init__(self, city_id, city_name, state_code, latitude, longitude):
+        self.city_id = city_id
+        self.city_name = city_name
+        self.state_code = state_code
+        self.latitude = latitude
+        self.longitude = longitude
+
+    def serialize(self):
+        return dict(city_id = self.city_id, city_name = self.city_name, state_code = self.state_code, latitude = self.latitude, longitude = self.latitude)
 
     def __repr__(self):
         return "[City: city_id={}, city_name={}, state_name={}]".format(self.city_id, self.city_name, self.state_code, self.latitude, self.longitude)
@@ -163,13 +173,13 @@ class CityStats(db.Model):
     # Relationships
     city_id = db.Column(db.Integer, db.ForeignKey('City.city_id'))
 
-    # def __init__(self, week_of, state_code, property_type, num_properties, avg_listing_price, med_listing_price):
-    #     self.week_of = week_of
-    #     self.state_code = state_code
-    #     self.property_type = property_type
-    #     self.num_properties = num_properties
-    #     self.avg_listing_price = avg_listing_price
-    #     self.med_listing_price = med_listing_price
+    def __init__(self, week_of, state_code, property_type, num_properties, avg_listing_price, med_listing_price):
+        self.week_of = week_of
+        self.state_code = state_code
+        self.property_type = property_type
+        self.num_properties = num_properties
+        self.avg_listing_price = avg_listing_price
+        self.med_listing_price = med_listing_price
 
 
 class Neighborhood(db.Model):
@@ -189,11 +199,16 @@ class Neighborhood(db.Model):
     state_code = db.Column(db.String(256), db.ForeignKey('State.state_code'))
     city_id = db.Column(db.Integer, db.ForeignKey('City.city_id'))
 
-    # def __init__(self, neighborhood_id, neighborhood_name, state_code, city_id):
-    #     self.neighborhood_id = neighborhood_id
-    #     self.neighborhood_name = neighborhood_name
-    #     self.state_code = state_code
-    #     self.city_id = city_id
+    def __init__(self, neighborhood_id, neighborhood_name, state_code, city_id):
+        self.neighborhood_id = neighborhood_id
+        self.neighborhood_name = neighborhood_name
+        self.state_code = state_code
+        self.city_id = city_id
+
+    def serialize(self):
+        return dict(neighborhood_id=self.neighborhood_id, neighborhood_name=self.neighbhorhood_name, city_id=self.city_id, state_code=self.state_code,
+            state_name=self.state_name, latitude=self.latitude,
+            longitude=self.longitude)
 
     def __repr__(self):
         return "[Neighborhood: neighborhood_id={}, neighborhood_name={}".format(self.neighborhood_id, self.neighborhood_name)
@@ -222,118 +237,112 @@ class NeighborhoodStats(db.Model):
     # Relationships
     neighborhood_id = db.Column(db.Integer, db.ForeignKey('Neighborhood.neighborhood_id'))
 
+
+    def serialize(self):
+        return dict(id = self.id, week_of = self.week_of, property_type = self.property_type, num_properties = self.num_properties, med_listing_price = self.med_listing_price)
+
 def init_states(states_json):
     """
     Insert data for states pulled from trulia API
     """
 
+    logger.debug('inside init_states')
 
     i = 1
 
     for state in states_json["states"]:
-        print(state)
-        s = State(i, state['stateCode'], state['name'], state['latitude'], state['longitude'])
-        i += 1
+        if 'stateCode' in state:
+            logger.debug('inserting state')
+            s = State(i, state['stateCode'], state['name'], state['latitude'], state['longitude'])
+            i += 1
+            db.session.add(s)
+            db.session.commit()
+
+def init_state_stats(state_stats_json):
+    """
+    Insert data for state stats pulled from trulia API
+    """
+
+    state_codes = state_stats_json['stateStats'].keys()
+
+    for code in state_codes:
+        for week in state_stats_json['stateStats'][code]['listingStat']:
+            week_of = week['weekEndingDate']
+            for subcat in state_stats_json['stateStats'][code]['listingStat']['listingPrice']['subcategory']:
+                num_properties = subcat['numberOfProperties']
+                med_listing_price = int(subcat['medianListingPrice'])
+                avg_listing_price = int(subcat['averageListingPrice'])
+                property_type = subcat['type']
+
+
+                stats = StateStats(week_of, property_type, num_properties, med_listing_price, avg_listing_price, code)
+                
+                db.session.add(stats)
+                db.session.commit()
+
+
+def init_cities(cities_json):
+    """
+    Insert data for cities pulled from trulia API
+    """
+
+    for city in cities_json["cities"]:
+        s = City(city['cityId'], city['name'], city['stateCode'], city['latitude'], city['longitude'])
         db.session.add(s)
         db.session.commit()
 
-# def init_state_stats(state_stats_json):
-#     """
-#     Insert data for state stats pulled from trulia API
-#     """
+def init_city_stats(city_stats_json):
+    """
+    Insert data for city stats pulled from trulia API
+    """
 
-#     state_codes = state_stats_json['stateStats'].keys()
+    city_codes = city_stats_json['cityStats'].keys()
 
-#     for code in state_codes:
-#         for week in state_stats_json['stateStats'][code]['listingStat']:
-#             week_of = week['weekEndingDate']
-#             for subcat in state_stats_json['stateStats'][code]['listingStat']['listingPrice']['subcategory']:
-#                 num_properties = subcat['numberOfProperties']
-#                 med_listing_price = int(subcat['medianListingPrice'])
-#                 avg_listing_price = int(subcat['averageListingPrice'])
-#                 property_type = subcat['type']
+    for code in city_codes:
+        for week in city_stats_json['cityStats'][code]['listingStat']:
+            week_of = week['weekEndingDate']
+            for subcat in city_stats_json['cityStats'][code]['listingStat']['listingPrice']['subcategory']:
+                num_properties = subcat['numberOfProperties']
+                med_listing_price = int(subcat['medianListingPrice'])
+                avg_listing_price = int(subcat['averageListingPrice'])
+                property_type = subcat['type']
 
-
-#                 stats = StateStats(week_of, property_type, num_properties, med_listing_price, avg_listing_price, code)
+                stats = CityStats(week_of, code, property_type, num_properties, avg_listing_price, med_listing_price)
                 
-#                 db.session.add(stats)
-#                 db.session.commit()
+                db.session.add(stats)
+                db.session.commit()
 
+def init_neighborhoods(neighborhood_json):
+    """
+    Insert data for neighborhoods pulled from trulia API
+    """
 
-# def init_cities(cities_json):
-#     """
-#     Insert data for cities pulled from trulia API
-#     """
-
-#     for city in cities_json["cities"]:
-#         s = City(city['cityId'], city['name'], city['stateCode'], city['latitude'], city['longitude'])
-#         db.session.add(s)
-#         db.session.commit()
-
-# def init_city_stats(city_stats_json):
-#     """
-#     Insert data for city stats pulled from trulia API
-#     """
-
-#     city_codes = city_stats_json['cityStats'].keys()
-
-#     for code in city_codes:
-#         for week in city_stats_json['cityStats'][code]['listingStat']:
-#             week_of = week['weekEndingDate']
-#             for subcat in city_stats_json['cityStats'][code]['listingStat']['listingPrice']['subcategory']:
-#                 num_properties = subcat['numberOfProperties']
-#                 med_listing_price = int(subcat['medianListingPrice'])
-#                 avg_listing_price = int(subcat['averageListingPrice'])
-#                 property_type = subcat['type']
-
-#                 stats = CityStats(week_of, code, property_type, num_properties, avg_listing_price, med_listing_price)
-                
-#                 db.session.add(stats)
-#                 db.session.commit()
-
-# def init_neighborhoods(neighborhood_json):
-#     """
-#     Insert data for neighborhoods pulled from trulia API
-#     """
-
-#     for neighborhood in neighborhoods_json["neighborhoods"]:
-#         s = Neighborhood(neighborhood['id'], neighborhood['name'], neighborhood['stateCode'], neighborhood['city'])
-#         db.session.add(s)
-#         db.session.commit()
-
-# def init_neighborhood_stats(neighborhood_stats_json):
-#     """
-#     Insert data for neighborhood stats from trulia API
-#     """
-
-#     neighborhood_codes = neighborhood_stats_json['neighborhoodStats'].keys()
-
-#     for code in neighborhood_codes:
-#         for week in neighborhood_stats_json['neighborhoodStats'][code]['listingStat']:
-#             week_of = week['weekEndingDate']
-#             for subcat in neighborhood_stats_json['cityStats'][code]['listingStat']['listingPrice']['subcategory']:
-#                 num_properties = subcat['numberOfProperties']
-#                 med_listing_price = int(subcat['medianListingPrice'])
-#                 avg_listing_price = int(subcat['averageListingPrice'])
-#                 property_type = subcat['type']
-
-#                 stats = NeighborhoodStats(week_of, code, property_type, num_properties, med_listing_price, avg_listing_price)
-                
-#                 db.session.add(stats)
-#                 db.session.commit()
-
-@app.route('/guest', methods=['GET', 'POST'])
-def index2():
-    logger.debug("index")
-
-    if request.method == 'POST':
-        name = request.form['name']
-        guest = Guest(name=name)
-        db.session.add(guest)
+    for neighborhood in neighborhoods_json["neighborhoods"]:
+        s = Neighborhood(neighborhood['id'], neighborhood['name'], neighborhood['stateCode'], neighborhood['city'])
+        db.session.add(s)
         db.session.commit()
-        return redirect(url_for('index2'))
 
-    return render_template('index2.html', guests=Guest.query.all())
+def init_neighborhood_stats(neighborhood_stats_json):
+    """
+    Insert data for neighborhood stats from trulia API
+    """
+
+    neighborhood_codes = neighborhood_stats_json['neighborhoodStats'].keys()
+
+    for code in neighborhood_codes:
+        for week in neighborhood_stats_json['neighborhoodStats'][code]['listingStat']:
+            week_of = week['weekEndingDate']
+            for subcat in neighborhood_stats_json['cityStats'][code]['listingStat']['listingPrice']['subcategory']:
+                num_properties = subcat['numberOfProperties']
+                med_listing_price = int(subcat['medianListingPrice'])
+                avg_listing_price = int(subcat['averageListingPrice'])
+                property_type = subcat['type']
+
+                stats = NeighborhoodStats(week_of, code, property_type, num_properties, med_listing_price, avg_listing_price)
+                
+                db.session.add(stats)
+                db.session.commit()
+
 
 
 # -----------
@@ -428,28 +437,28 @@ def init_db():
     db.create_all()
 
     # Init states
-    with open('states.json') as states:
-        init_states(json.dumps(states))
+    with open('json_data/states.json') as states:
+        init_states(json.load(states))
 
-    # # Init state stats
-    # with open('state_stats.json') as state_stats:
-    #     init_state_stats(json.loads(state_stats))
+    # Init state stats
+    with open('json_date/state_stats.json') as state_stats:
+        init_state_stats(json.load(state_stats))
 
-    # # # Init cities
-    # with open('cities.json') as cities:
-    #     init_cities(json.loads(cities))
+    # # Init cities
+    with open('json_data/cities.json') as cities:
+        init_cities(json.loads(cities))
 
-    # # # Init city stats
-    # with open('city_stats.json') as city_stats:
-    #     init_city_stats(json.loads(city_stats))
+    # # Init city stats
+    with open('json_data/city_stats.json') as city_stats:
+        init_city_stats(json.load(city_stats))
 
-    # # # Init neighborhoods
-    # with open('neighborhoods.json') as neighborhoods:
-    #     init_neighborhoods(json.loads(neighborhoods))
+    # # Init neighborhoods
+    with open('json_data/neighborhoods.json') as neighborhoods:
+        init_neighborhoods(json.load(neighborhoods))
 
-    # # # Init neighborhood stats
-    # with open('neighborhood_stats.json') as neighborhood_stats:
-    #     init_neighborhood_stats(json.loads(neighborhood_stats))
+    # # Init neighborhood stats
+    with open('json_data/neighborhood_stats.json') as neighborhood_stats:
+        init_neighborhood_stats(json.load(neighborhood_stats))
 
 
 @manager.command

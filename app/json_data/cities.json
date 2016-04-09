@@ -1,4 +1,4 @@
-"cities":[
+{"cities":[
 	{"longitude": "-118.155212", "latitude": "33.776864", "stateCode": "CA", "cityId": "43000", "name": "Long Beach"}, 
 	{"longitude": "-122.072181", "latitude": "37.40071", "stateCode": "CA", "cityId": "49670", "name": "Mountain View"}, 
 	{"longitude": "-122.256960646405", "latitude": "37.4843929647298", "stateCode": "CA", "cityId": "60102", "name": "Redwood City"}, 
@@ -18,4 +18,4 @@
 	{"longitude": "-122.081545185594", "latitude": "47.6955722678668", "stateCode": "WA", "cityId": "57535", "name": "Redmond"}, 
 	{"longitude": "-122.230477376736", "latitude": "47.4896894770116", "stateCode": "WA", "cityId": "57745", "name": "Renton"}, 
 	{"longitude": "-122.291736499725", "latitude": "47.6148699998936", "stateCode": "WA", "cityId": "63000", "name": "Seattle"}
-]
+]}
