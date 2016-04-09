@@ -65,6 +65,9 @@ class State(db.Model):
     latitude = db.Column(db.String(256))
     longitude = db.Column(db.String(256))
 
+    # Relationships
+    child = relationship("StateStats", uselist=false, back_populates="State")
+
     def __init__(self, state_id, state_code, state_name, latitude, longitude):
         self.state_id = state_id
         self.state_code = state_code
@@ -108,6 +111,7 @@ class StateStats(db.Model):
 
     # Relationships
     state_code = db.Column(db.String(256), db.ForeignKey('State.state_code'))
+    parent = relationship("State", uselist=false, back_populates="StateStats")
 
     def __init__(self, week_of, property_type, num_properties, med_listing_price, avg_listing_price,state_code):
         self.week_of = week_of
@@ -131,6 +135,8 @@ class City(db.Model):
 
     # Relationships
     state_code = db.Column(db.String(256), db.ForeignKey('State.state_code'))
+    child = relationship("CityStats", uselist=false, back_populates="City")
+
 
     def __init__(self, city_id, city_name, state_code, latitude, longitude):
         self.city_id = city_id
@@ -172,6 +178,8 @@ class CityStats(db.Model):
 
     # Relationships
     city_id = db.Column(db.Integer, db.ForeignKey('City.city_id'))
+    parent = relationship("City", uselist=false, back_populates="CityStats")
+
 
     def __init__(self, week_of, state_code, property_type, num_properties, avg_listing_price, med_listing_price):
         self.week_of = week_of
@@ -198,6 +206,8 @@ class Neighborhood(db.Model):
     # Relationships
     state_code = db.Column(db.String(256), db.ForeignKey('State.state_code'))
     city_id = db.Column(db.Integer, db.ForeignKey('City.city_id'))
+    child = relationship("NeighborhoodStats", uselist=false, back_populates="Neighborhood")
+
 
     def __init__(self, neighborhood_id, neighborhood_name, state_code, city_id):
         self.neighborhood_id = neighborhood_id
@@ -236,6 +246,7 @@ class NeighborhoodStats(db.Model):
 
     # Relationships
     neighborhood_id = db.Column(db.Integer, db.ForeignKey('Neighborhood.neighborhood_id'))
+    parent = relationship("Neighborhood", uselist=false, back_populates="NeighborhoodStats")
 
 
     def serialize(self):
