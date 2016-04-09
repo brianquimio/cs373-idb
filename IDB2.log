@@ -1,3 +1,678 @@
+commit 684a2bba9e68bb28f00d62dc2295a87eff4718a9
+Merge: 0dfb42e d1b1655
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Apr 8 21:54:52 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit 0dfb42e470dce5cfc3137d62eb1c6e330805a2fe
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Apr 8 21:54:47 2016 -0500
+
+    fixed some app.py features for routing
+
+commit d1b16557fa2d86707e4ca4418a28c2a48fce66f3
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Fri Apr 8 21:54:26 2016 -0500
+
+    deadline commit
+
+commit c8e78a04cca9ce64675fdd77a765d849ae66e359
+Merge: 26a500a 4273fb3
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Fri Apr 8 21:17:02 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit 26a500a5dee02085b8657d7a9dae53f82805e850
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Fri Apr 8 21:16:55 2016 -0500
+
+    added angular app files
+
+commit 4273fb3a9eb69e5ce0769387a8aa03c204150704
+Merge: 03d25af 701fd8c
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Apr 8 21:15:45 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit 03d25afec015e24b79bbdca522fbff70ab81dff8
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Apr 8 21:15:42 2016 -0500
+
+    changed neighborhood json
+
+commit 76f76c81484cdedbec8911f8bba007237a738e0a
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Fri Apr 8 21:14:36 2016 -0500
+
+    added missing angular files
+
+commit 701fd8c20151ae5e7a8a0b937a41d34a721b18ef
+Author: Adam Alloy <aralloy@gmail.com>
+Date:   Fri Apr 8 21:14:12 2016 -0500
+
+    Update app.py
+
+commit 1c9b548088a7ff85b62213df6f778626af63d761
+Merge: dcb24de 498c440
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Apr 8 21:09:58 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit dcb24de1b5fb09a5e1b4c4c5eecfa1af175cb678
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Apr 8 21:09:55 2016 -0500
+
+    modified json files and fixed DB issues
+
+commit 498c440fdd0905d96c3bcba9a27d6a355c0c1160
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Fri Apr 8 21:01:59 2016 -0500
+
+    removing make test
+
+commit d0c6d6f39bd606566a2016be49697bde30279e4a
+Merge: 0edf4a9 7669de3
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Fri Apr 8 20:56:47 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit 0edf4a9a6cfdf7d91aaef908d1f6f653329643e1
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Fri Apr 8 20:56:34 2016 -0500
+
+    recovering lost css changes
+
+commit 7669de3e7f1d626a290bbf1cd7548faff31435b7
+Merge: d5b4cbf c7d9c51
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Apr 8 20:08:12 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit d5b4cbfc6e39c8fa33030e9d44ed5941495cb55c
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Apr 8 20:08:08 2016 -0500
+
+    collapsed create_db into app.py
+
+commit c7d9c51e2887e0bc25e4612e7ec1e519265762e2
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Fri Apr 8 19:29:31 2016 -0500
+
+    cleaning up files
+
+commit 5707b9dca71042d3d5f48169e75c1c2899cdb9dd
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Fri Apr 8 19:01:25 2016 -0500
+
+    add pymysql to travis yml
+
+commit eba276b1b3957be776f735e00b9d2885de842b35
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Fri Apr 8 18:57:47 2016 -0500
+
+    fixed import error
+
+commit 420e3851e94bae06f17ce765af08d1b11ceb1db2
+Merge: cd289a9 cfc1a92
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Apr 8 18:49:34 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit cd289a956260fd8b8d3fa93195a9519c0f67b519
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Apr 8 18:49:31 2016 -0500
+
+    fixed issues preventing models from working
+
+commit cfc1a921431d676b6a44045c9d77d0aa0022cd80
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Fri Apr 8 18:46:21 2016 -0500
+
+    modified tests
+
+commit f3285ece7cc1c2991341493188af07dc36ed7d65
+Merge: 65de350 8af8fef
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Apr 8 18:39:58 2016 -0500
+
+    added models files back in
+
+commit 65de350b5e32048c3b0afa432571bddaf3978ec0
+Merge: b14fd3d e7c013f
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Apr 8 18:36:39 2016 -0500
+
+     resolved conflicts of merging with other branch for db resolution
+
+commit e7c013f58bc8f5e4153de9fad41bf1f5e850e356
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Apr 8 18:32:26 2016 -0500
+
+    changed how app is configured -- merged db with app
+
+commit 8af8fefe27f221e0d59c5ce05011fee002b92b0c
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Fri Apr 8 16:48:39 2016 -0500
+
+    add partials
+
+commit af7e4e20576c520697e7dbf556c927741cd91ebc
+Merge: 979f92c ab002a5
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Thu Apr 7 21:41:23 2016 -0500
+
+    woop woop
+
+commit ab002a5e1c17408d7f24e37d3471671af8735a69
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Thu Apr 7 21:34:02 2016 -0500
+
+    number commits issues tests on about page
+
+commit b558c3cae8dbf367e0ca3e3ce08082947de4a5be
+Merge: 3c8bb66 522afc8
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Thu Apr 7 21:31:43 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit 3c8bb66028845a472d46314caaa1a3968bc6ca72
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Thu Apr 7 21:31:21 2016 -0500
+
+    updated models.html from last iteration
+
+commit 979f92cf2b2dfc6a53440fd30273f83a0264ddb0
+Merge: a10489a 522afc8
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Thu Apr 7 21:12:26 2016 -0500
+
+    yolo merging to master
+
+commit 522afc87cfd4bfba290258fa7969b17288eba785
+Merge: 82bd1f4 1b2b648
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Thu Apr 7 20:52:10 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit 1b2b648cd760be4b4e67e81916095c3280d17ca0
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Thu Apr 7 20:51:15 2016 -0500
+
+    typo in tests.py
+
+commit 82bd1f4c279d84c81b5e745d98bca7f57050ac35
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Thu Apr 7 20:51:09 2016 -0500
+
+    small changes to home page
+
+commit 3f7d18f19f2b7cd909e89478b6d68e6dcb2eb114
+Merge: 8ee2ef7 6d0d288
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Thu Apr 7 20:48:13 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit 8ee2ef7aa2f6edc546ccf0aea149b3834022da36
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Thu Apr 7 20:48:10 2016 -0500
+
+    fixed parameters on certain classes in models.py and added tests
+
+commit 6d0d288fcb2726c25c64e72650bf03ba6aa49a10
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Thu Apr 7 20:43:03 2016 -0500
+
+    modified UML
+
+commit b4d1643c87a2c5a426e0d6591862cbe01851f280
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Thu Apr 7 20:26:13 2016 -0500
+
+    changed the create_db file
+
+commit d853609debcd9107411f583bf492fcf6403d9d34
+Merge: cc644c8 92f8cce
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Thu Apr 7 20:14:49 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit cc644c8f160bd7c2ad33885dcbedb4952a49cf10
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Thu Apr 7 20:13:52 2016 -0500
+
+    updated tests to reflect models
+
+commit 92f8cce7799682b81b398f99bf2453866f162450
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Thu Apr 7 20:01:57 2016 -0500
+
+    travis attempt 2
+
+commit afb20d13b3a43691f8c316dcfad0782e963f5578
+Author: Chuchu Ma <chuchu.ma@utexas.edu>
+Date:   Thu Apr 7 19:53:23 2016 -0500
+
+    api/state returns {}
+
+commit b14fd3d9f77d4fac513e35856fec2cb0517661d5
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Thu Apr 7 19:52:19 2016 -0500
+
+    this travis build should work
+
+commit 411a410568ccabe409dcea5193c280d34da1b347
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Thu Apr 7 19:46:50 2016 -0500
+
+    small makefile changes
+
+commit ffe8dc9d636976a8b5e92f7ddd1fb2955eb6d99b
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Thu Apr 7 19:43:08 2016 -0500
+
+    travis stuff
+
+commit b282c4b426ede3ffa46361d969c3f5753d027cb3
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Thu Apr 7 18:55:50 2016 -0500
+
+    trulia disclaimer, dynamic paging kinda sorta
+
+commit f733a65d94f2084b2808afa8df156ed59017b92a
+Merge: ba7b48d df0f2b9
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Thu Apr 7 18:53:07 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit ba7b48dd333d4c55ec0e2b84acea0bdb62f228de
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Thu Apr 7 18:53:02 2016 -0500
+
+    made changes to the docker files to match examples
+
+commit 61a43f7ce1a2b49b50e0de0954f06d62cd0edb30
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Thu Apr 7 18:46:21 2016 -0500
+
+    this is for chuchu
+
+commit df0f2b9816db3596a1d1de7505c91dbe8ef65554
+Merge: 31c5f38 1997465
+Author: Brian Quimio <brian.quimio@utexas.edu>
+Date:   Thu Apr 7 00:57:24 2016 -0500
+
+    Merge pull request #36 from brianquimio/table-sort
+    
+    tables are sortable
+
+commit 199746551072ae45efbb3743ced10ef0788a423e
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Thu Apr 7 00:01:27 2016 -0500
+
+    tables are sortable
+
+commit 31c5f387544c83f5bc6921c738e467acf8e64ca7
+Merge: 7a7c357 c210877
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Wed Apr 6 22:55:48 2016 -0500
+
+    modified app files to resolve conflicts
+
+commit 7a7c3577710a4f6186e57f7d7b0263ce101d4405
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Wed Apr 6 22:54:52 2016 -0500
+
+    modified docker compose files for test
+
+commit c210877938ab0943386f6dab7674e4678eaca9ec
+Author: Adam Alloy <aralloy@gmail.com>
+Date:   Wed Apr 6 22:40:51 2016 -0500
+
+    Update app.py
+
+commit 17ad2781a2acd23e94154230be64b33dcc02bde3
+Merge: 69b7576 cda1cb4
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Wed Apr 6 21:37:49 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit 69b75767d923842fd892a2fd504577a9902a966b
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Wed Apr 6 21:37:46 2016 -0500
+
+    added a working prototype with a database that doesn't throw any errors. removed the static url references to be replaced
+
+commit cda1cb476e8760ec5ccd7559fd259865d884ddc4
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Wed Apr 6 20:58:10 2016 -0500
+
+    fixed broken sources in generic html
+
+commit 7fab6daf8e92f48628a8424a51ecfee78319ee5d
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Wed Apr 6 20:51:47 2016 -0500
+
+    added table functionality and embedded maps
+
+commit 19d705c763fe9c3d6e99a0f07eddb4d26e334ad4
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Wed Apr 6 19:49:43 2016 -0500
+
+    modified api_extractor for the neighborhood_stats.json file
+
+commit eeef5e65c83910304f1bdb8e6cd9b64029ea4248
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Wed Apr 6 01:28:03 2016 -0500
+
+     fixed bug in create_db.py for variable name of model instance to be inserted for stats tables
+
+commit 2e6b90d2ecb98e05e5bdc7da867c3cfb9db494a5
+Merge: 401acb7 af8c420
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Wed Apr 6 01:25:36 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit 401acb753759617295da00d766d25e7c63c00729
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Wed Apr 6 01:25:28 2016 -0500
+
+    added database initializer module, scraped data, and patch for api_extractor from trulia. minor changes to app.py
+
+commit af8c420a0a94d72274ecb350736df4734028f4a9
+Merge: d52dc94 828bde5
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Tue Apr 5 22:32:32 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit d52dc943f601ef5cfdf3b66d87e73fd5fb5ca4dc
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Tue Apr 5 22:32:26 2016 -0500
+
+    design changes. adding states/page template
+
+commit 828bde59bd1afd8be4220b08cc2b197448ea7c05
+Merge: bf2d928 8848f51
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Tue Apr 5 22:17:53 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit bf2d92871b98015a929bdbae7a58877220ee9671
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Tue Apr 5 22:17:49 2016 -0500
+
+    added park class and stats class for state, city, and neighborhood to models.py
+
+commit 8848f51f5ddb490bc123be81c73a8c0b185b1148
+Author: Adam Alloy <aralloy@gmail.com>
+Date:   Tue Apr 5 20:05:51 2016 -0500
+
+    extractor.py prints, needs to be editted to wrte
+
+commit b04c140801e1ef9b302a179e810b6c40d1d699b8
+Author: Adam Alloy <aralloy@gmail.com>
+Date:   Tue Apr 5 19:48:26 2016 -0500
+
+    updated method parks.py for parks around cities with proper syntax, also park_extractor which outputs json
+
+commit eeb99cf3ca465f89fadab6bacdf8b1d81042f38c
+Merge: 0751235 d1b0d55
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Tue Apr 5 19:20:13 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit 07512353f0f5899af4887775d2c74a0f682408c5
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Tue Apr 5 19:18:45 2016 -0500
+
+    removed stress test form parks_tests and added correct wat to populate parks list in parks
+
+commit d1b0d5531bfb19dd981b639274abab9c4e9f0d30
+Merge: 50afcc0 5d6237e
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Tue Apr 5 19:11:33 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit 50afcc06cf33086264efd0ba9235c5761a3d5d27
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Tue Apr 5 19:11:29 2016 -0500
+
+    adding api extractor for trulia. also adding the json file containing city data
+
+commit 5d6237ec6e032e7755df4147a97512ffe059aa32
+Merge: 5de4c34 f396eda
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Tue Apr 5 19:02:37 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit 5de4c34718d59372d13ec1eee0d94c9d6ef8ac8b
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Tue Apr 5 19:02:25 2016 -0500
+
+    fixed bugs in parks_tests.py
+
+commit f396eda539bea6a8b6b02cfa87ce72a57875613c
+Merge: 160bc4f cb55998
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Tue Apr 5 09:03:06 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit 160bc4fe827d35e708bbc3f47279191993adbcbe
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Tue Apr 5 09:03:01 2016 -0500
+
+    added api_extractor for pulling trulia data into JSON, modified secrets.py
+
+commit cb559984e683c8d2722c9a5d309dd3f3a6a4ae0b
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Mon Apr 4 22:17:36 2016 -0500
+
+    changed apikey to api_key to match URL params, however xml styling still causing retrieval issues
+
+commit 1a10ed9bde678fa64d20f94f0e4504c90dec081c
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Mon Apr 4 21:14:13 2016 -0500
+
+    added APIkey
+
+commit 456523b40255469ff1a194ce5a1f5aa497bcd3e9
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Mon Apr 4 21:11:08 2016 -0500
+
+    test file for parks
+
+commit ed73f58f7fb15fd9aa98b6bd7869df19d7d16699
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Mon Apr 4 17:36:52 2016 -0500
+
+    finishing up about page
+
+commit 886773c83ac423dde2264f8f4faf0683f9197394
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Mon Apr 4 16:28:12 2016 -0500
+
+    about and error404 pages. Close #29. Close #28.
+
+commit 66dea3cc538592d9819e7b3104b6b667d53a1e53
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Sun Apr 3 13:00:37 2016 -0500
+
+    removed a merge conflict string from the index.html file
+
+commit 10675034a96228bf7d76999f5e15aff0e73c67db
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Sat Apr 2 13:50:49 2016 -0500
+
+    fixed a column definition for park_name in models.py. parks also need to have their own table that are related to the geographic classes. Will add issue
+
+commit 3d69265f5ea47589a31d1fa58c1198088b7f5e55
+Merge: 4befddf 02ef891
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Sat Apr 2 13:21:26 2016 -0500
+
+    fixes 21 -- merging back to dev fixing issue 21, added load balancer
+
+commit 4befddfc762a67bdb511b3ef9adae6b1abecf892
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Sat Apr 2 13:18:31 2016 -0500
+
+    added load balancer and database.
+
+commit 02ef8918cc19dae32058b15698b6f0611d94f0fd
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Thu Mar 31 23:51:05 2016 -0500
+
+    design branch splash page. adding static/fonts/, static/lib/css/, and static/lib/js/ files
+
+commit 067cf1a72963bdddf70428a82cbae758e08cc9f9
+Merge: db4f735 603df1b
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Thu Mar 31 21:14:04 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit db4f735a815f8f8c33b73a449e76b713b4227784
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Thu Mar 31 21:14:01 2016 -0500
+
+    finished extra tests for stats
+
+commit 603df1babec32c39b56738c6d1f7d5a15a066d08
+Author: Adam Alloy <aralloy@gmail.com>
+Date:   Thu Mar 31 02:19:37 2016 -0500
+
+    added UML
+
+commit 3d6f597a42bb154f26ffb4dac2796196ca072d40
+Author: Adam Alloy <aralloy@gmail.com>
+Date:   Thu Mar 31 01:58:29 2016 -0500
+
+    changes to API, models, and parks.py
+
+commit a23feb63738e690420ed5121f557c4f407968a8d
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Wed Mar 30 20:59:09 2016 -0500
+
+    forgot I fixed some typo bugs in stats
+
+commit 65161ffe5c3c1c721833ca5eba6cf2277e99edb4
+Merge: 7d5e130 6682c24
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Wed Mar 30 20:58:01 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit 7d5e130517721f43768003f079a1ed2ac32ad22f
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Wed Mar 30 20:57:38 2016 -0500
+
+    wrote initial tests for stats
+
+commit 6682c247a969f4f8227b94be03f79b47ea36b001
+Author: Adam Alloy <aralloy@gmail.com>
+Date:   Wed Mar 30 19:27:46 2016 -0500
+
+    parks.py file
+
+commit ed8a6c4a1e94cffe3b87e7021990f4f8fd875c8f
+Author: Adam Alloy <aralloy@gmail.com>
+Date:   Wed Mar 30 17:19:57 2016 -0500
+
+    adding secrets and park
+
+commit daaf71c9ae5a56f5bffdb2413cabef01ac9e96cc
+Merge: 90f3a36 6eb10ab
+Author: Adam Alloy <aralloy@gmail.com>
+Date:   Wed Mar 30 17:18:54 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit 6eb10ab8bc9cc4af276be8595cbaf87b713a20fc
+Author: Stephen Perl <shperl@users.noreply.github.com>
+Date:   Wed Mar 30 15:12:00 2016 -0500
+
+    Update models.html
+    
+    updated with pydoc output in models.html
+
+commit 29815c556c988bca8cae101cb83034d7ac0c0071
+Author: Stephen Perl <shperl@users.noreply.github.com>
+Date:   Wed Mar 30 15:10:10 2016 -0500
+
+    Update models.py
+    
+    updated models.py to ensure doc strings and imports are correct
+
+commit a10489a70c88fcc330bdbd9a27dc0e9a53786f89
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Wed Mar 30 15:01:33 2016 -0500
+
+    added models.html, fixed models.py so it can document
+
+commit d8d2d5aaa2e0173dd95ded4998db8e2bc06c2de6
+Author: Stephen Perl <shperl@users.noreply.github.com>
+Date:   Wed Mar 30 14:22:18 2016 -0500
+
+    Update models.py
+    
+    added doc strings
+
+commit 4f1395425de93cfab2dacb4e7fb839bba4d50e9e
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Wed Mar 30 14:18:03 2016 -0500
+
+    added doc strings for models.py
+
+commit 9ad3d4e0fa9cca652872c7f7da9d83db107e8212
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Tue Mar 29 00:18:13 2016 -0500
+
+    fixed the function decorators and API calls for the TruliaStats python api wrapper.
+
+commit 4c49b88e6e77191fa1360dff5cb77a8cc55cdb79
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Tue Mar 29 00:00:31 2016 -0500
+
+    fixed locations.py. the function decorator now references *args, **kwargs and also has access to the instance calling the method so attributes can be accessed
+
+commit 90f3a36322bd0a74d60c83efbdf77ee8656199e0
+Merge: f5c5eca da672c6
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Mon Mar 28 21:47:30 2016 -0500
+
+    Merge branch 'dev'
+
+commit da672c62e3065b7714547e2c130dcbad249f636a
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Mon Mar 28 21:46:39 2016 -0500
+
+    copying master files
+
+commit f5c5eca1ac7c74ef935f476821c62e62a872d2aa
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Mar 25 22:12:41 2016 -0500
+
+    adding log
+
 commit 03acdf8baf946ef006bd9743f51ea8c43cf3fb97
 Merge: deb71ec 681812b
 Author: Brian Quimio <brian.quimio@gmail.com>
@@ -221,11 +896,37 @@ Date:   Thu Mar 24 22:10:22 2016 -0500
 
     revamping file structure
 
+commit 2db7dcd89de7d20b453b0e90f3782652a3b069a1
+Merge: c3f0d36 550f95c
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Thu Mar 24 22:02:42 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit c3f0d3604ca3521f77f6f6deacb9acd4c6b7771c
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Thu Mar 24 22:02:18 2016 -0500
+
+    changed index html location and modified app. currently the js isn't rendering
+
 commit 35570e9b9e6b37c338e7fe2c88fad3ec8b5dfb11
 Author: Brian Quimio <brian.quimio@gmail.com>
 Date:   Thu Mar 24 21:47:03 2016 -0500
 
     adding front-end and trulia api
+
+commit 550f95ccea8911884b525e3111a326c3ffa9545b
+Merge: 6e4b822 1888c4a
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Thu Mar 24 21:45:02 2016 -0500
+
+    Merge branch 'keith' into dev
+
+commit 1888c4a83cf9085ebd1263e3404ad24bff716417
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Thu Mar 24 21:44:05 2016 -0500
+
+    added 3 neighborhoods
 
 commit a09bd0b5de57a685a70d1c8509adecf51a7bb462
 Author: Brian Quimio <brian.quimio@gmail.com>
@@ -233,11 +934,135 @@ Date:   Thu Mar 24 21:33:54 2016 -0500
 
     adding master file structure
 
+commit 6e4b82253ca594aa165d64e26d7179d3ad92aeb5
+Merge: 6691920 41c483b
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Thu Mar 24 21:31:04 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit 669192033307a6a7df440ec78baaf68898321bb3
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Thu Mar 24 21:30:08 2016 -0500
+
+    removed the unnecessary files and fixed the docker file. the app should now run
+
 commit ffd0da24a6e0d35a35c6d2c500f7a0cd885511eb
 Author: Brian Quimio <brian.quimio@gmail.com>
 Date:   Thu Mar 24 21:29:46 2016 -0500
 
     moving files to master
+
+commit 41c483b35febd5734de2e613e5729a255a656895
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Thu Mar 24 21:28:33 2016 -0500
+
+    added 3 static city pages with map embed
+
+commit 84ac2d0a99b1b72548b439ff908000e3296b6d7e
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Thu Mar 24 21:15:59 2016 -0500
+
+    added 3 static state pages
+
+commit 47fe46375f5ba3e9b96424c7a5de15d4ca939060
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Thu Mar 24 20:54:58 2016 -0500
+
+    added newest front-end: html, css, reference updates
+
+commit dc151ee178300d6ee5bd67b9e09fe485b7239050
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Thu Mar 24 18:22:45 2016 -0500
+
+    Update .gitignore
+    
+    Can't seem to pull anything but app folder, so clearing .git-ignore to see if that fixes it
+
+commit 35d6a2f289701e78f07620241055421e6a4a35bc
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Thu Mar 24 18:02:08 2016 -0500
+
+    fixed bg image reference
+
+commit ab719df91ed1806f546217adbfecb6575e4ff040
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Thu Mar 24 17:57:39 2016 -0500
+
+    cleaning up for front end; only core files in dev
+
+commit d37046f7831e1274dcc33f205ca48d83cf4d9012
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Wed Mar 23 21:52:17 2016 -0500
+
+    added initial unit tests
+
+commit dc96fbbb9c5724f4454f2310c35de2b06b881929
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Wed Mar 23 19:01:50 2016 -0500
+
+    fixed models.py to match the UML diagram
+
+commit bacc3309f90c31bca4f04e66fcce1e46d9420d70
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Wed Mar 23 18:45:53 2016 -0500
+
+    fixed UML
+
+commit 4f3834ad7f62e66b10e510b22df45d7ca73d27cd
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Wed Mar 23 18:29:49 2016 -0500
+
+    fixed UML
+
+commit 1b744502638795d4992553562d4ee944d66d92bb
+Merge: c23e90c b1e7593
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Wed Mar 23 18:18:00 2016 -0500
+
+    added database files, modified docker files, added UML diagram final version
+
+commit c23e90c738a2fe8d9a687f18e064fc5f6f9c63e5
+Author: Stephen Perl <shp425@cs.utexas.edu>
+Date:   Mon Mar 21 17:52:22 2016 -0500
+
+    adding  UML diagram. Prof. Downing told us to limit scope of diagram to just the base classes and their relationship
+
+commit 7be1f99778b3d3c15351181ec79a9ccf0d11f0d3
+Author: Stephen Perl <shp425@cs.utexas.edu>
+Date:   Mon Mar 21 17:48:52 2016 -0500
+
+    modified comment on models.py
+
+commit 120e564674f5dcd5ec0026904f2d2ab5b46b7b4f
+Author: Stephen Perl <shp425@cs.utexas.edu>
+Date:   Mon Mar 21 17:47:22 2016 -0500
+
+    added models.py that reflects the 3 classes we are using for the project
+
+commit 7dcc3e0b0d0d0f7d4a7ca456b7ccc66ef82ccf30
+Author: Stephen Perl <shp425@cs.utexas.edu>
+Date:   Sun Mar 20 22:23:44 2016 -0500
+
+    changes yml files to have proper names of vas
+
+commit f9032638c9cc049a4298a15af4fad3565075878d
+Author: Stephen Perl <shp425@cs.utexas.edu>
+Date:   Sun Mar 20 21:33:20 2016 -0500
+
+    modified docker yml files and parred down the app.py file for just static HTML
+
+commit 74ba41daa4c8d803d5d421d6ddbc7f087b7bd940
+Author: Stephen Perl <shp425@cs.utexas.edu>
+Date:   Sat Mar 19 15:19:15 2016 -0500
+
+    added python API for trulia API calls from the serverside
+
+commit 6c5ff7a7b099cb145e7ee7cfb47424d135129ef9
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Sat Mar 19 12:42:49 2016 -0500
+
+    Initial commit with docker files and a basic template for the app
 
 commit a51cb40126e5b1b365d6863b06861d0bb7f0aa4e
 Author: Brian Quimio <brian.quimio@gmail.com>
@@ -248,5 +1073,95 @@ Date:   Tue Mar 8 19:06:14 2016 -0600
 commit 898ec49e0d7519600991b587510d8f8ed1ee2eed
 Author: Brian Quimio <brian.quimio@utexas.edu>
 Date:   Tue Mar 8 19:01:40 2016 -0600
+
+    Initial commit
+
+commit b1e7593f2e07b638356ee62fa1a24a43048b9c07
+Author: Oliver Sherouse <oliver.sherouse@gmail.com>
+Date:   Tue Jun 3 21:51:56 2014 -0400
+
+    actually tested and fixed install this time
+
+commit 7e0bdff2b3440fa3f1ff583becd955c7e41d8b15
+Author: Oliver Sherouse <oliver.sherouse@gmail.com>
+Date:   Tue Jun 3 21:48:09 2014 -0400
+
+    bumped to dev version 0.0.6
+
+commit 27086db41b57266f1ca41ba2504572b7e2c7cf54
+Author: Oliver Sherouse <oliver.sherouse@gmail.com>
+Date:   Tue Jun 3 21:44:17 2014 -0400
+
+    fixed install problems
+
+commit 5495d77dae7c6225d918c185d9ecadb66901e529
+Author: Oliver Sherouse <oliver.sherouse@gmail.com>
+Date:   Sat Apr 12 14:47:00 2014 -0400
+
+    added more datasets to search
+
+commit eb3a9c9b24e338f372f3b885d95b323080251966
+Author: Oliver Sherouse <oliver.sherouse@gmail.com>
+Date:   Sat Dec 21 14:44:51 2013 -0500
+
+    added more datasets
+
+commit 52290437b1258c84941690486c93201d33f54a8c
+Merge: 8f14a46 1fa3f0d
+Author: Oliver Sherouse <oliver.sherouse@gmail.com>
+Date:   Mon Dec 9 22:25:53 2013 -0500
+
+    merged update
+
+commit 1fa3f0d7b36ed39a13a173dc94e10758b442fef7
+Author: Oliver Sherouse <oliver.sherouse@gmail.com>
+Date:   Mon Dec 9 22:14:29 2013 -0500
+
+    updated because bls changed their output, apparently
+
+commit 8f14a46fec79c27380a4244be6b9d1566e4a9f90
+Author: Oliver Sherouse <oliver.sherouse@gmail.com>
+Date:   Sun Dec 1 13:30:40 2013 -0500
+
+    Single columns now returned as Series, reorg, and added datasets
+    
+    Reorganized bls into a package. Also added dataset_gen.py and source
+    datasets.json so that we can get some kind of sensible searchable set of
+    databases. Finally, changed get_series to return a pandas Series instead
+    of Dataframe if only one series is requested.
+
+commit 08cd752493b2f3f80082da3316ac460e17b8837c
+Author: Oliver Sherouse <oliver.sherouse@gmail.com>
+Date:   Sat Nov 30 12:38:47 2013 -0500
+
+    ignored MANIFEST
+
+commit 551037b32b96dcfa781f97f3ccecdadc2223a52d
+Author: Oliver Sherouse <oliver.sherouse@gmail.com>
+Date:   Tue Aug 27 15:05:43 2013 -0400
+
+    added manifest and bumped version
+
+commit 22be7b5db11909da9864a39938456b16273decf9
+Author: Oliver Sherouse <oliver.sherouse@gmail.com>
+Date:   Tue Aug 27 14:59:51 2013 -0400
+
+    added manifest to make install work
+
+commit 3ef659e9bb9ba7226767631f4c29aabbffa0ec53
+Author: Oliver Sherouse <oliver.sherouse@gmail.com>
+Date:   Mon Aug 26 23:03:35 2013 -0400
+
+    Release v0.0.1
+
+commit 1d91dae795cfb231aa08fdcaa3a177033bb787fd
+Author: Oliver Sherouse <oliver.sherouse@gmail.com>
+Date:   Mon Aug 26 22:39:04 2013 -0400
+
+    initial real commit
+
+commit 9ffeb6b9796e480ab1e5feb961a087e8bc1321c4
+Author: Oliver Sherouse <oliver.sherouse@gmail.com>
+Date:   Mon Aug 26 17:51:31 2013 -0700
 
     Initial commit
