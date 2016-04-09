@@ -27,4 +27,3 @@ script:
   - date
   - ls -al
   - make check
-  - make test
