@@ -42,9 +42,9 @@
 	<![endif]-->
 
   </head>
-  <body>
+  <body ng-app="VASapp" ng-controller="mainCtrl as main">
     <!-- START #fh5co-header -->
-	<header id="fh5co-header-section" role="header" class="" >
+	<header id="fh5co-header-section" role="header" class="" style="background:black;" >
 	  <div class="container">
 
 	    <!-- START #fh5co-logo -->
@@ -53,103 +53,17 @@
 		<!-- START #fh5co-menu-wrap -->
 		<nav id="fh5co-menu-wrap" role="navigation">
 		  <ul class="sf-menu" id="fh5co-primary-menu">
-			<li><a href="about.html">About</a></li>
-			<li><a href="states.html">States</a></li>
-			<li><a href="error404.html">Cities</a></li>
-			<li><a href="error404.html">Neighborhoods</a></li>
+			<li><a href="about">About</a></li>
+			<li><a href="states">States</a></li>
+			<li><a href="cities">Cities</a></li>
+			<li><a href="neighborhoods">Neighborhoods</a></li>
 		  </ul>
 		</nav>
 
 	  </div>
 	</header>
 
-	<!-- START #fh5co-hero -->
-	<aside id="fh5co-hero" style="background-image: url(/app/static/img/splash_bg.jpg);">
-	  <div class="container">
-		<div class="row">
-	  	  <div class="col-md-8 col-md-offset-2">
-			<div class="fh5co-hero-wrap">
-			  <div class="fh5co-hero-intro">
-				<h2>Welcome to<span></span></h2>
-				<h1>Virtual Address Space</h1>
-	  		  </div>
-			</div>
-		  </div>
-		</div>
-	  </div>
-	</aside>
-
-	<div id="fh5co-main">
-
-      <div class="container">
-	    <div class="row">
-		  <div class="col-md-8 col-md-offset-2 text-center fh5co-lead-wrap">
-		    <h2 class="fh5co-serif fh5co-lead">Virtual Address Space is an online database that provides real estate information on a state, city, and neighborhood level. </h2>
-			<!--<div class="fh5co-spacer fh5co-spacer-sm"></div>
-              <p><a href="#" class="btn btn-outline btn-lg">Read More</a></p>-->
-          </div>
-		</div>
-	  </div>
-
-	  <section id="fh5co-feature">
-		<div class="container">
-		  <!-- FEATURE -->
-		  <div class="row fh5co-feature-2">
-
-		    <h2 class="fh5co-uppercase-heading-sm text-center">Features</h2>
-		    <div class="fh5co-spacer fh5co-spacer-md"></div>
-
-
-		    <div class="col-md-3 col-sm-6 fh5co-feature-item">
-			  <span class="fh5co-feature-icon fh5co-circle"><i class="ti-map-alt"></i></span>
-			  <h3 class="text-center fh5co-feature-title h4 text-uppercase">States</h3>
-              <!--<p class="text-center fh5co-feature-description">State description here</p>-->
-			  <p class="text-center"><a href="error404.html" class="btn btn-primary btn-sm">Explore</a></p>
-			</div>
-
-            <div class="col-md-3 col-sm-6 fh5co-feature-item">
-			  <span class="fh5co-feature-icon fh5co-circle"><i class="ti-location-pin"></i></span>
-			  <h3 class="text-center fh5co-feature-title h4 text-uppercase">Cities</h3>
-              <!--<p class="text-center fh5co-feature-description">City information here</p>-->
-              <p class="text-center"><a href="error404.html" class="btn btn-primary btn-sm">Explore</a></p>
-			</div>
-
-			<div class="clearfix visible-sm-block"></div>
-
-			<div class="col-md-3 col-sm-6 fh5co-feature-item">
-			  <span class="fh5co-feature-icon fh5co-circle"><i class="ti-home"></i></span>
-			  <h3 class="text-center fh5co-feature-title h4 text-uppercase">Neighborhoods</h3>
-              <!--<p class="text-center fh5co-feature-description">Neighborhood information here</p>-->
-			  <p class="text-center"><a href="error404.html" class="btn btn-primary btn-sm">Explore</a></p>
-			</div>
-
-            <div class="col-md-3 col-sm-6 fh5co-feature-item">
-              <span class="fh5co-feature-icon fh5co-circle"><i class="ti-user"></i></span>
-			  <h3 class="text-center fh5co-feature-title h4 text-uppercase">Meet the Team</h3>
-              <!--<p class="text-center fh5co-feature-description">We don't bite!</p>-->
-			  <p class="text-center"><a href="about.html" class="btn btn-primary btn-sm">Read more</a></p>
-			</div>
-
-			<!-- <div class="fh5co-spacer fh5co-spacer-md"></div> -->
-
-          </div>  <!--end row fh5co-feature-2-->
-        </div>    <!--end container-->
-      </section>  <!--end fh5co-feature-->
-
-      <!--<div class="fh5co-spacer fh5co-spacer-lg"></div>-->
-      <!--<div class="fh5co-spacer fh5co-spacer-xlg"></div>-->
-
-      <footer id="fh5co-footer">
-		<div class="container">
-		  <ul class="fh5co-social-icons">
-			<li><a href="https://github.com/brianquimio/cs373-idb"><i class="ti-github"></i></a></li>
-		  </ul>
-		  <p class="text-muted fh5co-no-margin-bottom text-center"><small>&copy; 2016 <a href="#">Virtual Address Space</a>. All rights reserved. Designed by <a href="http://freehtml5.co" target="_blank">FREEHTML5.co</a></small></p>
-
-		</div>
-	  </footer>
-    </div>  <!--end fh5co-main-->
-
+	<ng-view></ng-view>
 	<!-- jQuery -->
 	<script src="/app/static/lib/js/jquery-1.10.2.min.js"></script>
   	<!-- jQuery Easing -->
@@ -169,10 +83,13 @@
     <script src="/app/static/lib/js/fastclick.js"></script>
   	<!-- Main JS -->
     <script src="/app/static/lib/js/main.js"></script>
-    
+
     <script src="/app/static/lib/js/angular.js"></script>
     <script src="/app/static/lib/js/angular-resource.js"></script>
     <script src="/app/static/lib/js/angular-route.js"></script>
+
+    <script src="/app/static/js/app.js"></script>
+    <script src="/app/static/js/controllers.js"></script>
 
   </body>
 </html>

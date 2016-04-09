@@ -9,7 +9,7 @@
     $scope.status = 200;
     $scope.$pagedata = {"content": "is missing"};
     this.updateData = function(uri) {
-      var dataLocation = '/app/templates/angular_routing/api/' + uri.toLowerCase() + '.json' ;
+      var dataLocation = '/app/json_data/' + uri.toLowerCase() + '.json' ;
       console.log("doing a get on " + dataLocation);
       $http.get(dataLocation).then(
         //success
@@ -46,7 +46,38 @@
         "Data": "Passed"
       }
     ];
-
+    // this.updateData = function(uri) {
+    //   var dataLocation = '/app/json_data/' + uri.toLowerCase() + '.json' ;
+    //   console.log("doing a get on " + dataLocation);
+    //   $http.get(dataLocation).then(
+    //     //success
+    //     function(response){
+    //       $scope.status = response.status;
+    //       this.tableData = response.data;
+    //     },
+    //     //error
+    //     function(response){
+    //       $scope.status = response.status;
+    //       this.tableData = {};
+    //     }
+    //   );
+    // };
+    this.getFreshData = function(uri) {
+      var dataLocation = '/app/json_data/' + uri.toLowerCase() + '.json' ;
+      var table = {};
+      console.log("doing a get on " + dataLocation);
+      $http.get(dataLocation).then(
+        //success
+        function(response){
+          console.log(response.data);
+          table = response.data;
+        },
+        //error
+        function(response){
+        }
+      );
+      return table;
+    };
     var splitPath = $location.$$path.split('/');
     $scope.tableName = splitPath[splitPath.length - 1];
     $scope.shownColumns = {};
@@ -73,6 +104,7 @@
     };
     //build the table from a json
     this.buildTable = function(data = this.tableData) {
+      console.log(data);
       this.resetTable();
       //get the property names from the first element
       for( o in data[0] ) {
@@ -83,6 +115,8 @@
         var newRow = data[rowData];
         this.addRow(newRow);
       };
+      console.log("headers are " + this.headers);
+      console.log("rows are " + this.rows);
       $scope.sorting["column"]=this.headers[0];
     };
     //column is shown
@@ -145,7 +179,7 @@
       };
       return path;
     };
-    this.buildTable($scope.$pagedata[$scope.tableName.toLowerCase()]);
+    this.buildTable(this.getFreshData($scope.tableName));
 
   }]);
 

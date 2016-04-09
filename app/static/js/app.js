@@ -4,19 +4,19 @@
   app.config(function($routeProvider,$locationProvider) {
     $routeProvider.
       when('/states', {
-        templateUrl: "table.html",
+        templateUrl: "PARTIALS/states.html",
         controller: "tableCtrl",
         controllerAs: "table",
         caseInsensitiveMatch: true
       }).
       when('/cities', {
-        templateUrl: "table.html",
+        templateUrl: "PARTIALS/states.html",
         controller: "tableCtrl",
         controllerAs: "table",
         caseInsensitiveMatch: true
       }).
       when('/neighborhoods', {
-        templateUrl: "table.html",
+        templateUrl: "PARTIALS/states.html",
         controller: "tableCtrl",
         controllerAs: "table",
         caseInsensitiveMatch: true
@@ -46,8 +46,9 @@
         caseInsensitiveMatch: true
       }).
       when('/', {
-        templateUrl:"splash.html",
-        controller:'splashCtrl'
+        templateUrl: "PARTIALS/index.html",
+        controller: "splashCtrl",
+        caseInsensitiveMatch: true
       }).
       otherwise({
         redirectTo: '/'
