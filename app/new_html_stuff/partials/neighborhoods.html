@@ -1,0 +1,30 @@
+<div class="container">
+  
+  <div class="row">  
+    <h2 class="text-center" ng-bind="tableName"></h2>
+  </div>
+
+
+  
+  <table class="table table-striped">                  
+    <thead>
+      <tr>
+        <th ng-repeat="header in table.headers"
+            ng-show="true"
+            ng-click="table.sortBy(header)"
+            ng-bind="header"></th>
+      </tr>
+    </thead>
+   
+    <tbody>
+      <tr ng-repeat="row in table.rows | orderBy:sorting['column']:sorting['descending']">
+        <td ng-repeat="(key,value) in row"
+            ng-show="true"
+            ng-bind="value"></td>
+      </tr>
+    </tbody>  
+  </table> 
+
+</div>
+
+
