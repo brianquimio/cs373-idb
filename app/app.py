@@ -403,12 +403,19 @@ def render_tests():
 
 @manager.command
 def create_db():
+    """
+    This command is used to initialize the database and insert the data scraped from Trulia
+    TODO: look into refactoring init_db() and create_db()
+    """
     # logger.debug("+++++++++++++++++++++ create_db")
     app.config['SQLALCHEMY_ECHO'] = True
     init_db()
 
 @manager.command
 def drop_db():
+    """
+    This command can be called to drop all tables used for our models.
+    """
     # logger.debug("drop_db")
     app.config['SQLALCHEMY_ECHO'] = True
     db.drop_all()
