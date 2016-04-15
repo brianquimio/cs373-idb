@@ -35,23 +35,19 @@
   }]);
 
   app.controller('citiesController',['$scope', 'dataService', function($scope, dataService){
-    $scope.$on('dataService.callAPISuccess', function(data){
-      $scope.rows = data['cities'];
-      // $scope.apply();
-    });
-    this.sort = {
-      by: 'id',
-      descending: true
+    $scope.sort = {
+      'by': 'id',
+      'descending': true
     };
     var init = function() {
-      dataService.callAPI();
+      dataService.callAPI().then(function(data){$scope.rows = data['cities'];},function(data){alert(data);});
     }
     init();
   }]);
 
   //service to actually call API and manage the data
   //following example at http://tylermcginnis.com/angularjs-factory-vs-service-vs-provider/ for design
-  app.service('dataService', ['$rootScope','$http', '$location', function($rootScope,$http,$location){
+  app.service('dataService', ['$q','$http', '$location', function($q,$http,$location){
     var baseUrl = '';
     var apiExtension = '/api';
     var jsonUrl = '';
@@ -62,20 +58,21 @@
     this.data = {};
     this.callAPI = function(){
       makeJsonUrl();
+      var deferred = $q.defer();
       console.log("calling API at: " + jsonUrl);
       // $http.get(jsonUrl).then(
       $http.get('/json_data/cities.json').then(
         //success
         function(response){
           this.data = response.data;
-          $rootScope.broadcast('dataService.callAPISuccess', response.data);
+          deferred.resolve(response.data);
         }
         , //failure
         function(response){
-          console.log("api call failed on: " + jsonUrl);
-
+          deferred.reject("api call failed on: " + jsonUrl);
         }
-      );
+      )
+      return deferred.promise;
     };
 
   }]);

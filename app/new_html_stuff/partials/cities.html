@@ -7,16 +7,19 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th ng-click='{{cities.sort.by="id"}}'>City Id<span ng-show='{{cities.sort.by==="id"}}' ng-class="{{'glyphicon glyphicon-sort-by-order': cities.sort.descending,'glyphicon glyphicon-sort-by-order-alt':!cities.sort.descending}}"></span></th>
-        <th ng-click='{{cities.sort.by="name"}}'>City Name<span ng-show='{{cities.sort.by==="name"}}' ng-class="{{'glyphicon glyphicon-sort-by-alphabet': cities.sort.descending,'glyphicon glyphicon-sort-by-alphabet-alt':!cities.sort.descending}}"></span></th>
-        <th ng-click='{{cities.sort.by="code"}}'>State Code<span ng-show='{{cities.sort.by==="code"}}' ng-class="{{'glyphicon glyphicon-sort-by-alphabet': cities.sort.descending,'glyphicon glyphicon-sort-by-alphabet-alt':!cities.sort.descending}}"></span></th>
+        <th ng-click='sort["by"]="id"'>City Id<span ng-show='sort["by"]==="id"' ng-class="{glyphicon:true, 'glyphicon-sort-by-order': sort['descending'], 'glyphicon-sort-by-order-alt': !sort['descending'}"></span></th>
+        <th ng-click='sort["by"]="name"'>City Name<span ng-show='sort["by"]==="name"' ng-class="{glyphicon:true, 'glyphicon-sort-by-alphabet': sort['descending'], 'glyphicon-sort-by-alphabet-alt': !sort['descending'}"></span></th>
+        <th ng-click='sort["by"]="code"'>State Code<span ng-show='sort["by"]==="code"' ng-class="{glyphicon:true, 'glyphicon-sort-by-alphabet': sort['descending'], 'glyphicon-sort-by-alphabet-alt': !sort['descending'}"></span></th>
+        <!-- <th>City Id</th>
+        <th>City Name</th>
+        <th>State Code</th> -->
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="row in rows | orderBy:sort.by:sort.descending">
-        <td ng-bind=row['city-id']></td>
-        <td ng-bind=row['city-name']></td>
-        <td ng-bind=row['state-code']></td>
+        <td ng-bind=row['cityId']></td>
+        <td ng-bind=row['name']></td>
+        <td ng-bind=row['stateCode']></td>
       </tr>
     </tbody>
   </table>
