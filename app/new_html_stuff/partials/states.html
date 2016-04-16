@@ -7,14 +7,14 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th ng-click='sortBy(name)'>State Name<span ng-show='sortedBy(name)' ng-class="{'glyphicon glyphicon-sort-by-alphabet': descending,'glyphicon glyphicon-sort-by-alphabet':!descending}"></span></th>
-        <th ng-click='sortBy(code)'>State Code<span ng-show='sortedBy(code)' ng-class="{'glyphicon glyphicon-sort-by-alphabet': descending,'glyphicon glyphicon-sort-by-alphabet':!descending}"></span></th>
+        <th ng-click='states.sortBy("name")'>State Name <span ng-show='states.sortedBy("name")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='states.sortBy("code")'>State Code <span ng-show='states.sortedBy("code")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="row in rows | orderBy:sorting['column']:sorting['descending']">
-        <td ng-bind=row['state_code']></td>
-        <td ng-bind=row['state_name']></td>
+      <tr ng-repeat="row in rows | orderBy:sort['by']:sort['descending']">
+        <td ng-bind=row['name']></td>
+        <td ng-bind=row['stateCode']></td>
       </tr>
     </tbody>
   </table>

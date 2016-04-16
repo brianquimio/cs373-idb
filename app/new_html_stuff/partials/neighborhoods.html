@@ -1,30 +1,29 @@
 <div class="container">
-  
-  <div class="row">  
+
+  <div class="row">
     <h2 class="text-center" ng-bind="tableName"></h2>
   </div>
 
 
-  
-  <table class="table table-striped">                  
+
+  <table class="table table-striped">
     <thead>
       <tr>
-        <th ng-repeat="header in table.headers"
-            ng-show="true"
-            ng-click="table.sortBy(header)"
-            ng-bind="header"></th>
+        <th ng-click='neighborhoods.sortBy("id")'>Neighborhood Id <span ng-show='neighborhoods.sortedBy("id")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='neighborhoods.sortBy("name")'>Neighborhood Name <span ng-show='neighborhoods.sortedBy("name")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='neighborhoods.sortBy("cid")'>City Id <span ng-show='neighborhoods.sortedBy("cid")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='neighborhoods.sortBy("code")'>State Code <span ng-show='neighborhoods.sortedBy("code")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
       </tr>
     </thead>
-   
+
     <tbody>
-      <tr ng-repeat="row in table.rows | orderBy:sorting['column']:sorting['descending']">
-        <td ng-repeat="(key,value) in row"
-            ng-show="true"
-            ng-bind="value"></td>
+      <tr ng-repeat="row in rows | orderBy:sort['by']:sort['descending']">
+        <td ng-bind=row['id']></td>
+        <td ng-bind=row['name']></td>
+        <td ng-bind=row['city']></td>
+        <td ng-bind=row['stateCode']></td>
       </tr>
-    </tbody>  
-  </table> 
+    </tbody>
+  </table>
 
 </div>
-
-
