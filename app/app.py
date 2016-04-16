@@ -129,14 +129,14 @@ class Neighborhood(db.Model):
     city_id = db.Column(db.String(256), nullable=False)
 
     def serialize(self):
-        # logger.debug('Serializing neighborhood: ' + str(self.neighborhood_id))
+        logger.debug('Serializing neighborhoods: ' + str(self.neighborhood_name))
         return dict(neighborhood_id=self.neighborhood_id, neighborhood_name=self.neighborhood_name, state_code=self.state_code, city_id=self.city_id)
 
     def __init__(self, neighborhood_id, neighborhood_name, state_code, city_id):
-        self.neighborhood_id = neighborhood_id
+        self.neighborhood_id = str(neighborhood_id)
         self.neighborhood_name = neighborhood_name
         self.state_code = state_code
-        self.city_id = city_id
+        self.city_id = str(city_id)
 
     def __repr__(self):
         return "[Neighborhood: neighborhood_id={}, neighborhood_name={}".format(self.neighborhood_id, self.neighborhood_name)
@@ -277,6 +277,7 @@ def init_db():
 
     # Init neighborhoods
     with open('json_data/neighborhoods.json') as neighborhoods:
+        logger.debug("neighborhoods.json is now open");
         init_neighborhoods(json.load(neighborhoods))
 
     # # Init states
@@ -359,8 +360,12 @@ def api_cities_all():
 
 # @app.route('/api/cities/<cityID>')
 # def api_city_spec(cityID):
-#     citydata = City.query.get(cityID)
-#     return jsonify(citydata.serialize())
+
+#     with open('json_data/city_stats.json') as cities:
+#         json_data = json.load(cities)
+
+#     json_data = [x for x in json_data if ]
+
 
 @app.route('/api/neighborhood/')
 def api_neighborhood_all():
@@ -370,11 +375,14 @@ def api_neighborhood_all():
     returns a json that is then routed to the /api/neighborhood URL
     TODO: figure out why this is returning an empty result set
     """
-    jsonData = {}
-    for data in Neighborhood.query:
-        logger.debug("Neighborhood: " + string(data.serialize()))
-        jsonData[data.neighborhood_id] = data.serialize()
-    return jsonify(jsonData)
+
+    return send_file('json_data/neighborhoods.json')
+    # jsonData = {}
+
+    # for data in Neighborhood.query:
+    #     # logger.debug("Neighborhood: " + string(data.serialize()))
+    #     jsonData[data.neighborhood_id] = data.serialize()
+    # return jsonify(jsonData)
 
 # @app.route('/api/neighborhood/<nID>')
 # def api_neighborhood_spec(nID):
