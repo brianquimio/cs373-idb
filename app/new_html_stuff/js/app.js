@@ -30,7 +30,15 @@
     $locationProvider.html5Mode(true);
   });
 
+  app.controller('mainController',['$scope', 'idMappingService', function($scope,idMappingService){
+    this.printMappings = function(){console.log($scope.cityIdToName);console.log($scope.neighborhoodIdToName);};
+  }]);
+
+  app.controller('navController',['$scope', function($scope){}]);
+
   app.controller('splashController',['$scope', function($scope){}]);
+
+  app.controller('aboutController',['$scope', function($scope){}]);
 
   app.controller('statesController',['$scope', 'dataService', function($scope, dataService){
     //used to control table sorting through orderBy
@@ -116,9 +124,19 @@
     this.isDescending = function() {
       return $scope.sort['descending'];
     };
+    $scope.rows = [];
+    var rowsHelper = function(data) {
+      for (var row in data['neighborhoods']) {
+        var newRow = data['neighborhoods'][row];
+        newRow['cityName'] = $scope.cityIdToName[data['neighborhoods'][row]['city']];
+        console.log(newRow);
+        $scope.rows.push(newRow);
+      };
+      console.log(rows);
+    };
     //initializing function. sets scope data after resolving promise
     var init = function() {
-      dataService.callAPI().then(function(data){$scope.rows = data['neighborhoods'];},function(data){alert(data);});
+      dataService.callAPI().then(function(data){rowsHelper(data);},function(data){alert(data);});
     }
     init();
   }]);
@@ -154,6 +172,47 @@
       )
       return deferred.promise;
     };
+  }]);
+  app.service('idMappingService',['$q','$http', '$location', '$rootScope', function($q,$http,$location,$rootScope){
+    var dataGetHelper = function(url) {
+      var deferred = $q.defer();
+      $http.get(url).then(
+      // $http.get('/json_data/cities.json').then(
+        //success
+        function(response){
+          this.data = response.data;
+          deferred.resolve(response.data);
+        }
+        , //failure
+        function(response){
+          deferred.reject("api call failed on: " + jsonUrl);
+        }
+      )
+      return deferred.promise;
+    };
+    $rootScope.neighborhoodIdToName = {};
+    $rootScope.cityIdToName = {};
+    var idToName = function(topLevelName, idTag, nameTag){
+      this.cityIdToName = {};
+      dataGetHelper('/json_data/'+topLevelName+'.json').then(
+        function(data){
+          console.log(data);
+          for (var i = 0; i < data[topLevelName].length; i += 1 ) {
+            console.log(data[topLevelName][i][idTag]);
+            var id = data[topLevelName][i][idTag];
+            console.log(data[topLevelName][i][nameTag]);
+            var name = data[topLevelName][i][nameTag];
+            if(topLevelName === "cities") $rootScope.cityIdToName[id] = name;
+            if(topLevelName === "neighborhoods") $rootScope.neighborhoodIdToName[id] = name;
+          };
 
+        }, function(data){
+          alert(data)
+        });
+    };
+    idToName('cities','cityId','name');
+    idToName('neighborhoods','id','name');
+    console.log($rootScope.cityIdToName);
   }]);
 })();
+``
