@@ -1,10 +1,11 @@
 <div class="container">
   <div class="row">
-    <h2 class="text-center" ng-bind="cityIdToName[data['cityId']]"></h2>
+    <h2 class="text-center" ng-bind="data['cityName']"></h2>
   </div>
 
   <!-- children -->
   <div class="col-md-2">
+    <button ng-click=city.printData()>printData</button>
     <table class="table table-striped text-center">
       <thead>
         <tr>
@@ -29,15 +30,15 @@
       <thead>
         <tr>
           <tr>
-            <th ng-click='state.sortBy("type")'>Property Type <span ng-show='state.sortedBy("type")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
-            <th ng-click='state.sortBy("average")'>Average Cost <span ng-show='state.sortedBy("average")' class='glyphicon' ng-class="{'glyphicon-chevron-down': sort['descending'], 'glyphicon-chevron-up': !sort['descending']}"></span></th>
-            <th ng-click='state.sortBy("median")'>Median Cost <span ng-show='state.sortedBy("median")' class='glyphicon' ng-class="{'glyphicon-chevron-down': sort['descending'], 'glyphicon-chevron-up': !sort['descending']}"></span></th>
-            <th ng-click='state.sortBy("numProps")'>Qty Listed <span ng-show='state.sortedBy("numProps")' class='glyphicon' ng-class="{'glyphicon-chevron-down': sort['descending'], 'glyphicon-chevron-up': !sort['descending']}"></span></th>
+            <th ng-click='city.sortBy("type")'>Property Type <span ng-show='city.sortedBy("type")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+            <th ng-click='city.sortBy("average")'>Average Cost <span ng-show='city.sortedBy("average")' class='glyphicon' ng-class="{'glyphicon-chevron-down': sort['descending'], 'glyphicon-chevron-up': !sort['descending']}"></span></th>
+            <th ng-click='city.sortBy("median")'>Median Cost <span ng-show='city.sortedBy("median")' class='glyphicon' ng-class="{'glyphicon-chevron-down': sort['descending'], 'glyphicon-chevron-up': !sort['descending']}"></span></th>
+            <th ng-click='city.sortBy("numProps")'>Qty Listed <span ng-show='city.sortedBy("numProps")' class='glyphicon' ng-class="{'glyphicon-chevron-down': sort['descending'], 'glyphicon-chevron-up': !sort['descending']}"></span></th>
           </tr>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="row in data['propertyStats'] | orderBy:sort['by']:sort['descending']" ng-show="state.showRow(row)">
+        <tr ng-repeat="row in data['propertyStats'] | orderBy:sort['by']:sort['descending']" ng-show="city.showRow(row)">
           <!-- <td ng-repeat="(key,value) in row"
               ng-show="key !== 'week'"
               ng-bind="value"></td> -->
@@ -54,7 +55,7 @@
   <!-- map -->
   <div class="col-md-4">
     <div class="text-center">
-      <iframe ng-src="{{state.setStateMapUrl()}}"width="90%" height="400px" allowfullscreen></iframe>
+      <iframe ng-src="{{city.setCityMapUrl()}}"width="90%" height="400px" allowfullscreen></iframe>
     </div>
   </div>
 
