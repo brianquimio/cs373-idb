@@ -18,8 +18,8 @@
     <tbody>
       <tr ng-repeat="row in rows | orderBy:sort['by']:sort['descending']">
         <td ng-bind=row['cityId']></td>
-        <td ng-bind=row['name']></td>
-        <td ng-bind=row['stateCode']></td>
+        <td><a ng-bind=row['name'] ng-href={{'city/'+row['cityId']}}></a></td>
+        <td><a ng-bind=row['stateCode'] ng-href={{'state/'+row['stateCode']}}></a></td>
       </tr>
     </tbody>
   </table>

@@ -21,6 +21,18 @@
       }).when('/about', {
         templateUrl: 'partials/about.html',
         controller: 'aboutController'
+      }).when('/search', {
+        templateUrl: 'partials/search.html',
+        controller: 'searchController'
+      }).when('/state/:stateCode', {
+        templateUrl: 'partials/model.html',
+        controller: 'stateModelController'
+      }).when('/city/:cityId', {
+        templateUrl: 'partials/model.html',
+        controller: 'cityModelController'
+      }).when('/neighborhood/:neighborhoodId', {
+        templateUrl: 'partials/model.html',
+        controller: 'neighborhoodModelController'
       }).when('/', {
         templateUrl: 'partials/splash.html',
         controller: 'splashController'
@@ -129,10 +141,10 @@
       for (var row in data['neighborhoods']) {
         var newRow = data['neighborhoods'][row];
         newRow['cityName'] = $scope.cityIdToName[data['neighborhoods'][row]['city']];
-        console.log(newRow);
+        // console.log(newRow);
         $scope.rows.push(newRow);
       };
-      console.log(rows);
+      // console.log($scope.rows);
     };
     //initializing function. sets scope data after resolving promise
     var init = function() {
@@ -196,11 +208,11 @@
       this.cityIdToName = {};
       dataGetHelper('/json_data/'+topLevelName+'.json').then(
         function(data){
-          console.log(data);
+          // console.log(data);
           for (var i = 0; i < data[topLevelName].length; i += 1 ) {
-            console.log(data[topLevelName][i][idTag]);
+            // console.log(data[topLevelName][i][idTag]);
             var id = data[topLevelName][i][idTag];
-            console.log(data[topLevelName][i][nameTag]);
+            // console.log(data[topLevelName][i][nameTag]);
             var name = data[topLevelName][i][nameTag];
             if(topLevelName === "cities") $rootScope.cityIdToName[id] = name;
             if(topLevelName === "neighborhoods") $rootScope.neighborhoodIdToName[id] = name;
@@ -212,7 +224,7 @@
     };
     idToName('cities','cityId','name');
     idToName('neighborhoods','id','name');
-    console.log($rootScope.cityIdToName);
+    // console.log($rootScope.cityIdToName);
   }]);
 })();
 ``
