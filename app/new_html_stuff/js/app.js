@@ -36,7 +36,7 @@
       }).when('/', {
         templateUrl: 'partials/splash.html',
         controller: 'splashController'
-      }).
+      });
       // otherwise({
       //   redirectTo: '/'
       // });
@@ -55,6 +55,30 @@
 
   app.controller('stateModelController',['$scope', '$routeParams', 'dataService', function($scope, $routeParams, dataService){
     $scope.data = {};
+    var parseAPI = function(data) {
+      $scope.data = {};
+      for (var key in data) {
+        var weekOf = data[key]['week_of'];
+        var propertyType = data[key]['property_type'];
+        var avg = data[key]['avg_listing_price'];
+        var med = data[key]['med_listing_price'];
+        var num = data[key]['num_properties'];
+
+        if (!$scope.data[weekOf]) {
+          $scope.data['code'] = data[key]['state_code'];
+          $scope.data[weekOf] = {};
+        };
+
+        //here, $scope.data['some date'] exists
+        $scope.data[weekOf][propertyType] = {};
+        //here, $scope.data['some date']['some property type'] exists
+        $scope.data[weekOf][propertyType]['average'] = avg;
+        $scope.data[weekOf][propertyType]['median'] = med;
+        $scope.data[weekOf][propertyType]['numProps'] = num;
+      };
+      // {week_of: {propertyType: {avg: int, median: int, numProps: int}, ... }, ... }
+      console.log($scope.data);
+    };
     console.log($routeParams);
     // var makeStateMapUrl = function() {
     //   var embedKey = "AIzaSyCADkkH1GoSKSlgVxk_oyLp6roM6XEx44I"
@@ -68,8 +92,9 @@
     //   var x ="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6509713.084021231!2d-123.77347912442343!3d37.1866687017569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb9fe5f285e3d%3A0x8b5109a227086f55!2sCalifornia!5e0!3m2!1sen!2sus!4v1458871633347"
     //   return $sce.trustAsResourceUrl(x);
     // }
+    var test_object = {"51":{"avg_listing_price":"389681","id":51,"med_listing_price":"277473","num_properties":"39109","property_type":"All Properties","state_code":"TX","week_of":"2016-03-12"},"52":{"avg_listing_price":"399421","id":52,"med_listing_price":"137555","num_properties":"588","property_type":"1 Bedroom Properties","state_code":"TX","week_of":"2016-03-12"},"53":{"avg_listing_price":"246210","id":53,"med_listing_price":"169593","num_properties":"3097","property_type":"2 Bedroom Properties","state_code":"TX","week_of":"2016-03-12"},"54":{"avg_listing_price":"285476","id":54,"med_listing_price":"215097","num_properties":"15975","property_type":"3 Bedroom Properties","state_code":"TX","week_of":"2016-03-12"},"55":{"avg_listing_price":"422477","id":55,"med_listing_price":"341389","num_properties":"14038","property_type":"4 Bedroom Properties","state_code":"TX","week_of":"2016-03-12"},"56":{"avg_listing_price":"667787","id":56,"med_listing_price":"456424","num_properties":"3748","property_type":"5 Bedroom Properties","state_code":"TX","week_of":"2016-03-12"},"57":{"avg_listing_price":"1592651","id":57,"med_listing_price":"771707","num_properties":"321","property_type":"6 Bedroom Properties","state_code":"TX","week_of":"2016-03-12"},"58":{"avg_listing_price":"2597785","id":58,"med_listing_price":"982114","num_properties":"74","property_type":"7 Bedroom Properties","state_code":"TX","week_of":"2016-03-12"},"59":{"avg_listing_price":"2208287","id":59,"med_listing_price":"1553000","num_properties":"22","property_type":"8 Bedroom Properties","state_code":"TX","week_of":"2016-03-12"},"60":{"avg_listing_price":"5250080","id":60,"med_listing_price":"2178571","num_properties":"13","property_type":"9 Bedroom Properties","state_code":"TX","week_of":"2016-03-12"},"61":{"avg_listing_price":"3008709","id":61,"med_listing_price":"2965786","num_properties":"6","property_type":"10 Bedroom Properties","state_code":"TX","week_of":"2016-03-12"},"62":{"avg_listing_price":"415439","id":62,"med_listing_price":"289450","num_properties":"24685","property_type":"All Properties","state_code":"TX","week_of":"2016-03-19"},"63":{"avg_listing_price":"525410","id":63,"med_listing_price":"148500","num_properties":"373","property_type":"1 Bedroom Properties","state_code":"TX","week_of":"2016-03-19"},"64":{"avg_listing_price":"256589","id":64,"med_listing_price":"182245","num_properties":"1877","property_type":"2 Bedroom Properties","state_code":"TX","week_of":"2016-03-19"},"65":{"avg_listing_price":"298659","id":65,"med_listing_price":"224900","num_properties":"9672","property_type":"3 Bedroom Properties","state_code":"TX","week_of":"2016-03-19"},"66":{"avg_listing_price":"437791","id":66,"med_listing_price":"348250","num_properties":"9150","property_type":"4 Bedroom Properties","state_code":"TX","week_of":"2016-03-19"},"67":{"avg_listing_price":"695985","id":67,"med_listing_price":"468498","num_properties":"2551","property_type":"5 Bedroom Properties","state_code":"TX","week_of":"2016-03-19"},"68":{"avg_listing_price":"1752797","id":68,"med_listing_price":"897450","num_properties":"210","property_type":"6 Bedroom Properties","state_code":"TX","week_of":"2016-03-19"},"69":{"avg_listing_price":"2965977","id":69,"med_listing_price":"1407250","num_properties":"57","property_type":"7 Bedroom Properties","state_code":"TX","week_of":"2016-03-19"},"70":{"avg_listing_price":"2111666","id":70,"med_listing_price":"1846250","num_properties":"13","property_type":"8 Bedroom Properties","state_code":"TX","week_of":"2016-03-19"},"71":{"avg_listing_price":"6697849","id":71,"med_listing_price":"4250000","num_properties":"10","property_type":"9 Bedroom Properties","state_code":"TX","week_of":"2016-03-19"},"72":{"avg_listing_price":"3025000","id":72,"med_listing_price":"3025000","num_properties":"3","property_type":"10 Bedroom Properties","state_code":"TX","week_of":"2016-03-19"}};
     var init = function() {
-      dataService.callAPI().then(function(data){$scope.data = data;}, function(data) {alert(data);});
+      dataService.callAPI().then(function(data){parseAPI(data);}, function(data) {alert(data);parseAPI(test_object);});
     };
     init();
   }]);
