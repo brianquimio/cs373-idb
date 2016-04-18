@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h2 class="text-center" ng-bind="stateIdToName[data['cityName']]"></h2>
+    <h2 class="text-center" ng-bind="cityIdToName[data['cityId']]"></h2>
   </div>
 
   <!-- children -->
@@ -8,12 +8,12 @@
     <table class="table table-striped text-center">
       <thead>
         <tr>
-          <th>Cities</th>
+          <th>Neighborhoods</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="city in data['cities'] | orderBy:city">
-          <td ng-bind=city></td>
+        <tr ng-repeat="neighborhood in data['neighborhoods'] | orderBy:neighborhood">
+          <td ng-bind=neighborhood></td>
         </tr>
       </tbody>
     </table>
