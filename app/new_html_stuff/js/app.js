@@ -42,6 +42,7 @@
       //   redirectTo: '/'
       // });
     $locationProvider.html5Mode(true);
+
   });
 
   app.controller('mainController',['$scope', 'idMappingService', function($scope,idMappingService){
@@ -247,15 +248,15 @@
 
   //service to actually call API and manage the data
   //following example at http://tylermcginnis.com/angularjs-factory-vs-service-vs-provider/ for design
-  app.service('dataService', ['$q','$http', '$location', function($q,$http,$location){
-    // var baseUrl = 'virtual-address.space';
+  app.service('dataService', ['$q','$http', '$location', '$sce', function($q,$http,$location,$sce){
+    // var baseUrl = 'http://www.virtual-address.space';
     var baseUrl = '';
-    // var apiExtension = '/api';
-    var apiExtension = '/json_data';
+    var apiExtension = '/api';
+    // var apiExtension = '/json_data';
     var jsonUrl = '';
     var makeJsonUrl = function() {
-      // jsonUrl = baseUrl + apiExtension + $location.path();
-      jsonUrl = baseUrl + apiExtension + $location.path() + '.json';
+      jsonUrl = baseUrl + apiExtension + $location.path();
+      // jsonUrl = baseUrl + apiExtension + $location.path() + '.json';
       return jsonUrl;
     };
     this.data = {};
