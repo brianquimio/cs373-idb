@@ -36,14 +36,15 @@
       }).when('/', {
         templateUrl: 'partials/splash.html',
         controller: 'splashController'
-      }).otherwise({
-        redirectTo: '/'
-      });
+      }).
+      // otherwise({
+      //   redirectTo: '/'
+      // });
     $locationProvider.html5Mode(true);
   });
 
   app.controller('mainController',['$scope', 'idMappingService', function($scope,idMappingService){
-    this.printMappings = function(){console.log($scope.cityIdToName);console.log($scope.neighborhoodIdToName);};
+    this.printMappings = function(){console.log($scope.stateIdToName);console.log($scope.cityIdToName);console.log($scope.neighborhoodIdToName);};
   }]);
 
   app.controller('navController',['$scope', function($scope){}]);
@@ -51,6 +52,27 @@
   app.controller('splashController',['$scope', function($scope){}]);
 
   app.controller('aboutController',['$scope', function($scope){}]);
+
+  app.controller('stateModelController',['$scope', '$routeParams', 'dataService', function($scope, $routeParams, dataService){
+    $scope.data = {};
+    console.log($routeParams);
+    // var makeStateMapUrl = function() {
+    //   var embedKey = "AIzaSyCADkkH1GoSKSlgVxk_oyLp6roM6XEx44I"
+    //   var q = $scope.data[];
+    //   var src = "https://www.google.com/maps/embed/v1/place?key="
+    //   src += embedKey;
+    //   src += "&q=";
+    //   src += q;
+    //   console.log(src);
+    //
+    //   var x ="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6509713.084021231!2d-123.77347912442343!3d37.1866687017569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb9fe5f285e3d%3A0x8b5109a227086f55!2sCalifornia!5e0!3m2!1sen!2sus!4v1458871633347"
+    //   return $sce.trustAsResourceUrl(x);
+    // }
+    var init = function() {
+      dataService.callAPI().then(function(data){$scope.data = data;}, function(data) {alert(data);});
+    };
+    init();
+  }]);
 
   app.controller('statesController',['$scope', 'dataService', function($scope, dataService){
     //used to control table sorting through orderBy
@@ -204,6 +226,7 @@
     };
     $rootScope.neighborhoodIdToName = {};
     $rootScope.cityIdToName = {};
+    $rootScope.stateIdToName = {};
     var idToName = function(topLevelName, idTag, nameTag){
       this.cityIdToName = {};
       dataGetHelper('/json_data/'+topLevelName+'.json').then(
@@ -214,6 +237,7 @@
             var id = data[topLevelName][i][idTag];
             // console.log(data[topLevelName][i][nameTag]);
             var name = data[topLevelName][i][nameTag];
+            if(topLevelName === "states") $rootScope.stateIdToName[id] = name;
             if(topLevelName === "cities") $rootScope.cityIdToName[id] = name;
             if(topLevelName === "neighborhoods") $rootScope.neighborhoodIdToName[id] = name;
           };
@@ -224,6 +248,7 @@
     };
     idToName('cities','cityId','name');
     idToName('neighborhoods','id','name');
+    idToName('states','stateCode','name');
     // console.log($rootScope.cityIdToName);
   }]);
 })();
