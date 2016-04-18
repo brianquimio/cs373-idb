@@ -331,25 +331,33 @@ def init_neighborhood_stats(neighborhood_stats):
     TODO: validate output as well-formed JSON
     """
 
-    neighborhood_codes = neighborhood_stats['neighborhoodStats'][0]
+    neighborhood_codes = neighborhood_stats['neighborhood'][0]
     neighborhood_keys = neighborhood_codes.keys()
 
 
     for code in neighborhood_keys:
-        for week in neighborhood_codes[code]['listingStat']:
-            week_of = week['weekEndingDate']
-            for subcat in week['listingPrice']['subcategory']:
-                num_properties = subcat['numberOfProperties']
-                med_listing_price = subcat['medianListingPrice']
-                avg_listing_price = subcat['averageListingPrice']
-                property_type = subcat['type']
+        if neighborhood_codes[code] is "None":
+            stats = NeighborhoodStats(week_of=None, property_type=None, 
+                    num_properties=None, avg_listing_price=None, 
+                    med_listing_price=None, neighborhood_id=None)
 
-                stats = NeighborhoodStats(week_of=week_of, property_type=property_type, 
-                    num_properties=num_properties, avg_listing_price=avg_listing_price, 
-                    med_listing_price=med_listing_price, neighborhood_id=code)
-                
-                db.session.add(stats)
-                db.session.commit()
+            db.session.add(stats)
+            db.session.commit()
+        else:
+            for week in neighborhood_codes[code]['listingStat']:
+                week_of = week['weekEndingDate']
+                for subcat in week['listingPrice']['subcategory']:
+                    num_properties = subcat['numberOfProperties']
+                    med_listing_price = subcat['medianListingPrice']
+                    avg_listing_price = subcat['averageListingPrice']
+                    property_type = subcat['type']
+
+                    stats = NeighborhoodStats(week_of=week_of, property_type=property_type, 
+                        num_properties=num_properties, avg_listing_price=avg_listing_price, 
+                        med_listing_price=med_listing_price, neighborhood_id=code)
+                    
+                    db.session.add(stats)
+                    db.session.commit()
 
 @manager.command
 def init_db():
