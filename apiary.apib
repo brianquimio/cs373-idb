@@ -1,115 +1,59 @@
 FORMAT: 1A
 HOST: http://www.virtual-address.space
 
-# TEAM-BASK
+# Virtual Address Space
 
-So You Wanna Move There? provides new hires with all the knowledge they
+Virtual Address Space provides new hires with all the knowledge they
 need to inform them on which city they should move to after college.
 
-
-## States [/States]
-
+## States [/api/States]
 ### Which State Are You Thinking Of Moving To? [GET]
 
 + Response 200 (application/json)
 
-        {   
+        {
         "California": {
-            "State": "California":[{
-                 "Cities": [{
-                    "City": "Los Angeles",
-                    "url": "#"
-                    },
-                    {"City": "San Francisco"
-                    "url": "#"
-                    },
-                    {"City": "Sacremento",
-                    "url": "#"}],
-                    "Date": 2016-03-22,
-                    "# of 'All' Properties": 300,
-                    "Average Listing": 225000,
-                    "# of '1-Bed' Properties": 195,
-                    "Average '1-Bed' Listing": 185000,
-                    "# of '2-Bed' Properties": 65,
-                    "Average '2-Bed' Listing": 264000,
-                    "# of '3-Bed' Properties": 40,
-                    "Average '3-Bed' Listing": 312000,
-                 }
-            "Stateid": "CA",
-            "Date": 2016-03-22,
-            "Num Properties": 300,
-            "Avg Listing": 49017,
-            //need to figure out how to choose limited number of parks
-            "State Parks": = "Joshua Tree, Yosemite, Muir Woods"
-            "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getStateStats&state=CA&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
-                    },
+            "Statecode": "CA",
+            "Statename": "California".
+            "Longitutde": 36.7783,
+            "Latitude": 119.4179
+            },
         "New York": {
-            "State": "New York":[{
-                 "Cities": [{
-                    "City": "New York City",
-                    "url": "#"
-                    },
-                    {"City": "Brooklyn"
-                    "url": "#"
-                    },
-                    {"City": "Queens",
-                    "url": "#"}],
-                    "Date": 2016-03-22,
-                    "# of 'All' Properties": 300,
-                    "Average Listing": 225000,
-                    "# of '1-Bed' Properties": 195,
-                    "Average '1-Bed' Listing": 185000,
-                    "# of '2-Bed' Properties": 65,
-                    "Average '2-Bed' Listing": 264000,
-                    "# of '3-Bed' Properties": 40,
-                    "Average '3-Bed' Listing": 312000,
-                 },
-            "Stateid": "NY",
-            "Date": 2016-03-15
-            "State Parks": "Golden Gate Park"
-            "Num Properties": 700,
-            "Avg Listing": 89210,
-            "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getStateStats&state=NY&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
+            "Statecode": "NY",
+            "Statename": "New York".
+            "Longitutde": 40.7128,
+            "Latitude": 74.0059
                     },
         "Texas": {
-            "State": "Texas":[{
-                 "Cities": [{
-                    "City": "Austin",
-                    "url": "/static-city-austin-tx.html"
-                    },
-                    {"City": "Houston"
-
-                    "url": "/static-city-houston-tx.html"
-                    },
-                    {"City": "Dallas",
-                    "url": "/static-city-dallas-tx.html"}],
-                    "Date": 2016-03-22,
-                    "# of 'All' Properties": 300,
-                    "Average Listing": 225000,
-                    "# of '1-Bed' Properties": 195,
-                    "Average '1-Bed' Listing": 185000,
-                    "# of '2-Bed' Properties": 65,
-                    "Average '2-Bed' Listing": 264000,
-                    "# of '3-Bed' Properties": 40,
-                    "Average '3-Bed' Listing": 312000,
-                 }
-            "Stateid": "TX",
-            "Date": 2016-03-15
-            "Num Properties": 300,
-            "Avg Listing": 49017,
-            "State Parks": "Big Bend, Pace Bend"
-            "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getStateStats&state=NY&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
-                    },
+            "Statecode": "TX",
+            "Statename": "Texas".
+            "Longitutde": 31.9686,
+            "Latitude": 99.9018
+                }
         }
-    
-##Specific State[/States/{state_name}]
-Returns a json object with information about the specific state
+
+## Specific State [/api/States/{Stateid}]
+
+### Pick A State [GET]
 
 + Parameters
-    + state_name(required, string) - name of the state
+    + Stateid (required, string) 
 
++ Response 200 (application/json)
 
-##Cities [/Cities]
+        {
+            "Stateid": {
+            "California":{
+                "Week_Of": 2016-03-22,
+                "Property Type": "All,
+                "Average_Listing_Price": 225000,
+                "Median_Listing_Price": 300000,
+                "Num_Properties": 300,
+                "State_code": "CA" 
+                    }
+        }
+
+##Cities [/api/Cities]
 
 ### Now Lets Look At Some Cities [GET]
 
@@ -120,139 +64,91 @@ What cities are you thinking about living in?
         {
             "Cities":[{    
                 "Austin": {
-                "City_url": "static-city-austin"
-                "City": "Austin": [
-                "State": "Texas",
-                "State_url": "/static-state-texas"
-                "Neighborhoods": [{
-                        "neighborhoods": "West Campus",
-                        "url": "/static-neighborhood-west-campus-austin-tx.html"
-                    },
-                    {
-                        "neighborhoods": "North University",
-                        "url": "/static-neighborhood-north-university-austin-tx.html"
-                    },
-                    {
-                        "neighborhoods": "Hyde Park",
-                        "url": "/static-neighborhood-hyde-park-austin-tx.html"
-                    }],
-                "Nearby Parks": "Enchanted Rock, Mickenney State Park"
-                "Date": 2016-03-22
-                "# of 'All' Properties": 300,
-                "Avg Listing": 225000,
-                "# of "1-bed" Properties": 195,
-                "Average '1-bed' Listings": 200,000,
-                "# of "2-bed" Properties: 65,
-                "Average '2-bed' Listing": 264000,
-                "# of '3-bed' Listings": 40,
-                "Average '3-bed' Listing": 312000,
-                "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getCityStats&city=Seattle&state=WA&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
-                }],
-                "Date": 2016-03-15,
-                "# of Properties": 10,
-                "Avg. Listing Price:": 50000
+                "City_name": "Austin",
+                "City_id": 1,
+                "State_code": "TX",
+                "Longitude": 30.2672,
+                "Latitude": 97.7431
                 },
                 "Houston": {
-                "City": "Houston",
-                "State": "Texas",
-                "Neighborhoods": [{
-                        "neighborhoods": "Cypress",
-                        "url": "#"
-                    },
-                    {
-                        "neighborhoods": "Bellaire",
-                        "url": "#"
-                    },
-                    {
-                        "neighborhoods": "Alief",
-                        "url": "#"
-                    }],
-                "Nearby Parks": "Enchanted Rock, Mickenney State Park"
-                "Date": 2016-03-22
-                "# of 'All' Properties": 300,
-                "Avg Listing": 225000,
-                "# of "1-bed" Properties": 195,
-                "Average '1-bed' Listings": 185000,
-                "# of "2-bed" Properties: 65,
-                "Average '2-bed' Listing": 264000,
-                "# of '3-bed' Listings": 40,
-                "Average '3-bed' Listing": 312000,
-                "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getCityStats&city=Seattle&state=WA&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
+                "City_name": "Houston",
+                "City_id": 2,
+                "State_code": "TX",
+                "Longitude": 29.7604,
+                "Latitude": 95.3698
                 },
                 "Dallas": {
-                "City_url": "static-city-austin"
-                "City": "Dallas",
-                "State": "Texas",
-                "Neighborhoods": [{
-                        "neighborhoods": "Cypress",
-                        "url": "#"
-                    },
-                    {
-                        "neighborhoods": "Bellaire",
-                        "url": "#"
-                    },
-                    {
-                        "neighborhoods": "Alief",
-                        "url": "#"
-                    }],
-                "Nearby Parks": "Enchanted Rock, Mickenney State Park"
-                "Date": 2016-03-22
-                "# of 'All' Properties": 300
-                "Avg Listing": 225000,
-                "# of "1-bed" Properties": 195,
-                "Average '1-bed' Listings": 185000,
-                "# of "2-bed" Properties: 65,
-                "Average '2-bed' Listing": 264000,
-                "# of '3-bed' Listings": 40,
-                "Average '3-bed' Listing": 312000,
-                "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getCityStats&city=Seattle&state=WA&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
-                },
-
+                "City_name": "Dallas",
+                "City_id": 3,
+                "State_code": "TX",
+                "Longitude": 29.7604,
+                "Latitude": 95.3698
             }]
         }
         
 
-##Specific State[/cities/{city}]
-Returns a json object with information about the specific city
+## Specific City [/api/cities/{City_id}]
+### Pick A Specific City [GET]
 
 + Parameters
-    + city(required, string) - name of the city
-        
-##Neighborhoods [/Neighborhoods]
+    + City_id(required, Integer) - name of the city
+     
++ Response 200 (application/json)
 
+        {
+            "City":[{    
+                "Austin": {
+                "City": "Austin": 
+                "City_id": 1,
+                "Week_Of": 2016-03-22,
+                "Property Type": "All",
+                "Average_Listing_Price": 225000,
+                "Median_Listing_Price": 300000,
+                "Num_Properties": 300,
+                "State_code": "TX" 
+                    }
+                }        
+        }
 
+## Neighborhoods [/api/neighborhood]
 
 ### Now which neighborhood? [GET]
 
-What cities are you thinking about living in?
+What neighborhood are you thinking about living in?
 
 + Response 200 (application/json)
 
         {
                 "Castro":{
-                "Neighborhoods": "Castro",
-                "nID": 1394,
-                "City": "San Fransisco",
-                "City_url": "/static-city-san-francisco",
-                "StateID": "CA",
-                "State_url": "static-state-california",
+                "Neighborhood_name": "Castro",
+                "Neighborhood_ID": 1394,
+                "City_name": "San Francisco",
+                "City_ID": 1,
+                "State_Code": "CA",
                 "Property Type": "All Properties",
-                "Nearby Parks": "Golden Gate Park"
-                "Num Properties": 10,
-                "Avg Listing": 849000,
-                "# of "1-bed" Properties": 195,
-                "Average '1-bed' Listings": 185000,
-                "# of "2-bed" Properties: 65,
-                "Average '2-bed' Listing": 264000,
-                "# of '3-bed' Listings": 40,
-                "Average '3-bed' Listing": 312000,
-                "resourceURI": "http://api.trulia.com/webservices.php?library=TruliaStats&function=getNeighborhoodStats&neighborhoodId=1394&startDate=2016-01-01&endDate=2016-03-22&statType=listings&apikey=nctn3tmtxydytsqj6bmzjzrg"
                     },
         }
 
-##Specific Neighborhood[/Neighborhoods/{nID}]
-Returns a json object with information about the specific state
+##Specific Neighborhood [/api/Neighborhoods/{neighborhoodID}]
+
+### Pick A Particular Neighborhood [GET]
+
 
 + Parameters
-    + nID(required, integer) - ID number of the neighborhood
+    + neighborhoodID(required, integer) - ID number of the neighborhood
         
++ Response 200 (application/json)
+
+        {
+                "Castro":{
+                "Neighborhood_name": "Castro",
+                "neighborhoodID": 1394,
+                "City_name": "San Fransisco",
+                "StateID": "CA",
+                "Property Type": "All Properties",
+                "Num_Properties": 10,
+                "Avg Listing": 849000,
+    
+                    },
+        }
+
