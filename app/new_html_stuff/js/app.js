@@ -25,8 +25,9 @@
         templateUrl: 'partials/search.html',
         controller: 'searchController'
       }).when('/state/:stateCode', {
-        templateUrl: 'partials/model.html',
-        controller: 'stateModelController'
+        templateUrl: 'partials/state_model.html',
+        controller: 'stateModelController',
+        controllerAs: 'state'
       }).when('/city/:cityId', {
         templateUrl: 'partials/model.html',
         controller: 'cityModelController'
@@ -55,31 +56,85 @@
 
   app.controller('stateModelController',['$scope', '$routeParams', 'dataService', function($scope, $routeParams, dataService){
     $scope.data = {};
-    var parseAPI = function(data) {
+    $scope.week = null;
+    $scope.weeks = [];
+    $scope.filterOptions = {};
+    var buildData = function(data) {
       $scope.data = {};
+      $scope.weeks = [];
+      var temp = {};
+      $scope.data['stateCode'] = $routeParams['stateCode'];
+      $scope.data['propertyStats'] = [];
       for (var key in data) {
+        var newRow = {};
         var weekOf = data[key]['week_of'];
         var propertyType = data[key]['property_type'];
         var avg = data[key]['avg_listing_price'];
         var med = data[key]['med_listing_price'];
         var num = data[key]['num_properties'];
+        // if (!$scope.data['propertyStats'][weekOf]) {
+        //   $scope.data['propertyStats'][weekOf] = {};
+        // };
 
-        if (!$scope.data[weekOf]) {
-          $scope.data['code'] = data[key]['state_code'];
-          $scope.data[weekOf] = {};
-        };
-
-        //here, $scope.data['some date'] exists
-        $scope.data[weekOf][propertyType] = {};
+        // //here, $scope.data['some date'] exists
+        // $scope.data['propertyStats'][weekOf][propertyType] = {};
+        // //here, $scope.data['some date']['some property type'] exists
+        // $scope.data['propertyStats'][weekOf][propertyType]['average'] = avg;
+        // $scope.data['propertyStats'][weekOf][propertyType]['median'] = med;
+        // $scope.data['propertyStats'][weekOf][propertyType]['numProps'] = num;
+        //
+        temp[weekOf] = true;
         //here, $scope.data['some date']['some property type'] exists
-        $scope.data[weekOf][propertyType]['average'] = avg;
-        $scope.data[weekOf][propertyType]['median'] = med;
-        $scope.data[weekOf][propertyType]['numProps'] = num;
+        newRow['week'] = weekOf;
+        newRow['type'] = propertyType;
+        newRow['average'] = Number(avg);
+        newRow['median'] = Number(med);
+        newRow['numProps'] = Number(num);
+        $scope.data['propertyStats'].push(newRow);
       };
+      $scope.filterOptions = {};
+      for(var key in $scope.data['propertyStats'][0]) {
+        $scope.filterOptions[key] = true;
+      }
+      for(var key in temp) {
+        $scope.weeks.push(key);
+      }
+      $scope.week = $scope.weeks[$scope.weeks.length - 1];
       // {week_of: {propertyType: {avg: int, median: int, numProps: int}, ... }, ... }
-      console.log($scope.data);
     };
-    console.log($routeParams);
+    this.printData = function(){
+      console.log($scope.data);
+      console.log($scope.filterOptions);
+      console.log($scope.week);
+    }
+    //FROM HERE ########################
+    $scope.sort = {
+      by: 'type',
+      descending: false
+    };
+    this.showRow = function(row) {
+      // console.log(row);
+      return $scope.week === row['week'];
+    };
+    //used to update/set sort values
+    this.sortBy = function(col) {
+      if ($scope.sort['by'] === col) {
+        $scope.sort['descending'] = !$scope.sort['descending'];
+      } else {
+        $scope.sort['by'] = col;
+        $scope.sort['descending'] = false;
+      }
+    };
+    //used by ng-show, for chevron on column
+    this.sortedBy = function(col) {
+      return $scope.sort['by'] === col;
+    };
+    //used by ng-class, for chevron direction
+    this.isDescending = function() {
+      return $scope.sort['descending'];
+    };
+    //TO HERE ########################## is VERY repetitive code (copy-paste)
+
     // var makeStateMapUrl = function() {
     //   var embedKey = "AIzaSyCADkkH1GoSKSlgVxk_oyLp6roM6XEx44I"
     //   var q = $scope.data[];
@@ -94,7 +149,7 @@
     // }
     var test_object = {"51":{"avg_listing_price":"389681","id":51,"med_listing_price":"277473","num_properties":"39109","property_type":"All Properties","state_code":"TX","week_of":"2016-03-12"},"52":{"avg_listing_price":"399421","id":52,"med_listing_price":"137555","num_properties":"588","property_type":"1 Bedroom Properties","state_code":"TX","week_of":"2016-03-12"},"53":{"avg_listing_price":"246210","id":53,"med_listing_price":"169593","num_properties":"3097","property_type":"2 Bedroom Properties","state_code":"TX","week_of":"2016-03-12"},"54":{"avg_listing_price":"285476","id":54,"med_listing_price":"215097","num_properties":"15975","property_type":"3 Bedroom Properties","state_code":"TX","week_of":"2016-03-12"},"55":{"avg_listing_price":"422477","id":55,"med_listing_price":"341389","num_properties":"14038","property_type":"4 Bedroom Properties","state_code":"TX","week_of":"2016-03-12"},"56":{"avg_listing_price":"667787","id":56,"med_listing_price":"456424","num_properties":"3748","property_type":"5 Bedroom Properties","state_code":"TX","week_of":"2016-03-12"},"57":{"avg_listing_price":"1592651","id":57,"med_listing_price":"771707","num_properties":"321","property_type":"6 Bedroom Properties","state_code":"TX","week_of":"2016-03-12"},"58":{"avg_listing_price":"2597785","id":58,"med_listing_price":"982114","num_properties":"74","property_type":"7 Bedroom Properties","state_code":"TX","week_of":"2016-03-12"},"59":{"avg_listing_price":"2208287","id":59,"med_listing_price":"1553000","num_properties":"22","property_type":"8 Bedroom Properties","state_code":"TX","week_of":"2016-03-12"},"60":{"avg_listing_price":"5250080","id":60,"med_listing_price":"2178571","num_properties":"13","property_type":"9 Bedroom Properties","state_code":"TX","week_of":"2016-03-12"},"61":{"avg_listing_price":"3008709","id":61,"med_listing_price":"2965786","num_properties":"6","property_type":"10 Bedroom Properties","state_code":"TX","week_of":"2016-03-12"},"62":{"avg_listing_price":"415439","id":62,"med_listing_price":"289450","num_properties":"24685","property_type":"All Properties","state_code":"TX","week_of":"2016-03-19"},"63":{"avg_listing_price":"525410","id":63,"med_listing_price":"148500","num_properties":"373","property_type":"1 Bedroom Properties","state_code":"TX","week_of":"2016-03-19"},"64":{"avg_listing_price":"256589","id":64,"med_listing_price":"182245","num_properties":"1877","property_type":"2 Bedroom Properties","state_code":"TX","week_of":"2016-03-19"},"65":{"avg_listing_price":"298659","id":65,"med_listing_price":"224900","num_properties":"9672","property_type":"3 Bedroom Properties","state_code":"TX","week_of":"2016-03-19"},"66":{"avg_listing_price":"437791","id":66,"med_listing_price":"348250","num_properties":"9150","property_type":"4 Bedroom Properties","state_code":"TX","week_of":"2016-03-19"},"67":{"avg_listing_price":"695985","id":67,"med_listing_price":"468498","num_properties":"2551","property_type":"5 Bedroom Properties","state_code":"TX","week_of":"2016-03-19"},"68":{"avg_listing_price":"1752797","id":68,"med_listing_price":"897450","num_properties":"210","property_type":"6 Bedroom Properties","state_code":"TX","week_of":"2016-03-19"},"69":{"avg_listing_price":"2965977","id":69,"med_listing_price":"1407250","num_properties":"57","property_type":"7 Bedroom Properties","state_code":"TX","week_of":"2016-03-19"},"70":{"avg_listing_price":"2111666","id":70,"med_listing_price":"1846250","num_properties":"13","property_type":"8 Bedroom Properties","state_code":"TX","week_of":"2016-03-19"},"71":{"avg_listing_price":"6697849","id":71,"med_listing_price":"4250000","num_properties":"10","property_type":"9 Bedroom Properties","state_code":"TX","week_of":"2016-03-19"},"72":{"avg_listing_price":"3025000","id":72,"med_listing_price":"3025000","num_properties":"3","property_type":"10 Bedroom Properties","state_code":"TX","week_of":"2016-03-19"}};
     var init = function() {
-      dataService.callAPI().then(function(data){parseAPI(data);}, function(data) {alert(data);parseAPI(test_object);});
+      dataService.callAPI().then(function(data){buildData(data);}, function(data) {alert(data);buildData(test_object);});
     };
     init();
   }]);
