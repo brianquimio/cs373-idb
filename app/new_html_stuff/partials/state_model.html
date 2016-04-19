@@ -13,7 +13,7 @@
       </thead>
       <tbody>
         <tr ng-repeat="city in data['cities'] | orderBy:city">
-          <td ng-bind=city></td>
+          <td><a ng-href={{'cities/'+data['cityId']}} ng-bind=city></a></td>
         </tr>
       </tbody>
     </table>
@@ -43,9 +43,9 @@
               ng-show="key !== 'week'"
               ng-bind="value"></td> -->
           <td ng-bind=row['type']></td>
-          <td ng-bind=row['average']></td>
-          <td ng-bind=row['median']></td>
-          <td ng-bind=row['numProps']></td>
+          <td ng-bind="row['average']|currency:'$':0"></td>
+          <td ng-bind="row['median']|currency:'$':0"></td>
+          <td ng-bind="row['numProps']"></td>
         </tr>
       </tbody>
     </table>

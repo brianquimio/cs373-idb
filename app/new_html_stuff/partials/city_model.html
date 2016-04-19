@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h2 class="text-center" ng-bind="data['cityName']"></h2>
+    <h2 class="text-center" ng-bind="data['cityName'] + ', ' + data['stateCode']"></h2>
   </div>
 
   <!-- children -->
@@ -43,8 +43,8 @@
               ng-show="key !== 'week'"
               ng-bind="value"></td> -->
           <td ng-bind=row['type']></td>
-          <td ng-bind=row['average']></td>
-          <td ng-bind=row['median']></td>
+          <td ng-bind="row['average']|currency:'$':0"></td>
+          <td ng-bind="row['median']|currency:'$':0"></td>
           <td ng-bind=row['numProps']></td>
         </tr>
       </tbody>

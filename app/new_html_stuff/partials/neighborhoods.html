@@ -19,9 +19,9 @@
     <tbody>
       <tr ng-repeat="row in rows | orderBy:sort['by']:sort['descending']">
         <td ng-bind=row['id']></td>
-        <td><a ng-bind=row['name'] ng-href={{'neighborhood/'+row['id']}}></a></td>
-        <td><a ng-bind=row['cityName'] ng-href={{'city/'+row['cityId']}}></a></td>
-        <td><a ng-bind=row['stateCode'] ng-href={{'state/'+row['stateCode']}}></a></td>
+        <td><a ng-bind=row['name'] ng-href={{'neighborhoods/'+row['id']}}></a></td>
+        <td><a ng-bind=row['cityName'] ng-href={{'cities/'+row['cityId']}}></a></td>
+        <td><a ng-bind=row['stateCode'] ng-href={{'states/'+row['stateCode']}}></a></td>
       </tr>
     </tbody>
   </table>
