@@ -1,11 +1,20 @@
 <div class="container">
   <div class="row">
-    <h2 class="text-center" ng-bind="data['cityName'] + ', ' + data['stateCode']"></h2>
+    <h2 class="text-center"><p ng-bind="data['cityName'] + ', '"></p><a ng-href="{{'states/'+data['stateCode']}}" ng-bind="data['stateCode']"></a></p></h2>
   </div>
 
   <!-- children -->
   <div class="col-md-2">
     <button ng-click=city.printData()>printData</button>
+    <nav>
+      <ul class="pager">
+        <li ng-class="{disabled:pagination['currentPage']===0}"><a href="#" aria-label="Previous" ng-click="city.setPage(pagination['currentPage']-1)"><span>&laquo;</span></a></li>
+        <li><input type="number" ng-model=pagination['currentPage'] name="page" min=0 max=pagination.array.length-1 ng-change="city.setPage(page)"></input></li>
+        <li ng-class="{disabled:pagination['currentPage']===pagination.array.length-1}"><a href="#" aria-label="Next" ng-click="city.setPage(pagination['currentPage']+1)"><span>&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
     <table class="table table-striped text-center">
       <thead>
         <tr>
@@ -13,8 +22,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="neighborhood in data['neighborhoods'] | orderBy:neighborhood">
-          <td ng-bind=neighborhood></td>
+        <tr ng-repeat="neighborhood in data['neighborhoods'] | orderBy:'name'" ng-show="city.showIndex($index)">
+          <td><a ng-href={{'neighborhoods/'+neighborhood['id']}} ng-bind=neighborhood['name']></a></td>
         </tr>
       </tbody>
     </table>

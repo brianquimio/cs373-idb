@@ -12,8 +12,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="city in data['cities'] | orderBy:city">
-          <td><a ng-href={{'cities/'+data['cityId']}} ng-bind=city></a></td>
+        <tr ng-repeat="city in data['cities'] | orderBy:'name'">
+          <td><a ng-href={{'cities/'+city['id']}} ng-bind=city['name']></a></td>
         </tr>
       </tbody>
     </table>
