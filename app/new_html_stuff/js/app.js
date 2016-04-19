@@ -485,6 +485,24 @@
     this.isDescending = function() {
       return $scope.sort['descending'];
     };
+    $scope.pagination = {};
+    var setupPagination = function(){
+      $scope.pagination = {};
+      $scope.pagination['numPerPage'] = 20;
+      $scope.pagination['currentPage'] = 0;
+      $scope.pagination['array'] = new Array(Math.ceil($scope.rows.length/$scope.pagination.numPerPage));
+      console.log($scope.pagination);
+    };
+    this.setPage = function(num){
+      if(num >= 0 && num < $scope.pagination['array'].length) {
+        $scope.pagination['currentPage'] = Number(num);
+      };
+      console.log($scope.pagination['currentPage']);
+    };
+    this.showIndex = function(index) {
+      var base = ($scope.pagination['currentPage']*$scope.pagination['numPerPage']);
+      return base <= index && index < (base + $scope.pagination['numPerPage']);
+    };
     $scope.rows = [];
     var rowsHelper = function(data) {
       for (var row in data['neighborhoods']) {
@@ -493,11 +511,11 @@
         // console.log(newRow);
         $scope.rows.push(newRow);
       };
-      // console.log($scope.rows);
+      console.log($scope.rows);
     };
     //initializing function. sets scope data after resolving promise
     var init = function() {
-      dataService.callAPI().then(function(data){rowsHelper(data);},function(data){alert(data);});
+      dataService.callAPI().then(function(data){rowsHelper(data);setupPagination();},function(data){alert(data);});
     }
     init();
   }]);

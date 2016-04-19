@@ -17,13 +17,24 @@
     </thead>
 
     <tbody>
-      <tr ng-repeat="row in rows | orderBy:sort['by']:sort['descending']">
+      <tr ng-repeat="row in rows | orderBy:sort['by']:sort['descending']" ng-show="neighborhoods.showIndex($index)">
         <td ng-bind=row['id']></td>
         <td><a ng-bind=row['name'] ng-href={{'neighborhoods/'+row['id']}}></a></td>
         <td><a ng-bind=row['cityName'] ng-href={{'cities/'+row['cityId']}}></a></td>
         <td><a ng-bind=row['stateCode'] ng-href={{'states/'+row['stateCode']}}></a></td>
+        <td ng-bind=$index></td>
       </tr>
     </tbody>
   </table>
+
+  <nav>
+    <ul class="pagination">
+      <li ng-class="{disabled:pagination['currentPage']===0}"><a href="#" aria-label="Previous" ng-click="neighborhoods.setPage(pagination['currentPage']-1)"><span>&laquo;</span></a></li>
+      <li ng-repeat="i in pagination.array track by $index" ng-class="{active:pagination['currentPage']===$index}"><a href="#" ng-click="neighborhoods.setPage($index)" ng-bind="{{$index + 1}}"></a></li>
+      <li ng-class="{disabled:pagination['currentPage']===pagination.array.length-1}"><a href="#" aria-label="Next" ng-click="neighborhoods.setPage(pagination['currentPage']+1)"><span>&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 
 </div>
