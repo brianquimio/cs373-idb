@@ -6,7 +6,7 @@
 
 import os
 import subprocess
-from flask import Flask, render_template, request, redirect, url_for, send_file, jsonify
+from flask import Flask, render_template, request, redirect, url_for, send_file, make_response, jsonify
 from flask.ext.script import Manager, Server
 from flask.ext.sqlalchemy import SQLAlchemy
 import json
@@ -54,7 +54,7 @@ db = SQLAlchemy(app)
 class State(db.Model):
     """
     state_code is a 2 digit postal code for the state
-    state_name is the full name of the state 
+    state_name is the full name of the state
     latitude is a string representing the lat of state
     longitude is a string representing the long of state
     """
@@ -102,8 +102,8 @@ class StateStats(db.Model):
 
     def serialize(self):
         # logger.debug('Serializing state stats: ' + str(self.state_code))
-        return dict(id=self.id, week_of=self.week_of, property_type=self.property_type, 
-            num_properties=self.num_properties, med_listing_price=self.med_listing_price, 
+        return dict(id=self.id, week_of=self.week_of, property_type=self.property_type,
+            num_properties=self.num_properties, med_listing_price=self.med_listing_price,
             avg_listing_price=self.avg_listing_price, state_code=self.state_code)
 
 
@@ -159,8 +159,8 @@ class CityStats(db.Model):
 
     def serialize(self):
         # logger.debug('Serializing city stats: ' + str(self.city_id))
-        return dict(id=self.id, week_of=self.week_of, property_type=self.property_type, 
-            num_properties=self.num_properties, med_listing_price=self.med_listing_price, 
+        return dict(id=self.id, week_of=self.week_of, property_type=self.property_type,
+            num_properties=self.num_properties, med_listing_price=self.med_listing_price,
             avg_listing_price=self.avg_listing_price, city_id=self.city_id)
 
 
@@ -214,8 +214,8 @@ class NeighborhoodStats(db.Model):
 
     def serialize(self):
         # logger.debug('Serializing neighborhood stats: ' + str(self.neighborhood_id))
-        return dict(id=self.id, week_of=self.week_of, property_type=self.property_type, 
-            num_properties=self.num_properties, med_listing_price=self.med_listing_price, 
+        return dict(id=self.id, week_of=self.week_of, property_type=self.property_type,
+            num_properties=self.num_properties, med_listing_price=self.med_listing_price,
             avg_listing_price=self.avg_listing_price, neighborhood_id=self.city_id)
 
 def init_states(states_json):
@@ -227,7 +227,7 @@ def init_states(states_json):
 
 
     for state in states_json["states"]:
-        s = State(state_code=state['stateCode'], state_name=state['name'], 
+        s = State(state_code=state['stateCode'], state_name=state['name'],
             latitude=state['latitude'], longitude=state['longitude'])
         db.session.add(s)
         db.session.commit()
@@ -241,8 +241,8 @@ def init_cities(cities_json):
     """
 
     for city in cities_json["cities"]:
-      s = City(city_id=city['cityId'], city_name=city['name'], 
-        state_code=city['stateCode'], latitude=city['latitude'], 
+      s = City(city_id=city['cityId'], city_name=city['name'],
+        state_code=city['stateCode'], latitude=city['latitude'],
         longitude=city['longitude'])
       db.session.add(s)
       db.session.commit()
@@ -258,9 +258,9 @@ def init_neighborhoods(neighborhoods_json):
 
 
     for neighborhood in neighborhoods_json["neighborhoods"]:
-      s = Neighborhood(neighborhood_id=neighborhood['id'], neighborhood_name=neighborhood['name'], 
+      s = Neighborhood(neighborhood_id=neighborhood['id'], neighborhood_name=neighborhood['name'],
         state_code=neighborhood['stateCode'], city_id=neighborhood['city'])
-      
+
       db.session.add(s)
       db.session.commit()
 
@@ -287,10 +287,10 @@ def init_state_stats(state_stats):
                 avg_listing_price = subcat['averageListingPrice']
                 property_type = subcat['type']
 
-                stats = StateStats(week_of=week_of, property_type=property_type, 
-                    num_properties=num_properties, med_listing_price=med_listing_price, 
+                stats = StateStats(week_of=week_of, property_type=property_type,
+                    num_properties=num_properties, med_listing_price=med_listing_price,
                     avg_listing_price=avg_listing_price, state_code=code)
-                
+
                 db.session.add(stats)
                 db.session.commit()
 
@@ -316,9 +316,9 @@ def init_city_stats(city_stats):
                 avg_listing_price = subcat['averageListingPrice']
                 property_type = subcat['type']
 
-                stats = CityStats(week_of=week_of, property_type=property_type, num_properties=num_properties, 
+                stats = CityStats(week_of=week_of, property_type=property_type, num_properties=num_properties,
                     avg_listing_price=avg_listing_price, med_listing_price=med_listing_price, city_id=code)
-                
+
                 db.session.add(stats)
                 db.session.commit()
 
@@ -337,8 +337,8 @@ def init_neighborhood_stats(neighborhood_stats):
 
     for code in neighborhood_keys:
         if neighborhood_codes[code] is "None":
-            stats = NeighborhoodStats(week_of=None, property_type=None, 
-                    num_properties=None, avg_listing_price=None, 
+            stats = NeighborhoodStats(week_of=None, property_type=None,
+                    num_properties=None, avg_listing_price=None,
                     med_listing_price=None, neighborhood_id=None)
 
             db.session.add(stats)
@@ -352,10 +352,10 @@ def init_neighborhood_stats(neighborhood_stats):
                     avg_listing_price = subcat['averageListingPrice']
                     property_type = subcat['type']
 
-                    stats = NeighborhoodStats(week_of=week_of, property_type=property_type, 
-                        num_properties=num_properties, avg_listing_price=avg_listing_price, 
+                    stats = NeighborhoodStats(week_of=week_of, property_type=property_type,
+                        num_properties=num_properties, avg_listing_price=avg_listing_price,
                         med_listing_price=med_listing_price, neighborhood_id=code)
-                    
+
                     db.session.add(stats)
                     db.session.commit()
 
@@ -416,7 +416,7 @@ def splash():
     renders the home page (index.html in the templates subfolder)
     """
     logger.debug("splash")
-    return send_file('templates/index.html')
+    return make_response(open('templates/index.html').read())
 
 @app.route('/about.html')
 def about():
@@ -425,6 +425,22 @@ def about():
     """
     logger.debug("about")
     return send_file('templates/about.html')
+
+@app.route('/templates/<path:fileLocation>')
+def serveFrontEndFile(fileLocation):
+    """
+    sends front end files from template
+    """
+    logger.debug("templates/")
+    return send_file('templates/' + fileLocation)
+
+@app.route('/json_data/<path:fileLocation>')
+def serveJsonDataFile(fileLocation):
+    """
+    sends front end files from json_data
+    """
+    logger.debug("json_data/")
+    return send_file('json_data/' + fileLocation)
 
 # ----------------
 # API Routing
@@ -556,7 +572,7 @@ def api_neighborhood_all():
 
     if len(test) is 0:
         init_neighborhoods(json.load(open('json_data/neighborhoods.json')))
-    
+
     #-----------
     # Debug Code
     #-----------

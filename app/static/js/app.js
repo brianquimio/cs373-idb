@@ -1,53 +1,52 @@
 (function(){
   var app = angular.module('VASapp', ['ngRoute']);
 
-
   // configure routes with routeProvider
   // locationProvider needed to remove the /#/ from the url
-  app.config(function($routeProvider, $locationProvider, $httpProvider){
+  app.config(['$routeProvider', '$locationProvider',function($routeProvider, $locationProvider){
+    $locationProvider.html5Mode(true);
     $routeProvider
       .when('/states',{
-        templateUrl: 'partials/states.html',
+        templateUrl: '/static/partials/states.html',
         controller: 'statesController',
         controllerAs: 'states'
       }).when('/cities', {
-        templateUrl: 'partials/cities.html',
+        templateUrl: '/static/partials/cities.html',
         controller: 'citiesController',
         controllerAs: 'cities',
       }).when('/neighborhoods', {
-        templateUrl: 'partials/neighborhoods.html',
+        templateUrl: '/static/partials/neighborhoods.html',
         controller: 'neighborhoodsController',
         controllerAs: 'neighborhoods'
       }).when('/about', {
-        templateUrl: 'partials/about.html',
+        templateUrl: '/static/partials/about.html',
         controller: 'aboutController'
       }).when('/search', {
-        templateUrl: 'partials/search.html',
+        templateUrl: '/static/partials/search.html',
         controller: 'searchController'
       }).when('/states/:stateCode', {
-        templateUrl: 'partials/state_model.html',
+        templateUrl: '/static/partials/state_model.html',
         controller: 'stateModelController',
         controllerAs: 'state'
       }).when('/cities/:cityId', {
-        templateUrl: 'partials/city_model.html',
+        templateUrl: '/static/partials/city_model.html',
         controller: 'cityModelController',
         controllerAs: 'city'
       }).when('/neighborhood/:neighborhoodId', {
-        templateUrl: 'partials/model.html',
+        templateUrl: '/static/partials/model.html',
         controller: 'neighborhoodModelController'
       }).when('/home', {
         redirectTo: '/'
       }).when('/', {
-        templateUrl: 'partials/splash.html',
+        templateUrl: '/static/partials/splash.html',
         controller: 'splashController'
+      }).
+      otherwise({
+        redirectTo: '/'
       });
-      // otherwise({
-      //   redirectTo: '/'
-      // });
-    $locationProvider.html5Mode(true);
-    $httpProvider.defaults.useXDomain = true;
+    // $httpProvider.defaults.useXDomain = true;
 
-  });
+  }]);
 
   //just for printing the maps, and for initializing the idMappingService.
   app.controller('mainController',['$scope', 'idMappingService', function($scope,idMappingService){
