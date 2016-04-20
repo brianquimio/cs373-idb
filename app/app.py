@@ -426,6 +426,49 @@ def about():
     logger.debug("about")
     return send_file('templates/about.html')
 
+@app.route('/<data_type>')
+def route_all_data(data_type):
+    """
+    used to route pages
+    """
+    if data_type == 'States'
+        data = State.query.all()
+        return render_template("states.html", States=data)
+
+    if data_type == "Cities"
+        data = City.query.all()
+        return render_template("cities.html", cities=data)
+
+    if data_type == "Neighborhoods"
+        data = Neighborhood.query.all()
+        return render_template("neighborhoods.html", Neighborhoods=data)
+
+# added code needs to be tweaked and tested
+
+@app.route('/<data_type>/<key>')
+    def route_single_page_data(data_type, key):
+    if data_type == "States"
+        try:
+            return render_template("state_model.html", State_code=key)
+        except:
+            return error_page
+
+    if data_type == "Cities"
+        try:
+            return render_template("city_model.html", city_id=key)
+        except:
+            return error_page
+
+    if data_type == "Neighborhoods"
+        try:
+            return render_template("neighborhood_model.html", neighborhood_id=key)
+        except:
+            return error_page
+
+# end added code needs to be tweaked and tested
+
+
+
 # ----------------
 # API Routing
 # ----------------
