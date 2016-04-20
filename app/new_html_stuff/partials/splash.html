@@ -2,14 +2,12 @@
   <div class="jumbotron" id="splash">
   <div class="container">
       <h1 class="text-center">Virtual Address Space</h1>
-        <div class="text-center form-group">
-          <select class="search">
-            <option>State</option>
-            <option>City</option>
-            <option>Neighborhood</option>
+        <div class="text-center form-group">      
+          <select class="search" ng-model="selectedValue" data-ng-options="option as option.name for option in options">
+            <option value="">Select a filter..</option>  
           </select>
-          <input type="text" class="search" placeholder="Search a location..." style="width:40%;">
-          <button type="submit" class="btn btn-success" style="position:relative;">Search</button>
+            <input type="text" class="search" placeholder="Search a location..." style="width:40%;" ng-model='searchItem'>
+            <button type="submit" class="btn btn-success" style="position:relative;" ng-click='main.search(searchItem, selectedValue)'>Search</button>
         </div>
       </div>
     </div>

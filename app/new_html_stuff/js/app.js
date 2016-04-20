@@ -52,6 +52,13 @@
   //just for printing the maps, and for initializing the idMappingService.
   app.controller('mainController',['$scope', 'idMappingService', function($scope,idMappingService){
     this.printMappings = function(){console.log($scope.stateIdToName);console.log($scope.cityIdToName);console.log($scope.neighborhoodIdToName);};
+  
+      $scope.option = [{id:1, name:"All"}, {id:2, name:"States"}, {id:3, name:"Cities"}, {id:4, name:"Neighborhoods"}];
+
+      this.search = function(searchItem, filter) {
+        console.log('searching ' + searchItem + ' with filter ' + filtername);
+      };
+  
   }]);
 
   app.controller('navController',['$scope', '$location', function($scope, $location){
