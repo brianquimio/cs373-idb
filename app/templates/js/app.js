@@ -291,19 +291,20 @@
       $scope.pagination = {};
       $scope.pagination['numPerPage'] = 10;
       $scope.pagination['currentPage'] = 0;
-      $scope.paginationCurrentPage = $scope.pagination['currentPage'];
       $scope.pagination['array'] = new Array(Math.ceil($scope.data['neighborhoods'].length/$scope.pagination.numPerPage));
       console.log($scope.pagination);
     };
     this.setPage = function(num){
       if(num >= 0 && num < $scope.pagination['array'].length) {
         $scope.pagination['currentPage'] = Number(num);
-        $scope.paginationCurrentPage = $scope.pagination['currentPage'];
+      };
+      if(num >= $scope.pagination['array'].length) {
+        $scope.pagination['currentPage'] = $scope.pagination['array'].length-1;
       };
       console.log($scope.pagination['currentPage']);
     };
     this.showIndex = function(index) {
-      var base = ($scope.paginationCurrentPage*$scope.pagination['numPerPage']);
+      var base = ($scope.pagination['currentPage']*$scope.pagination['numPerPage']);
       return base <= index && index < (base + $scope.pagination['numPerPage']);
     };
     //PAGINATION END
