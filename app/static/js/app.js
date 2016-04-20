@@ -39,7 +39,8 @@
         redirectTo: '/'
       }).when('/', {
         templateUrl: '/static/partials/splash.html',
-        controller: 'splashController'
+        controller: 'splashController',
+        controllerAs: 'splash'
       }).
       otherwise({
         redirectTo: '/'
@@ -58,7 +59,14 @@
     this.navLinks = {'about':"About", 'states':"States", 'cities':"Cities", 'neighborhoods':"Neighborhoods"}
   }]);
 
-  app.controller('splashController',['$scope', function($scope){}]);
+  app.controller('splashController',['$scope', function($scope){
+    $scope.searchParam = 'all';
+    this.makeSearchUrl = function() {
+       var link = "search?" + $scope.searchParam + '=' + $scope.searchValue;
+       console.log(link);
+      return link;
+    };
+  }]);
 
   app.controller('aboutController',['$scope', function($scope){}]);
 
@@ -552,17 +560,25 @@
     init();
   }]);
 
+  app.controller('searchController', ['$scope', '$routeParams', function($scope,$routeParams){
+    console.log($routeParams);
+  }]);
+
+  // app.service('searchService',['$q','$http', '$routeParams', function($q,$http,$routeParams){
+  //
+  // }]);
+
   //service to actually call API and manage the data
   //following example at http://tylermcginnis.com/angularjs-factory-vs-service-vs-provider/ for design
   app.service('dataService', ['$q','$http', '$location', '$sce', function($q,$http,$location,$sce){
-    // var baseUrl = 'http://www.virtual-address.space';
-    var baseUrl = '';
-    // var apiExtension = '/api';
-    var apiExtension = '/json_data';
+    var baseUrl = 'http://192.168.99.100';
+    // var baseUrl = '';
+    var apiExtension = '/api';
+    // var apiExtension = '/json_data';
     var jsonUrl = '';
     var makeJsonUrl = function() {
-      // jsonUrl = baseUrl + apiExtension + $location.path() + '/';
-      jsonUrl = baseUrl + apiExtension + $location.path() + '.json';
+      jsonUrl = baseUrl + apiExtension + $location.path();
+      // jsonUrl = baseUrl + apiExtension + $location.path() + '.json';
       return jsonUrl;
     };
     this.data = {};
@@ -570,18 +586,22 @@
       makeJsonUrl();
       var deferred = $q.defer();
       console.log("calling API at: " + jsonUrl);
-      $http.get(jsonUrl).then(
       // $http.get('/json_data/cities.json').then(
+      $http.get(jsonUrl).then(
         //success
         function(response){
+          console.log("hello");
+          console.log(response);
           this.data = response.data;
           deferred.resolve(response.data);
         }
         , //failure
         function(response){
+          console.log("api call failed on: " + jsonUrl);
+          console.log(response);
           deferred.reject("api call failed on: " + jsonUrl);
         }
-      )
+      );
       return deferred.promise;
     };
   }]);

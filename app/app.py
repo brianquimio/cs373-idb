@@ -457,7 +457,7 @@ def api_root():
         return jsonify(data)
 
 
-@app.route('/api/states/', methods=['POST'])
+@app.route('/api/states/', methods=['GET'])
 def api_state_all():
     """
     requests all tuples from the State table
