@@ -51,87 +51,56 @@
       </div> <!--end container-->
     </nav>
 
-	        
+	<!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron" id="splash">
+	  <div class="container">
+        <h1 class="text-center">Virtual Address Space</h1>
+          <div class="text-center form-group">
+            <select class="search">
+              <option>State</option>
+              <option>City</option>
+              <option>Neighborhood</option>
+            </select>
+            <input type="text" class="search" placeholder="Search a location..." style="width:40%;">
+            <button type="submit" class="btn btn-success" style="position:relative;">Search</button>
+          </div>
+        </div>
+      </div>
+    </div> <!--end jumbotron-->
+
     <div class="container">
-      <div class="row">
-        <h2 class="text-center">Texas</h2>
-      </div>
+	<!-- Example row of columns -->
+	  <div class="row">
+	    <div class="col-md-3">
+	      <h2>States</h2>
+          <p>State information here </p>	
+          <p><a class="btn btn-default" href="#" role="button">Explore &raquo;</a></p>
+		</div>
 
-      <div class="col-md-2">
-        <table class="table table-striped text-center">
-          <thead>
-            <tr>
-              <th class="text-center">Cities</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><a href="#">Austin</a></td>
-            </tr>
-            <tr>
-              <td><a href="#">Houston</a></td>
-            </tr>
-            <tr>
-              <td><a href="#">Dallas</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        <div class="col-md-3">
+	      <h2>Cities</h2>
+		  <p>City information here</p>							                
+          <p><a class="btn btn-default" href="#" role="button">Explore &raquo;</a></p>
+	    </div>
+		
+        <div class="col-md-3">					
+          <h2>Neighborhoods</h2>
+		  <p>Neighborhood information here</p>									
+          <p><a class="btn btn-default" href="#" role="button">Explore &raquo;</a></p>
+        </div>
+								      
+        <div class="col-md-3">
+          <h2>Meet the Team</h2>
+          <p>Team info here</p>
+          <p><a class="btn btn-default" href="#" role="button">Explore &raquo;</a></p>
+        </div>
 
-      <div class="col-md-6">
-        <table class="table table-striped">              
-          <thead>
-            <th>Property</th>
-            <th>Value</th>
-          </thead>
-          <tbody>
-          <tr>
-            <td>Date</td>
-            <td>4-5-16</td>
-          </tr>
-          <tr>
-            <td># of Properties</td>
-            <td>300</td>
-          </tr>
-          <tr>
-            <td>Average Listing</td>
-            <td>$225000</td>
-          </tr>
-          <tr>
-            <td># of 1-Bed Properties</td>
-            <td>195</td>
-          </tr>
-          <tr>
-            <td>Average Listing</td>
-            <td>$185000</td>
-          </tr>
-          <tr>
-            <td># of 2-Bed Properties</td>
-            <td>65</td>
-          </tr>
-          <tr>
-            <td>Average Listing</td>
-            <td>$264000</td>
-          </tr>
-          <tr>
-            <td># of 3-Bed Properties</td>
-            <td>40</td>
-          </tr>
-          <tr>
-            <td>Average Listing</td>
-            <td>$312000</td>
-          </tr>
-          </tbody>
-        </table>            
-      </div>
-
-      <div class="col-md-4">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6509713.084021231!2d-123.77347912442343!3d37.1866687017569!2m3!1f0!2f0!3f0!3m2!1i1024!2    i768!4f13.1!3m3!1m2!1s0x808fb9fe5f285e3d%3A0x8b5109a227086f55!2sCalifornia!5e0!3m2!1sen!2sus!4v1458871633347"frameborder="0" style="border:0" width="90%" height="400px" allowfullscreen></iframe>
-      </div>
-
+      </div>  <!--end row-->
     </div> <!--end container-->
 
+
     <div class="container">
+      <hr>
       <footer>
         <p>&copy; 2016 Virtual Address Space</p>						          
       </footer>
@@ -148,7 +117,6 @@
     <script src="lib/bootstrap.min.js"></script>
     <script src="lib/angular.min.js"></script>
     <script src="lib/angular-resource.min.js"></script>
-
 
   </body>
       

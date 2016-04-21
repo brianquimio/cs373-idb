@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <h2 class="text-center" ng-bind="stateIdToName[data['stateCode']]"></h2>
+  </div>
+
+  <!-- children -->
+  <div class="col-md-2">
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <th>Cities</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="city in data['cities'] | orderBy:'name'">
+          <td><a ng-href={{'cities/'+city['id']}} ng-bind=city['name']></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- stats -->
+  <div class="col-md-6">
+    <button ng-click=state.printData()>printData</button>
+    <label for="singleSelect"> Show week of: </label>
+    <select name="singleSelect" ng-model="week">
+      <option ng-repeat="w in weeks | orderBy:w:true" value={{w}} ng-bind=w></option>
+    </select><br>
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <tr>
+            <th ng-click='state.sortBy("type")'>Property Type <span ng-show='state.sortedBy("type")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+            <th ng-click='state.sortBy("average")'>Average Cost <span ng-show='state.sortedBy("average")' class='glyphicon' ng-class="{'glyphicon-chevron-down': sort['descending'], 'glyphicon-chevron-up': !sort['descending']}"></span></th>
+            <th ng-click='state.sortBy("median")'>Median Cost <span ng-show='state.sortedBy("median")' class='glyphicon' ng-class="{'glyphicon-chevron-down': sort['descending'], 'glyphicon-chevron-up': !sort['descending']}"></span></th>
+            <th ng-click='state.sortBy("numProps")'>Qty Listed <span ng-show='state.sortedBy("numProps")' class='glyphicon' ng-class="{'glyphicon-chevron-down': sort['descending'], 'glyphicon-chevron-up': !sort['descending']}"></span></th>
+          </tr>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="row in data['propertyStats'] | orderBy:sort['by']:sort['descending']" ng-show="state.showRow(row)">
+          <!-- <td ng-repeat="(key,value) in row"
+              ng-show="key !== 'week'"
+              ng-bind="value"></td> -->
+          <td ng-bind=row['type']></td>
+          <td ng-bind="row['average']|currency:'$':0"></td>
+          <td ng-bind="row['median']|currency:'$':0"></td>
+          <td ng-bind="row['numProps']"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- map -->
+  <div class="col-md-4">
+    <div class="text-center">
+      <iframe ng-src="{{state.setStateMapUrl()}}"width="90%" height="400px" allowfullscreen></iframe>
+    </div>
+  </div>
+
+</div> <!--end container-->

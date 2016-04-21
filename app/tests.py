@@ -15,7 +15,8 @@ from urllib.request import urlopen
 from unittest       import main, TestCase
 
 
-TEST_DB_URI = "sqlite://"
+TEST_DB_URI = "sqlite:////tmp/test.db"
+# TEST_DB_URI = "mysql://guestbook-admin:my-guestbook-admin-password@localhost/testdb"
 
 class TestModels (TestCase):
 
@@ -26,6 +27,7 @@ class TestModels (TestCase):
     def make_app(self):
         app.config['TESTING'] = True
         app.config['SQLALCHEMY_DATABASE_URI'] = TEST_DB_URI
+        self.app = app.test_client()
         return app
 
     def setUp(self):

@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row">
+    <h2 class="text-center" ng-bind="data['neighborhoodName'] + ", " + data['cityName'] + ', ' + data['stateCode']"></h2>
+  </div>
+
+  <!-- children -->
+  <!-- <div class="col-md-2">
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <th>Neighborhoods</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="neighborhood in data['neighborhoods'] | orderBy:neighborhood">
+          <td ng-bind=neighborhood></td>
+        </tr>
+      </tbody>
+    </table>
+  </div> -->
+
+  <!-- stats -->
+  <div class="col-md-6">
+    <button ng-click=city.printData()>printData</button>
+    <label for="singleSelect"> Show week of: </label>
+    <select name="singleSelect" ng-model="week">
+      <option ng-repeat="w in weeks | orderBy:w:true" value={{w}} ng-bind=w></option>
+    </select><br>
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <tr>
+            <th ng-click='neighborhood.sortBy("type")'>Property Type <span ng-show='neighborhood.sortedBy("type")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+            <th ng-click='neighborhood.sortBy("average")'>Average Cost <span ng-show='neighborhood.sortedBy("average")' class='glyphicon' ng-class="{'glyphicon-chevron-down': sort['descending'], 'glyphicon-chevron-up': !sort['descending']}"></span></th>
+            <th ng-click='neighborhood.sortBy("median")'>Median Cost <span ng-show='neighborhood.sortedBy("median")' class='glyphicon' ng-class="{'glyphicon-chevron-down': sort['descending'], 'glyphicon-chevron-up': !sort['descending']}"></span></th>
+            <th ng-click='neighborhood.sortBy("numProps")'>Qty Listed <span ng-show='neighborhood.sortedBy("numProps")' class='glyphicon' ng-class="{'glyphicon-chevron-down': sort['descending'], 'glyphicon-chevron-up': !sort['descending']}"></span></th>
+          </tr>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="row in data['propertyStats'] | orderBy:sort['by']:sort['descending']" ng-show="neighborhood.showRow(row)">
+          <!-- <td ng-repeat="(key,value) in row"
+              ng-show="key !== 'week'"
+              ng-bind="value"></td> -->
+          <td ng-bind=row['type']></td>
+          <td ng-bind="row['average']|currency:'$':0"></td>
+          <td ng-bind="row['median']|currency:'$':0"></td>
+          <td ng-bind="row['numProps']"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- <button ng-click=state.printData()>printData</button> -->
+
+  <!-- map -->
+  <div class="col-md-4">
+    <div class="text-center">
+      <iframe ng-src="{{neighborhood.setNeighborhoodMapUrl()}}"width="90%" height="400px" allowfullscreen></iframe>
+    </div>
+  </div>
+
+</div> <!--end container-->

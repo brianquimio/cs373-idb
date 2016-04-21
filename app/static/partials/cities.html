@@ -1,0 +1,27 @@
+<div class="container">
+
+  <div class="row">
+    <h2 class="text-center">Cities</h2>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th ng-click='cities.sortBy("cityId")'>City Id <span ng-show='cities.sortedBy("cityId")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='cities.sortBy("name")'>City Name <span ng-show='cities.sortedBy("name")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='cities.sortBy("stateCode")'>State Code <span ng-show='cities.sortedBy("stateCode")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <!-- <th>City Id</th>
+        <th>City Name</th>
+        <th>State Code</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="row in rows | orderBy:sort['by']:sort['descending']">
+        <td ng-bind=row['cityId']></td>
+        <td><a ng-bind=row['name'] ng-href={{'cities/'+row['cityId']}}></a></td>
+        <td><a ng-bind=row['stateCode'] ng-href={{'states/'+row['stateCode']}}></a></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

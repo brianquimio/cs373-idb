@@ -1,0 +1,40 @@
+<div class="container">
+
+  <div class="row">
+    <h2 class="text-center" ng-bind="tableName"></h2>
+  </div>
+
+
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th ng-click='neighborhoods.sortBy("id")'>Neighborhood Id <span ng-show='neighborhoods.sortedBy("id")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='neighborhoods.sortBy("name")'>Neighborhood Name <span ng-show='neighborhoods.sortedBy("name")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='neighborhoods.sortBy("cityName")'>City Name <span ng-show='neighborhoods.sortedBy("cityName")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='neighborhoods.sortBy("code")'>State Code <span ng-show='neighborhoods.sortedBy("code")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr ng-repeat="row in rows | orderBy:sort['by']:sort['descending']" ng-show="neighborhoods.showIndex($index)">
+        <td ng-bind=row['id']></td>
+        <td><a ng-bind=row['name'] ng-href={{'neighborhoods/'+row['id']}}></a></td>
+        <td><a ng-bind=cityIdToName[row['cityId']] ng-href={{'cities/'+row['cityId']}}></a></td>
+        <td><a ng-bind=row['stateCode'] ng-href={{'states/'+row['stateCode']}}></a></td>
+        <!-- <td ng-bind=$index></td> -->
+      </tr>
+    </tbody>
+  </table>
+
+  <nav>
+    <ul class="pagination">
+      <li ng-class="{disabled:pagination['currentPage']===0}"><a href="#" aria-label="Previous" ng-click="neighborhoods.setPage(pagination['currentPage']-1)"><span>&laquo;</span></a></li>
+      <li ng-repeat="i in pagination.array track by $index" ng-class="{active:pagination['currentPage']===$index}"><a href="#" ng-click="neighborhoods.setPage($index)" ng-bind="{{$index + 1}}"></a></li>
+      <li ng-class="{disabled:pagination['currentPage']===pagination.array.length-1}"><a href="#" aria-label="Next" ng-click="neighborhoods.setPage(pagination['currentPage']+1)"><span>&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+</div>

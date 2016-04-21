@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <h2 class="text-center" ng-bind="modelName"></h2>
+  </div>
+
+  <!-- children -->
+  <div class="col-md-2">
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <th ng-bind="linkHeaderName"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="row in table.rows | orderBy:sorting['column']:sorting['descending']">
+          <td ng-repeat="link in row"
+              ng-show="true"
+              ng-bind="link"</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- stats -->
+  <div class="col-md-6">
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <th ng-repeat="header in table.headers"
+              ng-show="true"
+              ng-click="table.sortBy(header)"
+              ng-bind="header"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="row in table.rows | orderBy:sorting['column']:sorting['descending']">
+            <td ng-repeat="(key,value) in row"
+                ng-show="true"
+                ng-bind="value"></td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+
+  <!-- map -->
+  <div class="col-md-4">
+    <div ng-controller="mapController as mapCtrl" class="text-center">
+      <iframe ng-src="{{mapCtrl.mapSrcBuilder()}}"width="90%" height="400px" allowfullscreen></iframe>
+    </div>
+  </div>
+
+</div> <!--end container-->

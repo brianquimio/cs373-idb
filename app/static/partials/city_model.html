@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row">
+    <h2 class="text-center"><p ng-bind="data['cityName'] + ', '"></p><a ng-href="{{'states/'+data['stateCode']}}" ng-bind="data['stateCode']"></a></p></h2>
+  </div>
+
+  <!-- children -->
+  <div class="col-md-2">
+    <button ng-click=city.printData()>printData</button>
+    <nav>
+      <ul class="pager">
+        <li ng-class="{disabled:pagination['currentPage']===0}"><a href="#" aria-label="Previous" ng-click="city.setPage(pagination['currentPage']-1)"><span>&laquo;</span></a></li>
+        <li><input type="number" ng-model=pagination['currentPage'] name="page" min=0 ng-change="city.setPage(page)"></input></li>
+        <li ng-class="{disabled:pagination['currentPage']===pagination.array.length-1}"><a href="#" aria-label="Next" ng-click="city.setPage(pagination['currentPage']+1)"><span>&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <th>Neighborhoods</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="neighborhood in data['neighborhoods'] | orderBy:'name'" ng-show="city.showIndex($index)">
+          <td><a ng-href={{'neighborhoods/'+neighborhood['id']}} ng-bind=neighborhood['name']></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- stats -->
+  <div class="col-md-6">
+    <label for="singleSelect"> Show week of: </label>
+    <select name="singleSelect" ng-model="week">
+      <option ng-repeat="w in weeks | orderBy:w:true" value={{w}} ng-bind=w></option>
+    </select><br>
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <tr>
+            <th ng-click='city.sortBy("type")'>Property Type <span ng-show='city.sortedBy("type")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+            <th ng-click='city.sortBy("average")'>Average Cost <span ng-show='city.sortedBy("average")' class='glyphicon' ng-class="{'glyphicon-chevron-down': sort['descending'], 'glyphicon-chevron-up': !sort['descending']}"></span></th>
+            <th ng-click='city.sortBy("median")'>Median Cost <span ng-show='city.sortedBy("median")' class='glyphicon' ng-class="{'glyphicon-chevron-down': sort['descending'], 'glyphicon-chevron-up': !sort['descending']}"></span></th>
+            <th ng-click='city.sortBy("numProps")'>Qty Listed <span ng-show='city.sortedBy("numProps")' class='glyphicon' ng-class="{'glyphicon-chevron-down': sort['descending'], 'glyphicon-chevron-up': !sort['descending']}"></span></th>
+          </tr>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="row in data['propertyStats'] | orderBy:sort['by']:sort['descending']" ng-show="city.showRow(row)">
+          <!-- <td ng-repeat="(key,value) in row"
+              ng-show="key !== 'week'"
+              ng-bind="value"></td> -->
+          <td ng-bind=row['type']></td>
+          <td ng-bind="row['average']|currency:'$':0"></td>
+          <td ng-bind="row['median']|currency:'$':0"></td>
+          <td ng-bind=row['numProps']></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- <button ng-click=state.printData()>printData</button> -->
+
+  <!-- map -->
+  <div class="col-md-4">
+    <div class="text-center">
+      <iframe ng-src="{{city.setCityMapUrl()}}"width="90%" height="400px" allowfullscreen></iframe>
+    </div>
+  </div>
+
+</div> <!--end container-->

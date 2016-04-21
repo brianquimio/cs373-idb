@@ -1,0 +1,47 @@
+<!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron" id="splash">
+  <div class="container">
+      <h1 class="text-center">Virtual Address Space</h1>
+        <div class="text-center form-group">
+          <select class="search" ng-model="searchParam">
+            <option ng-value="all">All</option>
+            <option ng-value="state">State</option>
+            <option ng-value="city">City</option>
+            <option ng-value="neighborhood">Neighborhood</option>
+          </select>
+          <input type="text" class="search" placeholder="Search a location..." style="width:40%;" ng-model="searchValue"></input>
+          <a type="submit" class="btn btn-success" style="position:relative;" ng-href="splash.makeSearchUrl()">Search</a>
+        </div>
+      </div>
+    </div>
+  </div> <!--end jumbotron-->
+
+  <div class="container">
+<!-- Example row of columns -->
+  <div class="row">
+    <div class="col-md-3">
+      <h2>States</h2>
+        <p>State information here </p>
+        <p><a class="btn btn-default" href="states" role="button">Explore &raquo;</a></p>
+  </div>
+
+      <div class="col-md-3">
+      <h2>Cities</h2>
+    <p>City information here</p>
+        <p><a class="btn btn-default" href="cities" role="button">Explore &raquo;</a></p>
+    </div>
+
+      <div class="col-md-3">
+        <h2>Neighborhoods</h2>
+    <p>Neighborhood information here</p>
+        <p><a class="btn btn-default" href="neighborhoods" role="button">Explore &raquo;</a></p>
+      </div>
+
+      <div class="col-md-3">
+        <h2>Meet the Team</h2>
+        <p>Team info here</p>
+        <p><a class="btn btn-default" href="about" role="button">Explore &raquo;</a></p>
+      </div>
+
+    </div>  <!--end row-->
+  </div> <!--end container-->
