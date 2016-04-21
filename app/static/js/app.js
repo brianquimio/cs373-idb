@@ -92,43 +92,43 @@
       var neighborhoodsFoundAnd = {};
       var citiesFoundAnd = {};
       var statesFoundAnd = {};
-      for(var key in data['neighborhoods']) {
-        var currentRow = data['neighborhoods'][key];
+      for(var key in data) {
+        var currentRow = data[key];
         // var newRow = {};
         var cityName = '';
-        if (currentRow['city'] !== undefined && $scope.cityIdToName[currentRow['city']] != undefined) {
-          cityName = $scope.cityIdToName[currentRow['city']];
+        if (currentRow['city_id'] !== undefined && $scope.cityIdToName[currentRow['city_id']] != undefined) {
+          cityName = $scope.cityIdToName[currentRow['city_id']];
         };
-        var stateName = $scope.stateIdToName[currentRow['stateCode']];
-        var neighborhoodName = currentRow['name'];
+        var stateName = $scope.stateIdToName[currentRow['state_code']];
+        var neighborhoodName = currentRow['neighborhood_name'];
         if (queryValues.length > 0) {
           for(var q in queryValues) {
-            if (neighborhoodName.toLowerCase().includes(queryValues[q].toLowerCase()) && !neighborhoodsFoundOr.hasOwnProperty(currentRow['id'])){
-              neighborhoodsFoundOr[currentRow['id']] = true;
+            if (neighborhoodName.toLowerCase().includes(queryValues[q].toLowerCase()) && !neighborhoodsFoundOr.hasOwnProperty(currentRow['neighborhood_id'])){
+              neighborhoodsFoundOr[currentRow['neighborhood_id']] = true;
               // console.log("found neighborhood match: ");
               // console.log(currentRow);
               var newRow = {};
-              newRow['id'] = currentRow['id'];
+              newRow['id'] = currentRow['neighborhood_id'];
               newRow['name'] = neighborhoodName + ', ' + cityName + ', ' + stateName;
               newRow['type'] = 'neighborhoods';
               $scope.searchResults['or'].push(newRow);
             };
-            if (cityName.toLowerCase().includes(queryValues[q].toLowerCase()) && !citiesFoundOr.hasOwnProperty(currentRow['city'])){
+            if (cityName.toLowerCase().includes(queryValues[q].toLowerCase()) && !citiesFoundOr.hasOwnProperty(currentRow['city_id'])){
               // console.log("found city match: ");
               // console.log(currentRow);
-              citiesFoundOr[currentRow['city']] = true;
+              citiesFoundOr[currentRow['city_id']] = true;
               var newRow = {};
-              newRow['id'] = currentRow['city'];
+              newRow['id'] = currentRow['city_id'];
               newRow['name'] = cityName + ', ' + stateName;
               newRow['type'] = 'cities';
               $scope.searchResults['or'].push(newRow);
             };
-            if (stateName.toLowerCase().includes(queryValues[q].toLowerCase()) && !statesFoundOr.hasOwnProperty(currentRow['stateCode'])){
+            if (stateName.toLowerCase().includes(queryValues[q].toLowerCase()) && !statesFoundOr.hasOwnProperty(currentRow['state_code'])){
               // console.log("found state match: ");
               // console.log(currentRow);
-              statesFoundOr[currentRow['stateCode']] = true;
+              statesFoundOr[currentRow['state_code']] = true;
               var newRow = {};
-              newRow['id'] = currentRow['stateCode'];
+              newRow['id'] = currentRow['state_code'];
               newRow['name'] = stateName;
               newRow['type'] = 'states';
               $scope.searchResults['or'].push(newRow);
@@ -150,7 +150,6 @@
         };
       };
       console.log($scope.searchResults);
-
     };
 
     $scope.sort = {
@@ -189,15 +188,15 @@
 
   app.service('searchService', ['$q', '$http', '$location', '$sce', '$routeParams', function($q, $http, $location, $sce, $routeParams) {
 
-    var base = '';
+    var base = 'http://192.168.99.100';
     var api = '/api/neighborhoods';
 
     var temp = '/json_data/neighborhoods.json';
 
     var url = '';
     var makeJsonUrl = function() {
-      // url = base + api;
-      url=temp;
+      url = base + api;
+      // url=temp;
       return url;
     };
 
@@ -206,6 +205,7 @@
     //call neighborhoods json
     this.callAPI = function() {
       makeJsonUrl();
+      console.log("making API call at: " + url);
       var deferred = $q.defer();
       $http.get(url).then (
         function(response) {
@@ -213,6 +213,7 @@
           deferred.resolve(response.data);
         },
         function(response) {
+          console.log(response);
           deferred.reject("api call failed");
         }
       );
