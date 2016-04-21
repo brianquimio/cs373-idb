@@ -457,32 +457,28 @@ def api_root():
         return jsonify(data)
 
 
-@app.route('/api/states/', methods=['GET'])
+@app.route('/api/states/')
 def api_state_all():
     """
     requests all tuples from the State table
     constructs a json file from each of the State model instances contained in the DB
     returns a json that is then routed to the api/state/ URL
     """
-    if request.method == "POST":
-
-        jsonData = {}
-
-        test = State.query.all()
-
-        if len(test) is 0:
-            init_states(json.load(open('json_data/states.json')))
-
-        for data in test:
-            jsonData[data.state_code] = data.serialize()
 
 
-        return jsonify(jsonData)
+    jsonData = {}
 
-    else:
-        return """<html><body>
-        Something went horribly wrong
-        </body></html>"""
+    test = State.query.all()
+
+    if len(test) is 0:
+        init_states(json.load(open('json_data/states.json')))
+
+    for data in test:
+        jsonData[data.state_code] = data.serialize()
+
+
+    return jsonify(jsonData)
+
 
 @app.route('/api/states/<statecode>')
 def api_state_spec(statecode):
@@ -525,6 +521,7 @@ def api_cities_all():
     for data in test:
         jsonData[data.city_id] = data.serialize()
     return jsonify(jsonData)
+
 
 @app.route('/api/cities/<cityID>')
 def api_city_spec(cityID):
