@@ -31,10 +31,10 @@ logger.debug("Welcome to Virtual Address Space")
 SQLALCHEMY_DATABASE_URI = \
     '{engine}://{username}:{password}@{hostname}/{database}'.format(
         engine='mysql+pymysql',
-        username='guestbook-admin',
-        password='my-random-password',
-        hostname='pythonwebapp_db',
-        database='guestbook'
+        username=os.getenv('MYSQL_USER'),
+        password=os.getenv('MYSQL_PASSWORD'),
+        hostname=os.getenv('MYSQL_HOST'),
+        database=os.getenv('MYSQL_DATABASE')
         )
 
 app = Flask(__name__)
@@ -72,6 +72,7 @@ class State(db.Model):
 
     def __repr__(self):
         return "[State: state_id={}, state_name={}]".format(self.state_id, self.state_code)
+
 
 class StateStats(db.Model):
     """
@@ -131,6 +132,7 @@ class City(db.Model):
     def __repr__(self):
         return "[City: city_id={}, city_name={}, state_name={}]".format(self.city_id, self.city_name, self.state_code, self.latitude, self.longitude)
 
+
 class CityStats(db.Model):
     """
     week_of is the interval over which the data is aggregated
@@ -164,7 +166,6 @@ class CityStats(db.Model):
             avg_listing_price=self.avg_listing_price, city_id=self.city_id)
 
 
-
 class Neighborhood(db.Model):
     """
     neighbordhood_id is a unique identifier (pk) for a neighborhood
@@ -174,7 +175,7 @@ class Neighborhood(db.Model):
     """
     __tablename__ = 'Neighborhood'
 
-  # Dimensions
+    # Dimensions
     neighborhood_id = db.Column(db.String(256), primary_key=True)
     neighborhood_name = db.Column(db.String(256))
 
@@ -189,6 +190,7 @@ class Neighborhood(db.Model):
     def __repr__(self):
         return "[Neighborhood: neighborhood_id={}, neighborhood_name={}".format(self.neighborhood_id, self.neighborhood_name)
 
+
 class NeighborhoodStats(db.Model):
     """
     week_of is the interval over which the data is aggregated
@@ -198,6 +200,7 @@ class NeighborhoodStats(db.Model):
     med_listing_price is the median listing price during the given time period
     neighborhood_id is the foreign key that maps the statistics of a neighborhood to itself
     """
+    __tablename__ = 'NeighborhoodStats'
 
     # Dimensions
     id = db.Column(db.Integer, primary_key=True)
@@ -218,13 +221,13 @@ class NeighborhoodStats(db.Model):
             num_properties=self.num_properties, med_listing_price=self.med_listing_price,
             avg_listing_price=self.avg_listing_price, neighborhood_id=self.city_id)
 
+
 def init_states(states_json):
     """
     Insert data for states pulled from trulia API
     for each state in the json file, a new tuple is added to the table
     after a tuple is added, the session is committed to the server
     """
-
 
     for state in states_json["states"]:
         s = State(state_code=state['stateCode'], state_name=state['name'],
@@ -246,6 +249,7 @@ def init_cities(cities_json):
         longitude=city['longitude'])
       db.session.add(s)
       db.session.commit()
+
 
 def init_neighborhoods(neighborhoods_json):
     """
@@ -294,6 +298,7 @@ def init_state_stats(state_stats):
                 db.session.add(stats)
                 db.session.commit()
 
+
 def init_city_stats(city_stats):
     """
     takes a JSON object in
@@ -301,7 +306,6 @@ def init_city_stats(city_stats):
     TODO: confirm that this is parsing correctly
     TODO: validate output as well-formed JSON
     """
-
 
     city_codes = city_stats['cityStats'][0]
     city_keys = city_codes.keys()
@@ -323,6 +327,55 @@ def init_city_stats(city_stats):
                 db.session.commit()
 
 
+def neighborhood_stats_subcat(subcat):
+    """
+    helper method to go though each attribute for a given subclass passed from neighborhood_stats_week
+    """
+    logger.debug("SUBCAT: " + str(subcat))
+    logger.debug("SUBCAT TYPE: " + str(type(subcat)))
+
+    num_properties = subcat['numberOfProperties']
+    med_listing_price = subcat['medianListingPrice']
+    avg_listing_price = subcat['averageListingPrice']
+    property_type = subcat['type']
+
+    stats = NeighborhoodStats(week_of="Testing Data", property_type="Testing Data",
+        num_properties="Testing Data", avg_listing_price="Testing Data",
+        med_listing_price="Testing Data", neighborhood_id="Testing Data")
+
+    db.session.add(stats)
+    db.session.commit()
+
+
+def neighborhood_stats_week(week):
+    """
+    helper method for going through the week passed from init_neighborhood_stats
+    """
+    logger.debug("WEEK: " + str(week))
+    logger.debug("WEEK TYPE: " + str(type(week)))
+    
+    week_of = week['weekEndingDate']
+
+    if type(week['listingPrice']['subcategory']) is list:
+        for subcat in week['listingPrice']['subcategory']:
+            neighborhood_stats_subcat(subcat)
+    else:
+        neighborhood_stats_subcat(week['listingPrice']['subcategory'])
+
+
+def neighborhood_stats_none():
+    """
+    helper method for init_neighborhood_stats for when there are no neighborhoods
+    """
+    # logger.debug("*******HERE*******")
+    stats = NeighborhoodStats(week_of="No Data Available", property_type="No Data Available",
+                    num_properties="No Data Available", avg_listing_price="No Data Available",
+                    med_listing_price="No Data Available", neighborhood_id="No Data Available")
+
+    db.session.add(stats)
+    db.session.commit()
+
+
 def init_neighborhood_stats(neighborhood_stats):
     """
     takes a JSON object in
@@ -331,33 +384,61 @@ def init_neighborhood_stats(neighborhood_stats):
     TODO: validate output as well-formed JSON
     """
 
-    neighborhood_codes = neighborhood_stats['neighborhood'][0]
-    neighborhood_keys = neighborhood_codes.keys()
+    # neighborhood_codes = neighborhood_stats['neighborhood'][0]
+    # neighborhood_keys = neighborhood_codes.keys()
+
+    # for code in neighborhood_keys:
+    #     logger.debug("NEIGHBORHOOD CODE: " + str(code))
+    #     if type(neighborhood_codes[code]) is str:
+    #         logger.debug("NEIGHBORHOOD CODE: " + str(neighborhood_codes[code]))
+    #         neighborhood_stats_none()
+        # else:
+        #     if type(neighborhood_codes[code]['listingStat']) is list:
+        #         logger.debug("IN IF: MULTIPLE WEEKS")
+        #         for week in neighborhood_codes[code]['listingStat']:
+        #             neighborhood_stats_week(week)
+        #         else:
+        #             logger.debug("IN ELSE: ONLY ONE WEEK")
+        #             neighborhood_stats_week(neighborhood_codes[code]['listingStat']['subcategory'])
 
 
-    for code in neighborhood_keys:
-        if neighborhood_codes[code] is "None":
-            stats = NeighborhoodStats(week_of=None, property_type=None,
-                    num_properties=None, avg_listing_price=None,
-                    med_listing_price=None, neighborhood_id=None)
+    # for code in neighborhood_keys:
+    #     weeks = neighborhood_codes[code]['listingStat']
+    #     for week in weeks:
+    #         week_of = week['weekEndingDate']
+    #         for subcat in week['listingPrice']['subcategory']:
+    #             num_properties = subcat['numberOfProperties']
+    #             property_type = subcat['type']
+    #             avg_listing_price = subcat['averageListingPrice']
+    #             med_listing_price = subcat['medianListingPrice']
 
-            db.session.add(stats)
-            db.session.commit()
-        else:
-            for week in neighborhood_codes[code]['listingStat']:
-                week_of = week['weekEndingDate']
-                for subcat in week['listingPrice']['subcategory']:
-                    num_properties = subcat['numberOfProperties']
-                    med_listing_price = subcat['medianListingPrice']
-                    avg_listing_price = subcat['averageListingPrice']
-                    property_type = subcat['type']
+    #             stats = NeighborhoodStats(week_of=week_of, property_type=property_type, num_properties=num_properties,
+    #                 med_listing_price=med_listing_price, avg_listing_price=avg_listing_price, neighborhood_id=code)
 
-                    stats = NeighborhoodStats(week_of=week_of, property_type=property_type,
-                        num_properties=num_properties, avg_listing_price=avg_listing_price,
-                        med_listing_price=med_listing_price, neighborhood_id=code)
+    #             db.session.add(stats)
+    #             db.session.commit()
 
-                    db.session.add(stats)
-                    db.session.commit()
+
+    city_codes = city_stats['neighborhood'][0]
+    city_keys = city_codes.keys()
+
+
+    for code in city_keys:
+        for week in city_codes[code]['listingStat']:
+            week_of = week['weekEndingDate']
+            for subcat in week['listingPrice']['subcategory']:
+                num_properties = subcat['numberOfProperties']
+                med_listing_price = subcat['medianListingPrice']
+                avg_listing_price = subcat['averageListingPrice']
+                property_type = subcat['type']
+
+                stats = NeighborhoodStats(week_of=week_of, property_type=property_type, num_properties=num_properties,
+                    avg_listing_price=avg_listing_price, med_listing_price=med_listing_price, neighborhood_id=code)
+
+                db.session.add(stats)
+                db.session.commit()
+
+
 
 @manager.command
 def init_db():
@@ -369,12 +450,9 @@ def init_db():
     TODO: add in stats JSON parsers. These haven't been validated and are currently commented out.
     """
 
-
     db.drop_all()
-    db.configure_mappers()
-    logger.info('create all being called')
     db.create_all()
-    db.session.commit()
+    # db.session.commit()
 
 
     # # Init states
@@ -402,8 +480,8 @@ def init_db():
         init_city_stats(json.load(city_stats))
 
     # # Init neighborhood stats
-    with open('json_data/neighborhood_stats.json') as neighborhood_stats:
-        init_neighborhood_stats(json.load(neighborhood_stats))
+    # with open('json_data/neighborhoods1.json') as neighborhood_stats:
+    #     init_neighborhood_stats(json.load(neighborhood_stats))
 
 
 # -----------
@@ -464,25 +542,20 @@ def api_state_all():
     constructs a json file from each of the State model instances contained in the DB
     returns a json that is then routed to the api/state/ URL
     """
-    if request.method == "POST":
 
-        jsonData = {}
+    jsonData = {}
 
-        test = State.query.all()
+    test = State.query.all()
 
-        if len(test) is 0:
-            init_states(json.load(open('json_data/states.json')))
+    if len(test) is 0:
+        init_states(json.load(open('json_data/states.json')))
 
-        for data in test:
-            jsonData[data.state_code] = data.serialize()
+    for data in test:
+        jsonData[data.state_code] = data.serialize()
 
 
-        return jsonify(jsonData)
+    return jsonify(jsonData)
 
-    else:
-        return """<html><body>
-        Something went horribly wrong
-        </body></html>"""
 
 @app.route('/api/states/<statecode>')
 def api_state_spec(statecode):
@@ -492,7 +565,8 @@ def api_state_spec(statecode):
     cities = City.query.filter_by(state_code=statecode).all()
 
     if len(test) is 0:
-        init_state_stats(json.load(open('json_data/state_stats.json')))
+        init_state_stats(json.load(open('json_data/state_stats.json','r')))
+        close('json_data/state_stats.json')
 
     for data in test:
         jsonData[data.id] = data.serialize()
@@ -521,6 +595,7 @@ def api_cities_all():
 
     if len(test) is 0:
         init_cities(json.load(open('json_data/cities.json')))
+        close('json_data/cities.json')
 
     for data in test:
         jsonData[data.city_id] = data.serialize()
@@ -535,6 +610,7 @@ def api_city_spec(cityID):
 
     if len(test) is 0:
         init_city_stats(json.load(open('json_data/city_stats.json')))
+        close('json_data/city_stats.json')
 
     for data in test:
         jsonData[data.id] = data.serialize()
@@ -567,9 +643,10 @@ def api_neighborhood_all():
 
     if len(test) is 0:
         init_neighborhoods(json.load(open('json_data/neighborhoods.json')))
+        test = Neighborhood.query.all()
 
     #-----------
-    # Debug Code
+    # Debug Cod
     #-----------
 
     # test_str = str(test)
@@ -585,30 +662,20 @@ def api_neighborhood_all():
         jsonData[data.neighborhood_id] = data.serialize()
     return jsonify(jsonData)
 
+
 @app.route('/api/neighborhoods/<nID>')
 def api_neighborhood_spec(nID):
     jsonData = {}
 
+    if len(NeighborhoodStats.query.filter_by(neighborhood_id=nID).all()) == 0:
+        init_state_stats(json.load(open('json_data/neighborhoods1.json')))
+    
     test = NeighborhoodStats.query.filter_by(neighborhood_id=nID).all()
 
-    if len(test) is 0:
-        init_neighborhood_stats(json.load(open('json_data/neighborhood_stats.json')))
-
-    #-----------
-    # Debug Code
-    #-----------
-
-    # test_str = str(test)
-    # logger.info(test_str)
-
-    # ttdb = db.session.execute("""
-    #     SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='StateStats'
-    #     """)
-    # for i in ttdb:
-    #     logger.debug("Column: " + str(i[0]))
 
     for data in test:
         jsonData[data.id] = data.serialize()
+
     return jsonify(jsonData)
 
 

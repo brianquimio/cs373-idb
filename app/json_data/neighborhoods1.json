@@ -1,1 +1,77 @@
-{"neighborhoods": [{"id": "804", "city": "43000", "name": "Artcraft Manor", "stateCode": "CA"}]}
+{
+	"neighborhood": [{
+		"6092": {
+			"listingStat": [{
+				"weekEndingDate": "2016-03-12",
+				"listingPrice": {
+					"subcategory": [{
+						"numberOfProperties": "12",
+						"type": "All Properties",
+						"averageListingPrice": "836654",
+						"medianListingPrice": "781857"
+					}, {
+						"numberOfProperties": "2",
+						"type": "1 Bedroom Properties",
+						"averageListingPrice": "431952",
+						"medianListingPrice": "421286"
+					}, {
+						"numberOfProperties": "3",
+						"type": "2 Bedroom Properties",
+						"averageListingPrice": "566345",
+						"medianListingPrice": "533714"
+					}, {
+						"numberOfProperties": "4",
+						"type": "3 Bedroom Properties",
+						"averageListingPrice": "828174",
+						"medianListingPrice": "925571"
+					}, {
+						"numberOfProperties": "2",
+						"type": "4 Bedroom Properties",
+						"averageListingPrice": "1570714",
+						"medianListingPrice": "1598000"
+					}, {
+						"numberOfProperties": "1",
+						"type": "5 Bedroom Properties",
+						"averageListingPrice": "999990",
+						"medianListingPrice": "999990"
+					}]
+				}
+			}, {
+				"weekEndingDate": "2016-03-19",
+				"listingPrice": {
+					"subcategory": [{
+						"numberOfProperties": "10",
+						"type": "All Properties",
+						"averageListingPrice": "800958",
+						"medianListingPrice": "926000"
+					}, {
+						"numberOfProperties": "4",
+						"type": "1 Bedroom Properties",
+						"averageListingPrice": "272834",
+						"medianListingPrice": "200000"
+					}, {
+						"numberOfProperties": "1",
+						"type": "2 Bedroom Properties",
+						"averageListingPrice": "749000",
+						"medianListingPrice": "749000"
+					}, {
+						"numberOfProperties": "3",
+						"type": "3 Bedroom Properties",
+						"averageListingPrice": "990000",
+						"medianListingPrice": "990000"
+					}, {
+						"numberOfProperties": "2",
+						"type": "4 Bedroom Properties",
+						"averageListingPrice": "1598000",
+						"medianListingPrice": "1598000"
+					}, {
+						"numberOfProperties": "1",
+						"type": "5 Bedroom Properties",
+						"averageListingPrice": "999990",
+						"medianListingPrice": "999990"
+					}]
+				}
+			}]
+		}
+	}]
+}
