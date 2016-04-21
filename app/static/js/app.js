@@ -463,9 +463,18 @@
       return $scope.sort['descending'];
     };
     //initializing function. sets scope data after resolving promise
+    var buildRows = function(data) {
+      $scope.rows = [];
+      for (var key in data) {
+        var row = {};
+        row['name'] = data[key]['state_name'];
+        row['stateCode'] = data[key]['state_code'];
+        $scope.rows.push(row);
+      };
+    };
     var init = function() {
-      dataService.callAPI().then(function(data){$scope.rows = data['states'];},function(data){alert(data);});
-    }
+      dataService.callAPI().then(function(data){buildRows(data);},function(data){alert(data);});
+    };
     init();
   }]);
 
@@ -493,9 +502,19 @@
     this.isDescending = function() {
       return $scope.sort['descending'];
     };
+    var buildRows = function(data) {
+      $scope.rows = [];
+      for (var key in data) {
+        var row = {};
+        row['cityId'] = data[key]['city_id'];
+        row['name'] = data[key]['city_name'];
+        row['stateCode'] = data[key]['state_code'];
+        $scope.rows.push(row);
+      };
+    };
     //initializing function. sets scope data after resolving promise
     var init = function() {
-      dataService.callAPI().then(function(data){$scope.rows = data['cities'];},function(data){alert(data);});
+      dataService.callAPI().then(function(data){buildRows(data);},function(data){alert(data);});
     }
     init();
   }]);
@@ -544,18 +563,29 @@
     };
     //PAGINATION END
     $scope.rows = [];
-    var rowsHelper = function(data) {
-      for (var row in data['neighborhoods']) {
-        var newRow = data['neighborhoods'][row];
-        newRow['cityName'] = $scope.cityIdToName[data['neighborhoods'][row]['city']];
-        // console.log(newRow);
-        $scope.rows.push(newRow);
+    // var rowsHelper = function(data) {
+    //   for (var row in data['neighborhoods']) {
+    //     var newRow = data['neighborhoods'][row];
+    //     newRow['cityName'] = $scope.cityIdToName[data['neighborhoods'][row]['city']];
+    //     // console.log(newRow);
+    //     $scope.rows.push(newRow);
+    //   };
+    //   console.log($scope.rows);
+    // };
+    var buildRows = function(data) {
+      $scope.rows = [];
+      for (var key in data) {
+        var row = {};
+        row['id'] = data[key]['neighborhood_id'];
+        row['name'] = data[key]['neighborhood_name'];
+        row['cityId'] = data[key]['city_id'];
+        row['stateCode'] = data[key]['state_code'];
+        $scope.rows.push(row);
       };
-      console.log($scope.rows);
     };
     //initializing function. sets scope data after resolving promise
     var init = function() {
-      dataService.callAPI().then(function(data){rowsHelper(data);setupPagination();},function(data){alert(data);});
+      dataService.callAPI().then(function(data){buildRows(data);setupPagination();},function(data){alert(data);});
     }
     init();
   }]);
@@ -586,12 +616,11 @@
       makeJsonUrl();
       var deferred = $q.defer();
       console.log("calling API at: " + jsonUrl);
-      // $http.get('/json_data/cities.json').then(
       $http.get(jsonUrl).then(
         //success
         function(response){
-          console.log("hello");
           console.log(response);
+          console.log(response.data);
           this.data = response.data;
           deferred.resolve(response.data);
         }
