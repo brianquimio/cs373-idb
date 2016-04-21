@@ -535,7 +535,7 @@ def api_root():
         return jsonify(data)
 
 
-@app.route('/api/states/', methods=['GET'])
+@app.route('/api/states/')
 def api_state_all():
     """
     requests all tuples from the State table
@@ -552,7 +552,6 @@ def api_state_all():
 
     for data in test:
         jsonData[data.state_code] = data.serialize()
-
 
     return jsonify(jsonData)
 
@@ -600,6 +599,7 @@ def api_cities_all():
     for data in test:
         jsonData[data.city_id] = data.serialize()
     return jsonify(jsonData)
+
 
 @app.route('/api/cities/<cityID>')
 def api_city_spec(cityID):

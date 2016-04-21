@@ -1,0 +1,32 @@
+<div class="container">
+
+  <div class="row">
+    <h2 class="text-center">Search Results</h2>
+  </div>
+
+  <table ng-show="search.showTable('and')" class="table table-striped text-center">
+    <thead>
+      <tr>
+        <th ng-click='search.sortBy("name")'>AND Results <span ng-show='search.sortedBy("name")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="row in searchResults['and']">
+        <td><a ng-bind="row['name']" ng-href="{{row['type'] + '/' + row['id']}}"></a></td>
+      </tr>
+    </tbody>
+  </table>
+  <table ng-show="search.showTable('or')" class="table table-striped text-center">
+    <thead>
+      <tr>
+        <th ng-click='search.sortBy("name")'>OR Results <span ng-show='search.sortedBy("name")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="row in searchResults['or']">
+        <td><a ng-bind="row['name']" ng-href="{{row['type'] + '/' + row['id']}}"></a></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

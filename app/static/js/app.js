@@ -23,7 +23,8 @@
         controller: 'aboutController'
       }).when('/search', {
         templateUrl: '/static/partials/search.html',
-        controller: 'searchController'
+        controller: 'searchController',
+        controllerAs: 'search'
       }).when('/states/:stateCode', {
         templateUrl: '/static/partials/state_model.html',
         controller: 'stateModelController',
@@ -32,9 +33,10 @@
         templateUrl: '/static/partials/city_model.html',
         controller: 'cityModelController',
         controllerAs: 'city'
-      }).when('/neighborhood/:neighborhoodId', {
+      }).when('/neighborhoods/:neighborhoodId', {
         templateUrl: '/static/partials/model.html',
-        controller: 'neighborhoodModelController'
+        controller: 'neighborhoodModelController',
+        controllerAs: 'neighborhood'
       }).when('/home', {
         redirectTo: '/'
       }).when('/', {
@@ -60,11 +62,163 @@
   }]);
 
   app.controller('splashController',['$scope', function($scope){
-    $scope.searchParam = 'all';
-    this.makeSearchUrl = function() {
-       var link = "search?" + $scope.searchParam + '=' + $scope.searchValue;
-       console.log(link);
-      return link;
+    this.searchUrl = '/search?q=';
+    $scope.searchValue = '';
+    this.makeSearchUrl = function(){
+      this.searchUrl = '/search?q=' + $scope.searchValue;
+      console.log(this.searchUrl);
+    };
+  }]);
+
+  app.controller('searchController', ['$scope', '$routeParams', 'searchService', function($scope, $routeParams, searchService) {
+
+    $scope.searchResults = {};
+
+    var buildData = function(data) {
+      $scope.searchResults = {};
+      var re = /\W+/;
+      var queryValues = $routeParams['q'].split(re);
+      // var queryValues = ['Akin', 'Austin', 'Texas'];
+      console.log(queryValues);
+      if (queryValues.length > 0) {
+        $scope.searchResults['or'] = [];
+      };
+      if (queryValues.length > 1) {
+        $scope.searchResults['and'] = [];
+      };
+      var neighborhoodsFoundOr = {};
+      var citiesFoundOr = {};
+      var statesFoundOr = {};
+      var neighborhoodsFoundAnd = {};
+      var citiesFoundAnd = {};
+      var statesFoundAnd = {};
+      for(var key in data) {
+        var currentRow = data[key];
+        // var newRow = {};
+        var cityName = '';
+        if (currentRow['city_id'] !== undefined && $scope.cityIdToName[currentRow['city_id']] != undefined) {
+          cityName = $scope.cityIdToName[currentRow['city_id']];
+        };
+        var stateName = $scope.stateIdToName[currentRow['state_code']];
+        var neighborhoodName = currentRow['neighborhood_name'];
+        if (queryValues.length > 0) {
+          for(var q in queryValues) {
+            if (neighborhoodName.toLowerCase().includes(queryValues[q].toLowerCase()) && !neighborhoodsFoundOr.hasOwnProperty(currentRow['neighborhood_id'])){
+              neighborhoodsFoundOr[currentRow['neighborhood_id']] = true;
+              // console.log("found neighborhood match: ");
+              // console.log(currentRow);
+              var newRow = {};
+              newRow['id'] = currentRow['neighborhood_id'];
+              newRow['name'] = neighborhoodName + ', ' + cityName + ', ' + stateName;
+              newRow['type'] = 'neighborhoods';
+              $scope.searchResults['or'].push(newRow);
+            };
+            if (cityName.toLowerCase().includes(queryValues[q].toLowerCase()) && !citiesFoundOr.hasOwnProperty(currentRow['city_id'])){
+              // console.log("found city match: ");
+              // console.log(currentRow);
+              citiesFoundOr[currentRow['city_id']] = true;
+              var newRow = {};
+              newRow['id'] = currentRow['city_id'];
+              newRow['name'] = cityName + ', ' + stateName;
+              newRow['type'] = 'cities';
+              $scope.searchResults['or'].push(newRow);
+            };
+            if (stateName.toLowerCase().includes(queryValues[q].toLowerCase()) && !statesFoundOr.hasOwnProperty(currentRow['state_code'])){
+              // console.log("found state match: ");
+              // console.log(currentRow);
+              statesFoundOr[currentRow['state_code']] = true;
+              var newRow = {};
+              newRow['id'] = currentRow['state_code'];
+              newRow['name'] = stateName;
+              newRow['type'] = 'states';
+              $scope.searchResults['or'].push(newRow);
+            };
+          };
+        };
+      };
+      if (queryValues.length > 1) {
+        for (var key in $scope.searchResults['or']) {
+          var match = true;
+          for (var q in queryValues) {
+            if(match && !$scope.searchResults['or'][key]['name'].toLowerCase().includes(queryValues[q].toLowerCase())) {
+              match = false;
+            };
+          };
+          if(match) {
+            $scope.searchResults['and'].push($scope.searchResults['or'][key]);
+          };
+        };
+      };
+      console.log($scope.searchResults);
+    };
+
+    $scope.sort = {
+      by: 'name',
+      descending: false
+    };
+    //used to update/set sort values
+    this.sortBy = function(col) {
+      if ($scope.sort['by'] === col) {
+        $scope.sort['descending'] = !$scope.sort['descending'];
+      } else {
+        $scope.sort['by'] = col;
+        $scope.sort['descending'] = false;
+      };
+    };
+    //used by ng-show, for chevron on column
+    this.sortedBy = function(col) {
+      return $scope.sort['by'] === col;
+    };
+    //used by ng-class, for chevron direction
+    this.isDescending = function() {
+      return $scope.sort['descending'];
+    };
+    this.showTable = function(tableType) {
+      console.log('Checking if show');
+      return $scope.searchResults.hasOwnProperty(tableType) && $scope.searchResults[tableType].length > 0;
+    };
+
+    var init = function() {
+      console.log($routeParams);
+      searchService.callAPI().then(function(data){buildData(data);}, function(data) {alert(data)});
+    };
+    init();
+
+  }]);
+
+  app.service('searchService', ['$q', '$http', '$location', '$sce', '$routeParams', function($q, $http, $location, $sce, $routeParams) {
+
+    // var baseUrl = 'http://192.168.99.100';
+    var baseUrl = '';
+    var api = '/api/neighborhoods';
+
+    var temp = '/json_data/neighborhoods.json';
+
+    var url = '';
+    var makeJsonUrl = function() {
+      url = baseUrl + api;
+      // url=temp;
+      return url;
+    };
+
+    this.data = {};
+
+    //call neighborhoods json
+    this.callAPI = function() {
+      makeJsonUrl();
+      console.log("making API call at: " + url);
+      var deferred = $q.defer();
+      $http.get(url).then (
+        function(response) {
+          this.data = response.data;
+          deferred.resolve(response.data);
+        },
+        function(response) {
+          console.log(response);
+          deferred.reject("api call failed");
+        }
+      );
+      return deferred.promise;
     };
   }]);
 
@@ -87,7 +241,7 @@
       $scope.week = null;
       $scope.weeks = [];
       $scope.filterOptions = {};
-      var temp = {}
+      var temp = {};
       //used for getting weeks: keys
       $scope.data['stateCode'] = $routeParams['stateCode'];
       $scope.data['propertyStats'] = [];
@@ -463,9 +617,18 @@
       return $scope.sort['descending'];
     };
     //initializing function. sets scope data after resolving promise
+    var buildRows = function(data) {
+      $scope.rows = [];
+      for (var key in data) {
+        var row = {};
+        row['name'] = data[key]['state_name'];
+        row['stateCode'] = data[key]['state_code'];
+        $scope.rows.push(row);
+      };
+    };
     var init = function() {
-      dataService.callAPI().then(function(data){$scope.rows = data['states'];},function(data){alert(data);});
-    }
+      dataService.callAPI().then(function(data){buildRows(data);},function(data){alert(data);});
+    };
     init();
   }]);
 
@@ -493,9 +656,19 @@
     this.isDescending = function() {
       return $scope.sort['descending'];
     };
+    var buildRows = function(data) {
+      $scope.rows = [];
+      for (var key in data) {
+        var row = {};
+        row['cityId'] = data[key]['city_id'];
+        row['name'] = data[key]['city_name'];
+        row['stateCode'] = data[key]['state_code'];
+        $scope.rows.push(row);
+      };
+    };
     //initializing function. sets scope data after resolving promise
     var init = function() {
-      dataService.callAPI().then(function(data){$scope.rows = data['cities'];},function(data){alert(data);});
+      dataService.callAPI().then(function(data){buildRows(data);},function(data){alert(data);});
     }
     init();
   }]);
@@ -544,24 +717,31 @@
     };
     //PAGINATION END
     $scope.rows = [];
-    var rowsHelper = function(data) {
-      for (var row in data['neighborhoods']) {
-        var newRow = data['neighborhoods'][row];
-        newRow['cityName'] = $scope.cityIdToName[data['neighborhoods'][row]['city']];
-        // console.log(newRow);
-        $scope.rows.push(newRow);
+    // var rowsHelper = function(data) {
+    //   for (var row in data['neighborhoods']) {
+    //     var newRow = data['neighborhoods'][row];
+    //     newRow['cityName'] = $scope.cityIdToName[data['neighborhoods'][row]['city']];
+    //     // console.log(newRow);
+    //     $scope.rows.push(newRow);
+    //   };
+    //   console.log($scope.rows);
+    // };
+    var buildRows = function(data) {
+      $scope.rows = [];
+      for (var key in data) {
+        var row = {};
+        row['id'] = data[key]['neighborhood_id'];
+        row['name'] = data[key]['neighborhood_name'];
+        row['cityId'] = data[key]['city_id'];
+        row['stateCode'] = data[key]['state_code'];
+        $scope.rows.push(row);
       };
-      console.log($scope.rows);
     };
     //initializing function. sets scope data after resolving promise
     var init = function() {
-      dataService.callAPI().then(function(data){rowsHelper(data);setupPagination();},function(data){alert(data);});
+      dataService.callAPI().then(function(data){buildRows(data);setupPagination();},function(data){alert(data);});
     }
     init();
-  }]);
-
-  app.controller('searchController', ['$scope', '$routeParams', function($scope,$routeParams){
-    console.log($routeParams);
   }]);
 
   // app.service('searchService',['$q','$http', '$routeParams', function($q,$http,$routeParams){
@@ -571,8 +751,8 @@
   //service to actually call API and manage the data
   //following example at http://tylermcginnis.com/angularjs-factory-vs-service-vs-provider/ for design
   app.service('dataService', ['$q','$http', '$location', '$sce', function($q,$http,$location,$sce){
-    var baseUrl = 'http://192.168.99.100';
-    // var baseUrl = '';
+    // var baseUrl = 'http://192.168.99.100';
+    var baseUrl = '';
     var apiExtension = '/api';
     // var apiExtension = '/json_data';
     var jsonUrl = '';
@@ -586,12 +766,11 @@
       makeJsonUrl();
       var deferred = $q.defer();
       console.log("calling API at: " + jsonUrl);
-      // $http.get('/json_data/cities.json').then(
       $http.get(jsonUrl).then(
         //success
         function(response){
-          console.log("hello");
           console.log(response);
+          console.log(response.data);
           this.data = response.data;
           deferred.resolve(response.data);
         }
