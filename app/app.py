@@ -476,7 +476,6 @@ def api_state_all():
     for data in test:
         jsonData[data.state_code] = data.serialize()
 
-
     return jsonify(jsonData)
 
 
