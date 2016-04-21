@@ -60,11 +60,83 @@
   }]);
 
   app.controller('splashController',['$scope', function($scope){
+    $scope.options = [{id:1, name:"All"}, {id:2, name:"States"}, {id:3, name:"Cities"}, {id:4, name:"Neighborhoods"}];
     $scope.searchParam = 'all';
     this.makeSearchUrl = function() {
        var link = "search?" + $scope.searchParam + '=' + $scope.searchValue;
        console.log(link);
       return link;
+    };
+  }]);
+
+  app.controller('searchController', ['$scope', '$routeParams', 'searchService', function($scope, $routeParams, searchService) {
+
+    $scope.searchResults = [];
+
+    var query = '';
+
+    var buildData = function(data, query) {
+      $scope.searchResults = [];
+      //queryValues = query.split(" ");
+      var queryValues = ['Akin', 'Austin', 'Texas'];
+
+      for(var key in data['neighborhoods']) {
+        var result = '';
+        var cityName = $scope.cityIdToName[data['neighborhoods'][key]['city']];
+        var stateName = $scope.stateIdToName[data['neighborhoods'][key]['stateCode']];
+        var neighborhoodName = data['neighborhoods'][key]['name'];
+
+        if(queryValues.indexOf(cityName) > -1 && $scope.searchResults.indexOf(cityName + ', ' + stateName) == -1) {
+          $scope.searchResults.push(cityName + ', ' + stateName);
+        }
+
+        if(queryValues.indexOf(stateName) > -1 && $scope.searchResults.indexOf(stateName) == -1) {
+          $scope.searchResults.push(stateName);
+        }
+
+        if(queryValues.indexOf(neighborhoodName) > -1) {
+          $scope.searchResults.push(neighborhoodName + ', ' + cityName + ', ' + stateName);
+        }
+
+
+      }
+      console.log($scope.searchResults);
+
+    };
+
+    var init = function() {
+      searchService.callAPI().then(function(data){buildData(data, query);}, function(data) {alert(data)});
+    };
+    init();
+
+  }]);
+
+  app.service('searchService', ['$q', '$http', '$location', '$sce', '$routeParams', function($q, $http, $location, $sce, $routeParams) {
+
+    var apiExtension = '/~bjq59/vas/json_data';
+    var json = '/neighborhoods.json';
+    var url = ''
+    var makeJsonUrl = function() {
+      url = apiExtension + json;
+      return url;
+    };
+
+    this.data = {};
+
+    //call neighborhoods json
+    this.callAPI = function() {
+      makeJsonUrl();
+      var deferred = $q.defer();
+      $http.get(url).then (
+        function(response) {
+          this.data = response.data;
+          deferred.resolve(response.data);
+        },
+        function(response) {
+          deferred.reject("api call failed");
+        }
+      );
+      return deferred.promise;
     };
   }]);
 
@@ -87,7 +159,7 @@
       $scope.week = null;
       $scope.weeks = [];
       $scope.filterOptions = {};
-      var temp = {}
+      var temp = {};
       //used for getting weeks: keys
       $scope.data['stateCode'] = $routeParams['stateCode'];
       $scope.data['propertyStats'] = [];
@@ -588,10 +660,6 @@
       dataService.callAPI().then(function(data){buildRows(data);setupPagination();},function(data){alert(data);});
     }
     init();
-  }]);
-
-  app.controller('searchController', ['$scope', '$routeParams', function($scope,$routeParams){
-    console.log($routeParams);
   }]);
 
   // app.service('searchService',['$q','$http', '$routeParams', function($q,$http,$routeParams){
