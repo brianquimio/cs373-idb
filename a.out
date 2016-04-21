@@ -1,0 +1,58 @@
+== Info: Hostname was NOT found in DNS cache
+== Info:   Trying 104.130.22.190...
+== Info: Connected to www.virtual-address.space (104.130.22.190) port 80 (#0)
+=> Send header, 99 bytes (0x63)
+0000: 47 45 54 20 2f 61 70 69 2f 63 69 74 69 65 73 20 GET /api/cities 
+0010: 48 54 54 50 2f 31 2e 31 0d 0a 55 73 65 72 2d 41 HTTP/1.1..User-A
+0020: 67 65 6e 74 3a 20 63 75 72 6c 2f 37 2e 33 35 2e gent: curl/7.35.
+0030: 30 0d 0a 48 6f 73 74 3a 20 77 77 77 2e 76 69 72 0..Host: www.vir
+0040: 74 75 61 6c 2d 61 64 64 72 65 73 73 2e 73 70 61 tual-address.spa
+0050: 63 65 0d 0a 41 63 63 65 70 74 3a 20 2a 2f 2a 0d ce..Accept: */*.
+0060: 0a 0d 0a                                        ...
+<= Recv header, 32 bytes (0x20)
+0000: 48 54 54 50 2f 31 2e 31 20 33 30 31 20 4d 4f 56 HTTP/1.1 301 MOV
+0010: 45 44 20 50 45 52 4d 41 4e 45 4e 54 4c 59 0d 0a ED PERMANENTLY..
+== Info: Server nginx/1.9.14 is not blacklisted
+<= Recv header, 22 bytes (0x16)
+0000: 53 65 72 76 65 72 3a 20 6e 67 69 6e 78 2f 31 2e Server: nginx/1.
+0010: 39 2e 31 34 0d 0a                               9.14..
+<= Recv header, 37 bytes (0x25)
+0000: 44 61 74 65 3a 20 4d 6f 6e 2c 20 31 38 20 41 70 Date: Mon, 18 Ap
+0010: 72 20 32 30 31 36 20 30 36 3a 35 35 3a 31 31 20 r 2016 06:55:11 
+0020: 47 4d 54 0d 0a                                  GMT..
+<= Recv header, 40 bytes (0x28)
+0000: 43 6f 6e 74 65 6e 74 2d 54 79 70 65 3a 20 74 65 Content-Type: te
+0010: 78 74 2f 68 74 6d 6c 3b 20 63 68 61 72 73 65 74 xt/html; charset
+0020: 3d 75 74 66 2d 38 0d 0a                         =utf-8..
+<= Recv header, 21 bytes (0x15)
+0000: 43 6f 6e 74 65 6e 74 2d 4c 65 6e 67 74 68 3a 20 Content-Length: 
+0010: 32 36 37 0d 0a                                  267..
+<= Recv header, 56 bytes (0x38)
+0000: 4c 6f 63 61 74 69 6f 6e 3a 20 68 74 74 70 3a 2f Location: http:/
+0010: 2f 77 77 77 2e 76 69 72 74 75 61 6c 2d 61 64 64 /www.virtual-add
+0020: 72 65 73 73 2e 73 70 61 63 65 2f 61 70 69 2f 63 ress.space/api/c
+0030: 69 74 69 65 73 2f 0d 0a                         ities/..
+<= Recv header, 24 bytes (0x18)
+0000: 43 6f 6e 6e 65 63 74 69 6f 6e 3a 20 6b 65 65 70 Connection: keep
+0010: 2d 61 6c 69 76 65 0d 0a                         -alive..
+<= Recv header, 2 bytes (0x2)
+0000: 0d 0a                                           ..
+<= Recv data, 267 bytes (0x10b)
+0000: 3c 21 44 4f 43 54 59 50 45 20 48 54 4d 4c 20 50 <!DOCTYPE HTML P
+0010: 55 42 4c 49 43 20 22 2d 2f 2f 57 33 43 2f 2f 44 UBLIC "-//W3C//D
+0020: 54 44 20 48 54 4d 4c 20 33 2e 32 20 46 69 6e 61 TD HTML 3.2 Fina
+0030: 6c 2f 2f 45 4e 22 3e 0a 3c 74 69 74 6c 65 3e 52 l//EN">.<title>R
+0040: 65 64 69 72 65 63 74 69 6e 67 2e 2e 2e 3c 2f 74 edirecting...</t
+0050: 69 74 6c 65 3e 0a 3c 68 31 3e 52 65 64 69 72 65 itle>.<h1>Redire
+0060: 63 74 69 6e 67 2e 2e 2e 3c 2f 68 31 3e 0a 3c 70 cting...</h1>.<p
+0070: 3e 59 6f 75 20 73 68 6f 75 6c 64 20 62 65 20 72 >You should be r
+0080: 65 64 69 72 65 63 74 65 64 20 61 75 74 6f 6d 61 edirected automa
+0090: 74 69 63 61 6c 6c 79 20 74 6f 20 74 61 72 67 65 tically to targe
+00a0: 74 20 55 52 4c 3a 20 3c 61 20 68 72 65 66 3d 22 t URL: <a href="
+00b0: 68 74 74 70 3a 2f 2f 61 70 70 5f 73 65 72 76 65 http://app_serve
+00c0: 72 73 2f 61 70 69 2f 63 69 74 69 65 73 2f 22 3e rs/api/cities/">
+00d0: 68 74 74 70 3a 2f 2f 61 70 70 5f 73 65 72 76 65 http://app_serve
+00e0: 72 73 2f 61 70 69 2f 63 69 74 69 65 73 2f 3c 2f rs/api/cities/</
+00f0: 61 3e 2e 20 20 49 66 20 6e 6f 74 20 63 6c 69 63 a>.  If not clic
+0100: 6b 20 74 68 65 20 6c 69 6e 6b 2e                k the link.
+== Info: Connection #0 to host www.virtual-address.space left intact
