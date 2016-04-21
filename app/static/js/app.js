@@ -188,14 +188,15 @@
 
   app.service('searchService', ['$q', '$http', '$location', '$sce', '$routeParams', function($q, $http, $location, $sce, $routeParams) {
 
-    var base = 'http://192.168.99.100';
+    // var baseUrl = 'http://192.168.99.100';
+    var baseUrl = '';
     var api = '/api/neighborhoods';
 
     var temp = '/json_data/neighborhoods.json';
 
     var url = '';
     var makeJsonUrl = function() {
-      url = base + api;
+      url = baseUrl + api;
       // url=temp;
       return url;
     };
@@ -750,8 +751,8 @@
   //service to actually call API and manage the data
   //following example at http://tylermcginnis.com/angularjs-factory-vs-service-vs-provider/ for design
   app.service('dataService', ['$q','$http', '$location', '$sce', function($q,$http,$location,$sce){
-    var baseUrl = 'http://192.168.99.100';
-    // var baseUrl = '';
+    // var baseUrl = 'http://192.168.99.100';
+    var baseUrl = '';
     var apiExtension = '/api';
     // var apiExtension = '/json_data';
     var jsonUrl = '';
