@@ -60,12 +60,11 @@
   }]);
 
   app.controller('splashController',['$scope', function($scope){
-    $scope.options = [{id:1, name:"All"}, {id:2, name:"States"}, {id:3, name:"Cities"}, {id:4, name:"Neighborhoods"}];
-    $scope.searchParam = 'all';
-    this.makeSearchUrl = function() {
-       var link = "search?" + $scope.searchParam + '=' + $scope.searchValue;
-       console.log(link);
-      return link;
+    this.searchUrl = '/search?q=';
+    $scope.searchValue = '';
+    this.makeSearchUrl = function(){
+      this.searchUrl = '/search?q=' + $scope.searchValue;
+      console.log(this.searchUrl);
     };
   }]);
 
