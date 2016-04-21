@@ -473,26 +473,23 @@ def api_state_spec(statecode):
     jsonData = {}
 
     test = StateStats.query.filter_by(state_code=statecode).all()
+    cities = City.query.filter_by(state_code=statecode).all()
 
     if len(test) is 0:
         init_state_stats(json.load(open('json_data/state_stats.json')))
 
-    #-----------
-    # Debug Code
-    #-----------
-
-    # test_str = str(test)
-    # logger.info(test_str)
-
-    # ttdb = db.session.execute("""
-    #     SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='StateStats'
-    #     """)
-    # for i in ttdb:
-    #     logger.debug("Column: " + str(i[0]))
-
     for data in test:
         jsonData[data.id] = data.serialize()
-    return jsonify(jsonData)
+
+    city_data = {}
+    for data in cities:
+        city_data[data.city_id] = data.serialize()
+    
+    result = {}
+    result['cities'] = city_data
+    result['stats'] = jsonData
+
+    return jsonify(result)
 
 
 @app.route('/api/cities/')
@@ -516,28 +513,26 @@ def api_cities_all():
 @app.route('/api/cities/<cityID>')
 def api_city_spec(cityID):
     jsonData = {}
-
+    result = {}
     test = CityStats.query.filter_by(city_id=cityID).all()
+    neighborhoods = Neighborhood.query.filter_by(city_id=cityID).all()
 
     if len(test) is 0:
         init_city_stats(json.load(open('json_data/city_stats.json')))
 
-    #-----------
-    # Debug Code
-    #-----------
-
-    # test_str = str(test)
-    # logger.info(test_str)
-
-    # ttdb = db.session.execute("""
-    #     SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='StateStats'
-    #     """)
-    # for i in ttdb:
-    #     logger.debug("Column: " + str(i[0]))
-
     for data in test:
         jsonData[data.id] = data.serialize()
-    return jsonify(jsonData)
+
+    result['stats'] = jsonData
+
+    neighborhood_data = {}
+    for data in neighborhoods:
+        neighborhood_data[data.neighborhood_id] = data.serialize()
+    
+    result['neighborhoods'] = neighborhood_data
+
+
+    return jsonify(result)
 
 
 @app.route('/api/neighborhoods/')
