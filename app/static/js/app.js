@@ -23,7 +23,8 @@
         controller: 'aboutController'
       }).when('/search', {
         templateUrl: '/static/partials/search.html',
-        controller: 'searchController'
+        controller: 'searchController',
+        controllerAs: 'search'
       }).when('/states/:stateCode', {
         templateUrl: '/static/partials/state_model.html',
         controller: 'stateModelController',
@@ -32,9 +33,10 @@
         templateUrl: '/static/partials/city_model.html',
         controller: 'cityModelController',
         controllerAs: 'city'
-      }).when('/neighborhood/:neighborhoodId', {
+      }).when('/neighborhoods/:neighborhoodId', {
         templateUrl: '/static/partials/model.html',
-        controller: 'neighborhoodModelController'
+        controller: 'neighborhoodModelController',
+        controllerAs: 'neighborhood'
       }).when('/home', {
         redirectTo: '/'
       }).when('/', {
@@ -70,41 +72,116 @@
 
   app.controller('searchController', ['$scope', '$routeParams', 'searchService', function($scope, $routeParams, searchService) {
 
-    $scope.searchResults = [];
+    $scope.searchResults = {};
 
-    var query = '';
-
-    var buildData = function(data, query) {
-      $scope.searchResults = [];
-      //queryValues = query.split(" ");
-      var queryValues = ['Akin', 'Austin', 'Texas'];
-
+    var buildData = function(data) {
+      $scope.searchResults = {};
+      var re = /\W+/;
+      var queryValues = $routeParams['q'].split(re);
+      // var queryValues = ['Akin', 'Austin', 'Texas'];
+      console.log(queryValues);
+      if (queryValues.length > 0) {
+        $scope.searchResults['or'] = [];
+      };
+      if (queryValues.length > 1) {
+        $scope.searchResults['and'] = [];
+      };
+      var neighborhoodsFoundOr = {};
+      var citiesFoundOr = {};
+      var statesFoundOr = {};
+      var neighborhoodsFoundAnd = {};
+      var citiesFoundAnd = {};
+      var statesFoundAnd = {};
       for(var key in data['neighborhoods']) {
-        var result = '';
-        var cityName = $scope.cityIdToName[data['neighborhoods'][key]['city']];
-        var stateName = $scope.stateIdToName[data['neighborhoods'][key]['stateCode']];
-        var neighborhoodName = data['neighborhoods'][key]['name'];
-
-        if(queryValues.indexOf(cityName) > -1 && $scope.searchResults.indexOf(cityName + ', ' + stateName) == -1) {
-          $scope.searchResults.push(cityName + ', ' + stateName);
-        }
-
-        if(queryValues.indexOf(stateName) > -1 && $scope.searchResults.indexOf(stateName) == -1) {
-          $scope.searchResults.push(stateName);
-        }
-
-        if(queryValues.indexOf(neighborhoodName) > -1) {
-          $scope.searchResults.push(neighborhoodName + ', ' + cityName + ', ' + stateName);
-        }
-
-
-      }
+        var currentRow = data['neighborhoods'][key];
+        // var newRow = {};
+        var cityName = '';
+        if (currentRow['city'] !== undefined && $scope.cityIdToName[currentRow['city']] != undefined) {
+          cityName = $scope.cityIdToName[currentRow['city']];
+        };
+        var stateName = $scope.stateIdToName[currentRow['stateCode']];
+        var neighborhoodName = currentRow['name'];
+        if (queryValues.length > 0) {
+          for(var q in queryValues) {
+            if (neighborhoodName.toLowerCase().includes(queryValues[q].toLowerCase()) && !neighborhoodsFoundOr.hasOwnProperty(currentRow['id'])){
+              neighborhoodsFoundOr[currentRow['id']] = true;
+              // console.log("found neighborhood match: ");
+              // console.log(currentRow);
+              var newRow = {};
+              newRow['id'] = currentRow['id'];
+              newRow['name'] = neighborhoodName + ', ' + cityName + ', ' + stateName;
+              newRow['type'] = 'neighborhoods';
+              $scope.searchResults['or'].push(newRow);
+            };
+            if (cityName.toLowerCase().includes(queryValues[q].toLowerCase()) && !citiesFoundOr.hasOwnProperty(currentRow['city'])){
+              // console.log("found city match: ");
+              // console.log(currentRow);
+              citiesFoundOr[currentRow['city']] = true;
+              var newRow = {};
+              newRow['id'] = currentRow['city'];
+              newRow['name'] = cityName + ', ' + stateName;
+              newRow['type'] = 'cities';
+              $scope.searchResults['or'].push(newRow);
+            };
+            if (stateName.toLowerCase().includes(queryValues[q].toLowerCase()) && !statesFoundOr.hasOwnProperty(currentRow['stateCode'])){
+              // console.log("found state match: ");
+              // console.log(currentRow);
+              statesFoundOr[currentRow['stateCode']] = true;
+              var newRow = {};
+              newRow['id'] = currentRow['stateCode'];
+              newRow['name'] = stateName;
+              newRow['type'] = 'states';
+              $scope.searchResults['or'].push(newRow);
+            };
+          };
+        };
+      };
+      if (queryValues.length > 1) {
+        for (var key in $scope.searchResults['or']) {
+          var match = true;
+          for (var q in queryValues) {
+            if(match && !$scope.searchResults['or'][key]['name'].toLowerCase().includes(queryValues[q].toLowerCase())) {
+              match = false;
+            };
+          };
+          if(match) {
+            $scope.searchResults['and'].push($scope.searchResults['or'][key]);
+          };
+        };
+      };
       console.log($scope.searchResults);
 
     };
 
+    $scope.sort = {
+      by: 'name',
+      descending: false
+    };
+    //used to update/set sort values
+    this.sortBy = function(col) {
+      if ($scope.sort['by'] === col) {
+        $scope.sort['descending'] = !$scope.sort['descending'];
+      } else {
+        $scope.sort['by'] = col;
+        $scope.sort['descending'] = false;
+      };
+    };
+    //used by ng-show, for chevron on column
+    this.sortedBy = function(col) {
+      return $scope.sort['by'] === col;
+    };
+    //used by ng-class, for chevron direction
+    this.isDescending = function() {
+      return $scope.sort['descending'];
+    };
+    this.showTable = function(tableType) {
+      console.log('Checking if show');
+      return $scope.searchResults.hasOwnProperty(tableType) && $scope.searchResults[tableType].length > 0;
+    };
+
     var init = function() {
-      searchService.callAPI().then(function(data){buildData(data, query);}, function(data) {alert(data)});
+      console.log($routeParams);
+      searchService.callAPI().then(function(data){buildData(data);}, function(data) {alert(data)});
     };
     init();
 
@@ -112,11 +189,15 @@
 
   app.service('searchService', ['$q', '$http', '$location', '$sce', '$routeParams', function($q, $http, $location, $sce, $routeParams) {
 
-    var apiExtension = '/~bjq59/vas/json_data';
-    var json = '/neighborhoods.json';
-    var url = ''
+    var base = '';
+    var api = '/api/neighborhoods';
+
+    var temp = '/json_data/neighborhoods.json';
+
+    var url = '';
     var makeJsonUrl = function() {
-      url = apiExtension + json;
+      // url = base + api;
+      url=temp;
       return url;
     };
 
