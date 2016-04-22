@@ -327,17 +327,19 @@ def init_city_stats(city_stats):
                 db.session.commit()
 
 
-def neighborhood_stats_subcat(subcat):
+def neighborhood_stats_subcat(subcat, week_of, code):
     """
     helper method to go though each attribute for a given subclass passed from neighborhood_stats_week
     """
     logger.debug("SUBCAT: " + str(subcat))
-    logger.debug("SUBCAT TYPE: " + str(type(subcat)))
 
     num_properties = subcat['numberOfProperties']
     med_listing_price = subcat['medianListingPrice']
     avg_listing_price = subcat['averageListingPrice']
     property_type = subcat['type']
+
+    logger.debug(str(code))
+    logger.debug(str(week_of))
 
     stats = NeighborhoodStats(week_of="Testing Data", property_type="Testing Data",
         num_properties="Testing Data", avg_listing_price="Testing Data",
@@ -347,7 +349,7 @@ def neighborhood_stats_subcat(subcat):
     db.session.commit()
 
 
-def neighborhood_stats_week(week):
+def neighborhood_stats_week(week, code):
     """
     helper method for going through the week passed from init_neighborhood_stats
     """
@@ -358,16 +360,15 @@ def neighborhood_stats_week(week):
 
     if type(week['listingPrice']['subcategory']) is list:
         for subcat in week['listingPrice']['subcategory']:
-            neighborhood_stats_subcat(subcat)
+            neighborhood_stats_subcat(subcat, week_of, code)
     else:
-        neighborhood_stats_subcat(week['listingPrice']['subcategory'])
+        neighborhood_stats_subcat(week['listingPrice']['subcategory'], week_of, code)
 
 
 def neighborhood_stats_none():
     """
     helper method for init_neighborhood_stats for when there are no neighborhoods
     """
-    # logger.debug("*******HERE*******")
     stats = NeighborhoodStats(week_of="No Data Available", property_type="No Data Available",
                     num_properties="No Data Available", avg_listing_price="No Data Available",
                     med_listing_price="No Data Available", neighborhood_id="No Data Available")
@@ -384,22 +385,22 @@ def init_neighborhood_stats(neighborhood_stats):
     TODO: validate output as well-formed JSON
     """
 
-    # neighborhood_codes = neighborhood_stats['neighborhood'][0]
-    # neighborhood_keys = neighborhood_codes.keys()
+    neighborhood_codes = neighborhood_stats['neighborhood'][0]
+    neighborhood_keys = neighborhood_codes.keys()
 
-    # for code in neighborhood_keys:
-    #     logger.debug("NEIGHBORHOOD CODE: " + str(code))
-    #     if type(neighborhood_codes[code]) is str:
-    #         logger.debug("NEIGHBORHOOD CODE: " + str(neighborhood_codes[code]))
-    #         neighborhood_stats_none()
-        # else:
-        #     if type(neighborhood_codes[code]['listingStat']) is list:
-        #         logger.debug("IN IF: MULTIPLE WEEKS")
-        #         for week in neighborhood_codes[code]['listingStat']:
-        #             neighborhood_stats_week(week)
-        #         else:
-        #             logger.debug("IN ELSE: ONLY ONE WEEK")
-        #             neighborhood_stats_week(neighborhood_codes[code]['listingStat']['subcategory'])
+    for code in neighborhood_keys:
+        logger.debug("NEIGHBORHOOD CODE: " + str(code))
+        if type(neighborhood_codes[code]) is str:
+            logger.debug("NEIGHBORHOOD CODE: " + str(neighborhood_codes[code]))
+            neighborhood_stats_none()
+        else:
+            if type(neighborhood_codes[code]['listingStat']) is list:
+                logger.debug("IN IF: MULTIPLE WEEKS")
+                for week in neighborhood_codes[code]['listingStat']:
+                    neighborhood_stats_week(week, code)
+            else:
+                logger.debug("IN ELSE: ONLY ONE WEEK")
+                neighborhood_stats_week(neighborhood_codes[code]['listingStat']['subcategory'], code)
 
 
     # for code in neighborhood_keys:
@@ -419,24 +420,24 @@ def init_neighborhood_stats(neighborhood_stats):
     #             db.session.commit()
 
 
-    city_codes = city_stats['neighborhood'][0]
-    city_keys = city_codes.keys()
+    # city_codes = city_stats['neighborhood'][0]
+    # city_keys = city_codes.keys()
 
 
-    for code in city_keys:
-        for week in city_codes[code]['listingStat']:
-            week_of = week['weekEndingDate']
-            for subcat in week['listingPrice']['subcategory']:
-                num_properties = subcat['numberOfProperties']
-                med_listing_price = subcat['medianListingPrice']
-                avg_listing_price = subcat['averageListingPrice']
-                property_type = subcat['type']
+    # for code in city_keys:
+    #     for week in city_codes[code]['listingStat']:
+    #         week_of = week['weekEndingDate']
+    #         for subcat in week['listingPrice']['subcategory']:
+    #             num_properties = subcat['numberOfProperties']
+    #             med_listing_price = subcat['medianListingPrice']
+    #             avg_listing_price = subcat['averageListingPrice']
+    #             property_type = subcat['type']
 
-                stats = NeighborhoodStats(week_of=week_of, property_type=property_type, num_properties=num_properties,
-                    avg_listing_price=avg_listing_price, med_listing_price=med_listing_price, neighborhood_id=code)
+    #             stats = NeighborhoodStats(week_of=week_of, property_type=property_type, num_properties=num_properties,
+    #                 avg_listing_price=avg_listing_price, med_listing_price=med_listing_price, neighborhood_id=code)
 
-                db.session.add(stats)
-                db.session.commit()
+    #             db.session.add(stats)
+    #             db.session.commit()
 
 
 
@@ -668,10 +669,9 @@ def api_neighborhood_spec(nID):
     jsonData = {}
 
     if len(NeighborhoodStats.query.filter_by(neighborhood_id=nID).all()) == 0:
-        init_state_stats(json.load(open('json_data/neighborhoods1.json')))
+        init_neighborhood_stats(json.load(open('json_data/neighborhoods1.json')))
     
     test = NeighborhoodStats.query.filter_by(neighborhood_id=nID).all()
-
 
     for data in test:
         jsonData[data.id] = data.serialize()
