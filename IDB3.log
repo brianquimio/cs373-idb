@@ -1,3 +1,439 @@
+commit 8c0228f8cfc5bf845d6a85d3eaefb91b5783d223
+Author: Adam Alloy <aralloy@gmail.com>
+Date:   Thu Apr 21 20:02:57 2016 -0500
+
+    tests work!
+
+commit 2e9f1e10fb91832e4477794eadc0713a8b1a306f
+Merge: 7198952 8da5ef1
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Thu Apr 21 19:48:53 2016 -0500
+
+    Merge branch 'fileRestructure'
+
+commit 8da5ef1a0f69910d7d1968b87e030350b4e4ed21
+Merge: 6c4590c aedbb54
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Thu Apr 21 19:47:35 2016 -0500
+
+    Merge branch 'fileRestructure' of https://github.com/brianquimio/cs373-idb into fileRestructure
+
+commit 6c4590c89ed4e4e5b7d3b8bea7680fe4e6ed26a9
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Thu Apr 21 19:47:16 2016 -0500
+
+    test link in about working
+
+commit aedbb542f5239b319079f37b5e61f8d0ce81737c
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Thu Apr 21 19:35:00 2016 -0500
+
+    everything in app.py work except for n_stats
+
+commit 8eb04cc9d5712fccc4c5c79b8392afa539d56ba3
+Author: Adam Alloy <aralloy@gmail.com>
+Date:   Thu Apr 21 18:12:04 2016 -0500
+
+    copied tests from dev
+
+commit dd883042c2b29a528dd34d457b8fc18587267757
+Merge: 710ec70 15caeae
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Thu Apr 21 16:51:57 2016 -0500
+
+    merge app.py
+
+commit 710ec7065566a12f0939274af13622d718854bec
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Thu Apr 21 16:46:43 2016 -0500
+
+    all working on app.py except neighborhood stats
+
+commit 15caeae9233fada327c27976d8b597787e041fbd
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Thu Apr 21 16:36:33 2016 -0500
+
+    dataService update: no need to set baseUrl
+
+commit 71989525326554a1178d99d8ccbdc515f53be9b7
+Merge: 485fae8 743082d
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Thu Apr 21 16:11:26 2016 -0500
+
+    Merge pull request #50 from brianquimio/fileRestructure
+    
+    search switched to API calls
+
+commit 743082d88a2254ac07c70156a55cc88f33302aa5
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Thu Apr 21 16:09:10 2016 -0500
+
+    search switched to API calls
+
+commit 485fae88f863733f0acc0d5fac46612c95f66604
+Merge: 07324fd d53bc1b
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Thu Apr 21 02:28:14 2016 -0500
+
+    Merge branch 'master' of https://github.com/brianquimio/cs373-idb
+
+commit 07324fd01d183628f3498e6a022cd47c30dbf7fc
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Thu Apr 21 02:25:11 2016 -0500
+
+    search is working on front-end only
+
+commit 2d062752b8b6df0e8b6502bd1e84ceea6c525e83
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Thu Apr 21 00:07:41 2016 -0500
+
+    passing param to search functional in splash
+
+commit 7a2be077665dd3a137f93dfc83e25bd108163743
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Wed Apr 20 23:45:28 2016 -0500
+
+    incorporated search to app.js
+
+commit d53bc1b08ed6789c030148a8fb3365b61d53e147
+Merge: 06b226c 5d16666
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Wed Apr 20 23:16:34 2016 -0500
+
+    Merge branch 'master' of https://github.com/brianquimio/cs373-idb
+
+commit 06b226c6832d4a7ca789d5c7ea1dac9104b6f6a6
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Wed Apr 20 23:15:55 2016 -0500
+
+    remove an irrelevant file
+
+commit 5d16666c2dfa0becf144df6ab84639d515fd1e96
+Merge: bae00d8 4ce4a20
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Wed Apr 20 23:05:03 2016 -0500
+
+    Merge pull request #49 from brianquimio/new_dev
+    
+    New dev
+
+commit bae00d8f5c961d11678b876dfc093bb9a5af307c
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Wed Apr 20 23:02:31 2016 -0500
+
+    Working site. Still need search
+
+commit 4ce4a209a2b54b435e9014c60faafef0389b53d7
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Wed Apr 20 22:55:18 2016 -0500
+
+    FRONT END IS WORKING OFF API CAAAAAAAAAAAAAAAAALLLLLLLLLLLLLLSSSSSSSSSSSSSSSSSSSSSSSSSS! WHOOOOOOO!
+
+commit 4ecf252de9385a63378f6c912d4192d24768bf91
+Merge: 9f20b98 6827ed5
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Wed Apr 20 20:50:26 2016 -0500
+
+    fixed merge conflicts with app.py
+
+commit 9f20b98ada9710764a27dc3ea2e95335dee5d084
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Wed Apr 20 20:48:00 2016 -0500
+
+    Have a working app.py
+
+commit 6827ed558af4f8b31ec9a97d12326eb5abfe2251
+Author: Stephen Perl <shperl@users.noreply.github.com>
+Date:   Wed Apr 20 20:42:35 2016 -0500
+
+    Update app.py
+    
+    fixed api call for states
+
+commit 0d7acb54fd2791714d05a0db903b2db3c0595039
+Author: Stephen Perl <shperl@users.noreply.github.com>
+Date:   Wed Apr 20 19:03:02 2016 -0500
+
+    Update app.py
+    
+    Modified statestats and city stats to include dicts with cities in state and neighborhoods in city.
+
+commit b464d81dfc310542ac410d0a9a1aff65b10405ab
+Merge: 53a35ca ed022e6
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Wed Apr 20 17:50:47 2016 -0500
+
+    may have fixed
+
+commit 53a35ca402faff141492272b7edbe6af9813a460
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Wed Apr 20 14:58:02 2016 -0500
+
+    ROUTING IS WORKING MOTHAF- ~watch yo' mouth!
+
+commit ed022e663980356d08a71a1da253011792cdeabb
+Author: Adam Alloy <aralloy@gmail.com>
+Date:   Wed Apr 20 03:10:56 2016 -0500
+
+    Update app.py
+
+commit b3939c683c18565a7c556382b8d23478aed1ea31
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Tue Apr 19 20:36:46 2016 -0500
+
+    need to fix deployment
+
+commit 37bcf3c03291f30347c4cd11e35ecac8609edc17
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Tue Apr 19 19:36:23 2016 -0500
+
+    fixing minor bug in city model
+
+commit cf857bc5b92ac72449db042578bf4b9729407d06
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Tue Apr 19 18:42:06 2016 -0500
+
+    first moving
+
+commit 10faab26a3169eb5d55af5ab8d522cae8063eeaf
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Tue Apr 19 18:29:06 2016 -0500
+
+    added paging to city model children
+
+commit d4176ae7ff4a067ebf1d9adbb2799553950cc666
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Mon Apr 18 23:28:29 2016 -0500
+
+    minor update to neighborhoods.html
+
+commit 3ed9fba94443f118e86f4dc50aa79d0192fe4481
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Mon Apr 18 23:26:49 2016 -0500
+
+    pagination works on neighborhoods
+
+commit f7b0554df9fc6e4e85f8a6bd9d9b38c5436f26e7
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Mon Apr 18 21:20:12 2016 -0500
+
+    neighborhood model page may be working
+
+commit e716810628c3cef39ee1c894b3940eea333aa343
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Mon Apr 18 18:43:42 2016 -0500
+
+    commiting city changes
+
+commit df8d9a3cf603f25089aaf99161d9bc53734287cf
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Mon Apr 18 17:26:49 2016 -0500
+
+    state model page done, working on city
+
+commit 244b4b71b1540f1aca66b7829d3756c79c2efaaf
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Mon Apr 18 02:16:05 2016 -0500
+
+    wrapping up for tonight
+
+commit da7979d6dfd23a2f745c37da4cd4a161a0908977
+Merge: a4132cf d5237dd
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Mon Apr 18 01:50:15 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit a4132cf98b01d43a233c5457cb6342219667aff6
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Mon Apr 18 01:49:56 2016 -0500
+
+    state model page works off template. Still need API to work consistently
+
+commit d5237dde7320b502e82f7884ab29cf5e60dd3fd0
+Author: Adam Alloy <aralloy@gmail.com>
+Date:   Mon Apr 18 01:06:55 2016 -0500
+
+    Update apiary.apib
+
+commit bec8c3371f9aee0af9af06867645329241064e23
+Author: Adam Alloy <aralloy@gmail.com>
+Date:   Mon Apr 18 01:06:41 2016 -0500
+
+    Update apiary.apib
+
+commit f73871dee623bffaebde6e1a7376db33e75d2816
+Merge: 40e4e22 d19acdd
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Mon Apr 18 00:40:23 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit 40e4e22771f3e9f3f906300c566b5b385ff3998e
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Mon Apr 18 00:40:08 2016 -0500
+
+    added stats table to state-model
+
+commit d19acdd13f003cb23808e376a27cb2ecb2228e41
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Sun Apr 17 23:01:51 2016 -0500
+
+    modified init_neighborhood_stats method in app.py to account for Nones in neighborhood_stats.json
+
+commit a4fbca7b59da1fca1fddcf9401b488ddb25999c6
+Merge: 704ea41 5d64755
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Sun Apr 17 22:33:49 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit 704ea41d6622e834d50fc9a649f1dcacce833cb4
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Sun Apr 17 22:33:34 2016 -0500
+
+    fixing small break in app.js
+
+commit 5d64755d7521cd5bd3acb5bd19a68a1623b3db6f
+Author: Steven Zhu <stevenzhu94@utexas.edu>
+Date:   Sun Apr 17 22:12:19 2016 -0500
+
+    validated neighborhood_stats.jon, nones are now strings
+
+commit 42afd124407d0e3bd836995ed28771b6af5cf726
+Merge: 7a475f3 f9f0ae3
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Sun Apr 17 22:00:37 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+
+commit 7a475f337e1d5b5225cad800e2bdd5c92600ae4f
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Sun Apr 17 22:00:11 2016 -0500
+
+    removing redirect to '/' in front-end
+
+commit f9f0ae3bac8e2c160d7bb87545276d15f2ebff38
+Merge: b9b985d bd74a89
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Sun Apr 17 20:53:45 2016 -0500
+
+    resolved conflict with neighborhoods.json
+
+commit b9b985d74e7edc4677e1effb073055211cf81721
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Sun Apr 17 20:51:53 2016 -0500
+
+    changed states to have post request
+
+commit 92e66b491f530fd074672232fd3a321dd7b47600
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Sun Apr 17 20:30:39 2016 -0500
+
+    fixed the routing for api calls returning JSON responses. Need to pull updated front-end down.
+
+commit bd74a8974838b418027868bf4e9f0f43c5ad61fd
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Sun Apr 17 19:57:45 2016 -0500
+
+    adding linking for table pages, and adding controllers for model pages
+
+commit 792c5a5eb40f90561cad9eb4969c4928f4aa4fc8
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Sat Apr 16 21:29:50 2016 -0500
+
+    updated neighborhoods page: displays city name, not id; added global mappings from ID to name to accomplish
+
+commit c1031498269a2394064d4caaeb2fd349b15eff4d
+Merge: 10348d0 549f0ca
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Sat Apr 16 01:52:33 2016 -0500
+
+    Merge branch 'dev' of https://github.com/brianquimio/cs373-idb into dev
+    
+    Conflicts:
+    	app/json_data/neighborhoods.json
+    
+    Modified neighborhoods to be valid json
+
+commit 10348d007cf977a66a3653bde300db06518831c5
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Sat Apr 16 01:50:59 2016 -0500
+
+    table pages work
+
+commit 549f0cab72b31df847a081e563afdbb423d972da
+Author: Stephen Perl <shperl20@gmail.com>
+Date:   Fri Apr 15 22:20:32 2016 -0500
+
+    added static routing for neighborhoods
+
+commit f0f0a36484bb928b33e60753eb540aa3f43fc796
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Fri Apr 15 02:31:10 2016 -0500
+
+    dataService tenatively functional using http and q
+
+commit 0ef78322c444dad7453984ff51b334fe0d17a30d
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Fri Apr 15 01:56:14 2016 -0500
+
+    using only app.js for now
+
+commit 7e267cf38988ef46753242e57e59ae6f3437ece1
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Thu Apr 14 18:05:48 2016 -0500
+
+    update single model partial to add linkable table
+
+commit e1d48e5ab84f07ea7d71df70393146c1c55bb6d8
+Author: Stephen Perl <shperl@users.noreply.github.com>
+Date:   Wed Apr 13 22:22:58 2016 -0500
+
+    Update app.py
+    
+    Enhanced some doc strings in app.py for drop_db and create_db
+
+commit 5e9ea9bb74bf691e8b9babf161fde826815942b1
+Author: Stephen Perl <shperl@users.noreply.github.com>
+Date:   Wed Apr 13 22:16:11 2016 -0500
+
+    Update neighborhoods.json
+    
+    Fixed neighborhoods.json to correct issues with apostrophes
+
+commit f0990b37984a71fd65af09bf69df44d87fdeef4f
+Author: Stephen Perl <shperl@users.noreply.github.com>
+Date:   Wed Apr 13 22:14:38 2016 -0500
+
+    Update app.py
+    
+    Modified app.py to resolve API routing for states and cities. TODO: get neighborhoods and stats to route properly and validate init methods for stats.
+
+commit e00b0c6ce32265cda6abecaf1dc52fc1213ad65d
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Wed Apr 13 18:47:21 2016 -0500
+
+    adding new very basic html work. All work located under app/new_html_stuff/
+
+commit 83bb14fe057d95db37832a3c27596a9adf294955
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Fri Apr 8 22:11:18 2016 -0500
+
+    fixed broken src for app.js
+
+commit 44c2b757003fcc5a9da4db2dceb4b7e32847e615
+Author: Keith Gibson <kdgbsn@gmail.com>
+Date:   Fri Apr 8 22:05:18 2016 -0500
+
+    fixed a ref
+
+commit 3e50f3b1c6460cad416c698bc4970658470b1cca
+Author: Brian Quimio <brian.quimio@gmail.com>
+Date:   Fri Apr 8 21:56:24 2016 -0500
+
+    add log
+
 commit 684a2bba9e68bb28f00d62dc2295a87eff4718a9
 Merge: 0dfb42e d1b1655
 Author: Stephen Perl <shperl20@gmail.com>
