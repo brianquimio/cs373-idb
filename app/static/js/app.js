@@ -20,7 +20,8 @@
         controllerAs: 'neighborhoods'
       }).when('/about', {
         templateUrl: '/static/partials/about.html',
-        controller: 'aboutController'
+        controller: 'aboutController',
+        controllerAs: 'about'
       }).when('/search', {
         templateUrl: '/static/partials/search.html',
         controller: 'searchController',
@@ -34,7 +35,7 @@
         controller: 'cityModelController',
         controllerAs: 'city'
       }).when('/neighborhoods/:neighborhoodId', {
-        templateUrl: '/static/partials/model.html',
+        templateUrl: '/static/partials/neighborhood_model.html',
         controller: 'neighborhoodModelController',
         controllerAs: 'neighborhood'
       }).when('/home', {
@@ -73,6 +74,7 @@
   app.controller('searchController', ['$scope', '$routeParams', 'searchService', function($scope, $routeParams, searchService) {
 
     $scope.searchResults = {};
+    $scope.searchQuery = $routeParams['q'];
 
     var buildData = function(data) {
       $scope.searchResults = {};
@@ -188,14 +190,15 @@
 
   app.service('searchService', ['$q', '$http', '$location', '$sce', '$routeParams', function($q, $http, $location, $sce, $routeParams) {
 
-    var base = 'http://192.168.99.100';
+    // var baseUrl = 'http://192.168.99.100';
+    var baseUrl = '';
     var api = '/api/neighborhoods';
 
     var temp = '/json_data/neighborhoods.json';
 
     var url = '';
     var makeJsonUrl = function() {
-      url = base + api;
+      url = baseUrl + api;
       // url=temp;
       return url;
     };
@@ -221,7 +224,44 @@
     };
   }]);
 
-  app.controller('aboutController',['$scope', function($scope){}]);
+  app.controller('aboutController',['$scope', '$q', '$http', function($scope, $q, $http){
+    $scope.testsCalled = false;
+    $scope.testsResults = '';
+    var url = "/tests";
+    var callTests = function() {
+      console.log("making API call at: " + url);
+      var deferred = $q.defer();
+      $http.get(url).then (
+        function(response) {
+          console.log(response);
+          this.data = response.data;
+          deferred.resolve(response.data);
+        },
+        function(response) {
+          console.log(response);
+          deferred.reject("api call failed");
+        }
+      );
+      return deferred.promise;
+    };
+    this.runTests = function() {
+      callTests().then(
+        function(data) {
+          $scope.testsCalled = true;
+          $scope.testsResults = data['test_results'];
+          // this.showResults();
+        },
+        function(data) {
+          $scope.testsCalled = true;
+          $scope.testsResults = "There was an error; test call failed";
+          console.log(data);
+        }
+      );
+    };
+    this.showResults = function() {
+      $scope.$apply();
+    };
+  }]);
 
   //first attempt:
   //filters API call into state_model data object.
@@ -750,8 +790,8 @@
   //service to actually call API and manage the data
   //following example at http://tylermcginnis.com/angularjs-factory-vs-service-vs-provider/ for design
   app.service('dataService', ['$q','$http', '$location', '$sce', function($q,$http,$location,$sce){
-    var baseUrl = 'http://192.168.99.100';
-    // var baseUrl = '';
+    // var baseUrl = 'http://192.168.99.100';
+    var baseUrl = '';
     var apiExtension = '/api';
     // var apiExtension = '/json_data';
     var jsonUrl = '';
