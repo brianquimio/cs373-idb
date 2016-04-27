@@ -8,6 +8,7 @@ import os
 import subprocess
 from flask import Flask, render_template, request, redirect, url_for, send_file, make_response, jsonify
 from flask.ext.script import Manager, Server
+import requests
 from flask.ext.sqlalchemy import SQLAlchemy
 import json
 import logging
@@ -692,6 +693,9 @@ def render_tests():
     test_results = subprocess.getoutput("python3 tests.py")
     return json.dumps({'test_results': str(test_results)})
 
+@app.route('/api/seriesz')
+def route_series_z_cities():
+    return requests.get('http://series-z.org/api/cities').content
 
 # ----------------
 # Manager Commands
