@@ -1,0 +1,29 @@
+<div class=container>
+
+  <div class="row">
+    <h2 class="text-center">Series Z {{class}}</h2>
+  </div>
+
+  <button ng-click="seriesz.call('/api/seriesz/founders_good')">Corrected Call to 146.20.68.107</button>
+  <button ng-click="seriesz.call('/api/seriesz/founders_bad')">Normal Call to series-z.org</button>
+
+  <table ng-controller="tableController as table" class="table table-striped">
+    <thead>
+      <tr>
+        <th ng-click='table.sortBy("key")'>Key <span ng-show='table.sortedBy("key")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='table.sortBy("value")'>Value <span ng-show='table.sortedBy("value")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <!-- <th ng-click='table.sortBy("popularity")'>Ratio Investors:Companies<span ng-show='table.sortedBy("stateCode")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th> -->
+        <!-- <th>City Id</th>
+        <th>City Name</th>
+        <th>State Code</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="key in keys | orderBy:sort['by']:sort['descending']">
+        <td ng-bind=key></td>
+        <td ng-bind=data[key]></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

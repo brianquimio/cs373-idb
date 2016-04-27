@@ -1,0 +1,106 @@
+<div class="container">
+
+  <!-- <a ng-href="seriesz/city/1">test</a> -->
+
+  <div class="row">
+    <h2 class="text-center">Series Z Cities</h2>
+  </div>
+
+  <button ng-click="seriesz.call('/api/seriesz/cities_good')">Corrected Call to 146.20.68.107</button>
+  <button ng-click="seriesz.call('/api/seriesz/cities_bad')">Normal Call to series-z.org</button>
+
+  <table ng-controller="tableController as table" class="table table-striped">
+    <thead>
+      <tr>
+        <th ng-click='table.sortBy("id")'>City Id <span ng-show='table.sortedBy("id")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='table.sortBy("name")'>City Name <span ng-show='table.sortedBy("name")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='table.sortBy("num_companies")'>Number of Companies<span ng-show='table.sortedBy("num_companies")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='table.sortBy("num_people")'>Number of People<span ng-show='table.sortedBy("num_people")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='table.sortBy("investor_followers")'>Numeber of Investors Following<span ng-show='table.sortedBy("investor_followers")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <!-- <th ng-click='table.sortBy("investor_followers")'>Ratio Investors:Companies<span ng-show='table.sortedBy("stateCode")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th> -->
+        <!-- <th>City Id</th>
+        <th>City Name</th>
+        <th>State Code</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="row in cities | orderBy:sort['by']:sort['descending']">
+        <td ng-bind=row['id']></td>
+        <td><a ng-bind=row['name'] ng-href="{{'seriesz/city/' + row['id']}}"></a></td>
+        <td ng-bind=row['num_companies']></td>
+        <td ng-bind=row['num_people']></td>
+        <td ng-bind=row['investor_followers']></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button ng-click=seriesz.printData()>printData</button>
+
+  <div class="row">
+    <h2 class="text-center">Series Z Startups</h2>
+  </div>
+
+  <button ng-click="seriesz.call('/api/seriesz/startups_good')">Corrected Call to 146.20.68.107</button>
+  <button ng-click="seriesz.call('/api/seriesz/startups_bad')">Normal Call to series-z.org</button>
+
+  <table ng-controller="tableController as table" class="table table-striped">
+    <thead>
+      <tr>
+        <th ng-click='table.sortBy("id")'>Startup Id <span ng-show='table.sortedBy("id")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='table.sortBy("name")'>Startup Name <span ng-show='table.sortedBy("name")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='table.sortBy("city_id")'>City Id<span ng-show='table.sortedBy("city_id")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='table.sortBy("location")'>Location<span ng-show='table.sortedBy("location")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='table.sortBy("popularity")'>Popularity<span ng-show='table.sortedBy("popularity")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <!-- <th ng-click='table.sortBy("popularity")'>Ratio Investors:Companies<span ng-show='table.sortedBy("stateCode")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th> -->
+        <!-- <th>City Id</th>
+        <th>City Name</th>
+        <th>State Code</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="row in startups | orderBy:sort['by']:sort['descending']">
+        <td ng-bind=row['id']></td>
+        <td><a ng-bind=row['name'] ng-href="{{'seriesz/startup/' + row['id']}}"></a></td>
+        <td ng-bind=row['city_id']></td>
+        <td ng-bind=row['location']></td>
+        <td ng-bind=row['popularity']></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div class="row">
+    <h2 class="text-center">Series Z founders</h2>
+  </div>
+
+  <button ng-click="seriesz.call('/api/seriesz/founders_good')">Corrected Call to 146.20.68.107</button>
+  <button ng-click="seriesz.call('/api/seriesz/founders_bad')">Normal Call to series-z.org</button>
+
+  <table ng-controller="tableController as table" class="table table-striped">
+    <thead>
+      <tr>
+        <th ng-click='table.sortBy("angel_id")'>Startup Id <span ng-show='table.sortedBy("angel_id")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='table.sortBy("name")'>Startup Name <span ng-show='table.sortedBy("name")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='table.sortBy("num_startups")'>City Id<span ng-show='table.sortedBy("num_startups")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='table.sortBy("rank")'>Location<span ng-show='table.sortedBy("rank")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <th ng-click='table.sortBy("popularity")'>Popularity<span ng-show='table.sortedBy("popularity")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th>
+        <!-- <th ng-click='table.sortBy("popularity")'>Ratio Investors:Companies<span ng-show='table.sortedBy("stateCode")' class='glyphicon' ng-class="{'glyphicon-chevron-down': !sort['descending'], 'glyphicon-chevron-up': sort['descending']}"></span></th> -->
+        <!-- <th>City Id</th>
+        <th>City Name</th>
+        <th>State Code</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="row in founders | orderBy:sort['by']:sort['descending']">
+        <td ng-bind=row['angel_id']></td>
+        <td><a ng-bind=row['name'] ng-href="{{'seriesz/founder/' + row['id']}}"></a></td>
+        <td ng-bind=row['num_startups']></td>
+        <td ng-bind=row['rank']></td>
+        <td ng-bind=row['popularity']></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+</div>

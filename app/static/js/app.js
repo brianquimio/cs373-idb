@@ -44,12 +44,150 @@
         templateUrl: '/static/partials/splash.html',
         controller: 'splashController',
         controllerAs: 'splash'
+      }).when('/seriesz', {
+        templateUrl: '/static/partials/series_z_cities.html',
+        controller: 'serieszController',
+        controllerAs: 'seriesz'
+      }).when('/seriesz/:class/:id', {
+        templateUrl: '/static/partials/serieszsingle.html',
+        controller: 'serieszSingleController',
+        controllerAs: 'seriesz'
       }).
       otherwise({
         redirectTo: '/'
       });
     // $httpProvider.defaults.useXDomain = true;
 
+  }]);
+
+  app.controller('serieszSingleController', ['$scope', '$routeParams','dataGetService', function($scope, $routeParams, dataGetService){
+    $scope.data = null;
+    $scope.keys = null;
+    $scope.class = $routeParams["class"];
+    console.log($routeParams);
+    var cleanData = function(obj) {
+      for (var i in obj) {
+        if (!isNaN(obj[i])) {
+          obj[i] = Number(obj[i]);
+        };
+      };
+      $scope.keys = Object.keys(obj);
+    };
+    var init = function(){
+      dataGetService.call('/api/seriesz/' + $routeParams["class"] + '/' + $routeParams["id"]).then(function(data){$scope.data = data; cleanData($scope.data)}, function(data){$scope.data = data});
+    };
+    init();
+  }]);
+
+  app.controller('serieszController', ['$scope','dataGetService', function($scope, dataGetService){
+    $scope.cities = null;
+    $scope.startups = null;
+    $scope.founders = null;
+
+    this.printData = function(){
+      console.log(this.data);
+    };
+
+    var cleanData = function(objArray) {
+      for (var i in objArray) {
+        for (var prop in objArray[i]){
+          if (!isNaN(objArray[i][prop])) {
+            objArray[i][prop] = Number(objArray[i][prop]);
+          };
+        };
+      };
+    };
+
+    this.data = null;
+
+    this.call = function(url) {dataGetService.call(url).then(function(data){this.data = data}, function(data){this.data = data});};
+
+    var init = function() {
+      dataGetService.call('/api/seriesz/cities_good').then(function(data){$scope.cities = data; cleanData($scope.cities)}, function(data){$scope.cities = data});
+      dataGetService.call('/api/seriesz/startups_good').then(function(data){$scope.startups = data; cleanData($scope.startups)}, function(data){$scope.startups = data});
+      dataGetService.call('/api/seriesz/founders_good').then(function(data){$scope.founders = data; cleanData($scope.founders)}, function(data){$scope.founders = data});
+    };
+    init();
+  }]);
+
+  app.controller('serieszController', ['$scope','dataGetService', function($scope, dataGetService){
+    $scope.cities = null;
+    $scope.startups = null;
+    $scope.founders = null;
+
+    this.printData = function(){
+      console.log(this.data);
+    };
+
+    var cleanData = function(objArray) {
+      for (var i in objArray) {
+        for (var prop in objArray[i]){
+          if (!isNaN(objArray[i][prop])) {
+            objArray[i][prop] = Number(objArray[i][prop]);
+          };
+        };
+      };
+    };
+
+    this.data = null;
+
+    this.call = function(url) {dataGetService.call(url).then(function(data){this.data = data}, function(data){this.data = data});};
+
+    var init = function() {
+      dataGetService.call('/api/seriesz/cities_good').then(function(data){$scope.cities = data; cleanData($scope.cities)}, function(data){$scope.cities = data});
+      dataGetService.call('/api/seriesz/startups_good').then(function(data){$scope.startups = data; cleanData($scope.startups)}, function(data){$scope.startups = data});
+      dataGetService.call('/api/seriesz/founders_good').then(function(data){$scope.founders = data; cleanData($scope.founders)}, function(data){$scope.founders = data});
+    };
+    init();
+  }]);
+
+  app.controller('tableController', ['$scope', function($scope){
+    $scope.sort = {
+      by: 'name',
+      descending: false
+    };
+    //used to update/set sort values
+    this.sortBy = function(col) {
+      if ($scope.sort['by'] === col) {
+        $scope.sort['descending'] = !$scope.sort['descending'];
+      } else {
+        $scope.sort['by'] = col;
+        $scope.sort['descending'] = false;
+      };
+    };
+    //used by ng-show, for chevron on column
+    this.sortedBy = function(col) {
+      return $scope.sort['by'] === col;
+    };
+    //used by ng-class, for chevron direction
+    this.isDescending = function() {
+      return $scope.sort['descending'];
+    };
+  }]);
+
+  app.service('dataGetService', ['$q','$http', '$location', '$sce', function($q,$http,$location,$sce){
+    // var baseUrl = 'http://192.168.99.100';
+    this.data = {};
+    this.call = function(url){
+      var deferred = $q.defer();
+      console.log("calling API at: " + url);
+      $http.get(url).then(
+        //success
+        function(response){
+          console.log(response);
+          console.log(response.data);
+          this.data = response.data;
+          deferred.resolve(response.data);
+        }
+        , //failure
+        function(response){
+          console.log("api call failed on: " + jsonUrl);
+          console.log(response);
+          deferred.reject("api call failed on: " + jsonUrl);
+        }
+      );
+      return deferred.promise;
+    };
   }]);
 
   //just for printing the maps, and for initializing the idMappingService.

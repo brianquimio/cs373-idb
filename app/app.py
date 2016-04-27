@@ -356,7 +356,7 @@ def neighborhood_stats_week(week, code):
     """
     logger.debug("WEEK: " + str(week))
     logger.debug("WEEK TYPE: " + str(type(week)))
-    
+
     week_of = week['weekEndingDate']
 
     if type(week['listingPrice']['subcategory']) is list:
@@ -488,26 +488,27 @@ def init_db():
 
 
 
-#---------
-# Series-Z
-#---------
-
-@app.route('/api/seriesz')
-def route_series_z_cities():
-    return jsonify(json.loads('http://series-z.org/api/cities'))
-
-
-
-
-
-
-
 # -----------
 # URL Routing
 # -----------
 
 @app.route('/')
+@app.route('/cities')
+@app.route('/states')
+@app.route('/neighborhoods')
+@app.route('/seriesz')
 def splash():
+    """
+    renders the home page (index.html in the templates subfolder)
+    """
+    logger.debug("splash")
+    return make_response(open('templates/index.html').read())
+
+@app.route('/')
+@app.route('/cities/<path:id>')
+@app.route('/states/<path:id>')
+@app.route('/neighborhoods/<path:id>')
+def splash2(id):
     """
     renders the home page (index.html in the templates subfolder)
     """
@@ -591,7 +592,7 @@ def api_state_spec(statecode):
     city_data = {}
     for data in cities:
         city_data[data.city_id] = data.serialize()
-    
+
     result = {}
     result['cities'] = city_data
     result['stats'] = jsonData
@@ -638,7 +639,7 @@ def api_city_spec(cityID):
     neighborhood_data = {}
     for data in neighborhoods:
         neighborhood_data[data.neighborhood_id] = data.serialize()
-    
+
     result['neighborhoods'] = neighborhood_data
 
 
@@ -687,7 +688,7 @@ def api_neighborhood_spec(nID):
 
     if len(NeighborhoodStats.query.filter_by(neighborhood_id=nID).all()) == 0:
         init_neighborhood_stats(json.load(open('json_data/neighborhoods1.json')))
-    
+
     test = NeighborhoodStats.query.filter_by(neighborhood_id=nID).all()
 
     for data in test:
@@ -709,9 +710,42 @@ def render_tests():
     test_results = subprocess.getoutput("python3 tests.py")
     return json.dumps({'test_results': str(test_results)})
 
-@app.route('/api/seriesz')
-def route_series_z_cities():
+@app.route('/api/seriesz/startup/<path:elemid>')
+def route_series_z_startup_single(elemid):
+    return requests.get('http://146.20.68.107/api/startup/' + elemid).content
+
+@app.route('/api/seriesz/city/<path:elemid>')
+def route_series_z_city_single(elemid):
+    return requests.get('http://146.20.68.107/api/city/' + elemid).content
+
+@app.route('/api/seriesz/founder/<path:elemid>')
+def route_series_z_founder_single(elemid):
+    return requests.get('http://146.20.68.107/api/founder/' + elemid).content
+
+
+@app.route('/api/seriesz/startups_good')
+def route_series_z_startups_good():
+    return requests.get('http://146.20.68.107/api/startups').content
+
+@app.route('/api/seriesz/startups_bad')
+def route_series_z_startups_bad():
+    return requests.get('http://series-z.org/api/startups').content
+
+@app.route('/api/seriesz/cities_good')
+def route_series_z_cities_good():
+    return requests.get('http://146.20.68.107/api/cities').content
+
+@app.route('/api/seriesz/cities_bad')
+def route_series_z_cities_bad():
     return requests.get('http://series-z.org/api/cities').content
+
+@app.route('/api/seriesz/founders_good')
+def route_series_z_founders_good():
+    return requests.get('http://146.20.68.107/api/founders').content
+
+@app.route('/api/seriesz/founders_bad')
+def route_series_z_founders_bad():
+    return requests.get('http://series-z.org/api/founders').content
 
 # ----------------
 # Manager Commands
