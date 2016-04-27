@@ -486,6 +486,22 @@ def init_db():
     #     init_neighborhood_stats(json.load(neighborhood_stats))
 
 
+
+
+#---------
+# Series-Z
+#---------
+
+@app.route('/api/seriesz')
+def route_series_z_cities():
+    return jsonify(json.loads('http://series-z.org/api/cities'))
+
+
+
+
+
+
+
 # -----------
 # URL Routing
 # -----------
